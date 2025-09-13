@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Awareness — Certificate</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root { --bg: #0f172a; --accent: #38bdf8; --muted: #9aa7b2; --card: #0b1220; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: #ecf8ff; margin: 0; display:flex; flex-direction:column; align-items:center; }
+.topbar { position: sticky; top:0; backdrop-filter: blur(6px); background: rgba(4,6,13,0.55); border-bottom:1px solid rgba(255,255,255,0.03); width:100%; z-index: 1000; }
+.container { width:min(1100px,92%); margin:0 auto; padding:12px 0; display:flex; justify-content:space-between; align-items:center; }
+.brand { display:flex; gap:12px; align-items:center; }
+.logo { width:48px; height:48px; border-radius:10px; background: linear-gradient(135deg,#0ea5e9,#7c3aed); display:flex; justify-content:center; align-items:center; font-weight:700; box-shadow:0 6px 18px rgba(124,58,237,0.18); }
+.navlinks { display:flex; gap:18px; }
+.navlinks a { color: var(--muted); text-decoration:none; font-weight:600; }
+.navlinks a:hover { color: var(--accent); }
+
+.certificate-container { width:min(900px,95%); margin:40px auto; background: var(--card); padding:40px; border-radius:20px; text-align:center; border:2px solid rgba(255,255,255,0.05); box-shadow:0 10px 30px rgba(2,6,23,0.5); }
+.certificate-container h2 { color:var(--accent); font-size:28px; margin-bottom:20px; }
+.certificate-container p { font-size:18px; color:#dbeefe; margin-bottom:12px; }
+.certificate-container .name { font-weight:800; font-size:24px; margin:15px 0; color:#eafcff; }
+.certificate-container .btn-download { margin-top:20px; padding:12px 20px; border-radius:12px; font-weight:700; cursor:pointer; border:0; background: linear-gradient(90deg,#0ea5e9,#7c3aed); color:#022033; box-shadow:0 8px 30px rgba(14,165,233,0.12); text-decoration:none; display:inline-block; }
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="container">
+    <div class="brand">
+      <div class="logo">CT</div>
+      <div>
+        <h1 style="font-size:15px;margin:0;">Cyber Awareness</h1>
+        <div style="font-size:12px;color:#9aa7b2;">Training · Safety · Response</div>
+      </div>
+    </div>
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="phishing.html">Phishing</a>
+      <a href="passwords.html">Passwords</a>
+      <a href="scams.html">Scams</a>
+      <a href="malware.html">Malware</a>
+      <a href="safeinternet.html">Safe Internet</a>
+      <a href="mobile.html">Mobile Security</a>
+      <a href="dataprotection.html">Data Protection</a>
+      <a href="incident.html">Incident Response</a>
+      <a href="certificate.html">Certificate</a>
+    </nav>
+  </div>
+</div>
+
+<!-- Certificate -->
+<div class="certificate-container" id="certificate">
+  <h2>Certificate of Completion</h2>
+  <p>This is to certify that</p>
+  <div class="name" id="userName">[Your Name]</div>
+  <p>has successfully completed the</p>
+  <p><strong>Cyber Awareness Training Program</strong></p>
+  <p>Date: <span id="completionDate"></span></p>
+  <button class="btn-download" onclick="downloadPDF()">Download Certificate as PDF</button>
+</div>
+
+<script>
+document.getElementById('completionDate').textContent = new Date().toLocaleDateString();
+let name = prompt("Enter your name for the certificate:");
+if(name) document.getElementById('userName').textContent = name;
+
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation:'landscape', unit:'pt', format:'a4' });
+  doc.setFillColor(15,23,42);
+  doc.rect(0,0,doc.internal.pageSize.width,doc.internal.pageSize.height,'F');
+
+  doc.setTextColor(56,189,248);
+  doc.setFontSize(40);
+  doc.text("Certificate of Completion", doc.internal.pageSize.width/2, 100, {align:'center'});
+
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(20);
+  doc.text("This certifies that", doc.internal.pageSize.width/2, 160, {align:'center'});
+
+  doc.setFontSize(28);
+  doc.setFont(undefined,'bold');
+  doc.text(document.getElementById('userName').textContent, doc.internal.pageSize.width/2, 200, {align:'center'});
+
+  doc.setFontSize(20);
+  doc.setFont(undefined,'normal');
+  doc.text("has successfully completed the Cyber Awareness Training Program", doc.internal.pageSize.width/2, 240, {align:'center'});
+  doc.text("covering Phishing, Passwords, Scams, Malware, Safe Internet, Mobile Security, Data Protection, and Incident Response.", doc.internal.pageSize.width/2, 270, {align:'center'});
+
+  doc.text("Date: " + document.getElementById('completionDate').textContent, doc.internal.pageSize.width/2, 320, {align:'center'});
+
+  doc.setTextColor(56,189,248);
+  doc.setFontSize(16);
+  doc.text("Cyber Awareness Training Program", doc.internal.pageSize.width/2, 360, {align:'center'});
+
+  doc.save("CyberAwareness_Certificate.pdf");
+}
+</script>
+
+</body>
+</html>

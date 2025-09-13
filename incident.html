@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Awareness — Incident Response</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root { --bg:#0f172a; --accent:#38bdf8; --muted:#9aa7b2; --card:#0b1220; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:#ecf8ff; margin:0; }
+.topbar{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(4,6,13,0.55);border-bottom:1px solid rgba(255,255,255,0.03);z-index:1000;}
+.container{width:min(1100px,92%);margin:0 auto;padding:12px 0;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;gap:12px;align-items:center;}
+.logo{width:48px;height:48px;border-radius:10px;background: linear-gradient(135deg,#0ea5e9,#7c3aed);display:flex;justify-content:center;align-items:center;font-weight:700;box-shadow:0 6px 18px rgba(124,58,237,0.18);}
+.navlinks{display:flex;gap:18px;}
+.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;}
+.navlinks a:hover{color:var(--accent);}
+
+.hero{width:min(1100px,92%);margin:28px auto;display:grid;grid-template-columns:1fr 380px;gap:28px;background: linear-gradient(135deg, rgba(8,22,40,0.85), rgba(10,16,26,0.9));padding:34px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 40px rgba(2,6,23,0.6);}
+.hero h2{color:var(--accent);font-size:28px;margin:0 0 12px;}
+.hero p{margin:0 0 18px;line-height:1.5;color:#dbeefe;}
+.hero .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.btn{padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;border:0;background: linear-gradient(90deg,#0ea5e9,#7c3aed);color:#022033;box-shadow:0 8px 30px rgba(14,165,233,0.12);}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color: var(--muted);}
+.hero-right{background: linear-gradient(180deg,#061426,#071b30); border-radius:10px; padding:18px; color:#d8f2ff; border:1px solid rgba(255,255,255,0.02);}
+.progress-summary{display:flex;gap:10px;flex-direction:column;}
+.metric{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background: rgba(255,255,255,0.02);}
+.metric small{color: var(--muted);}
+.metric strong{color:#e6fbff;}
+
+.section{width:min(1100px,92%);margin:20px auto;background: var(--card); padding:28px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 10px 30px rgba(2,6,23,0.5);}
+h2,h3{color:var(--accent);margin-bottom:12px;}
+p,li{line-height:1.5;color:#dbeefe;}
+ul{margin-left:20px;}
+li{margin-bottom:8px;}
+.quiz-question{margin-bottom:16px;}
+.quiz-question p{font-weight:600;margin-bottom:6px;}
+input[type="radio"]{margin-right:8px;}
+#quizResult{margin-top:12px;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+<div class="container">
+  <div class="brand">
+    <div class="logo">CT</div>
+    <div>
+      <h1 style="font-size:15px;margin:0;">Cyber Awareness</h1>
+      <div style="font-size:12px;color:#9aa7b2;">Training · Safety · Response</div>
+    </div>
+  </div>
+  <nav class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="phishing.html">Phishing</a>
+    <a href="passwords.html">Passwords</a>
+    <a href="scams.html">Scams</a>
+    <a href="malware.html">Malware</a>
+    <a href="safeinternet.html">Safe Internet</a>
+    <a href="mobile.html">Mobile Security</a>
+    <a href="dataprotection.html">Data Protection</a>
+    <a href="incident.html">Incident Response</a>
+  </nav>
+</div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+<div>
+<h2>Incident Response</h2>
+<p>Learn how to react quickly and effectively to cyber incidents, minimize damage, recover systems, and prevent recurrence.</p>
+<div class="cta">
+<a class="btn" href="#quiz">Take Quiz</a>
+</section>
+
+<!-- Detailed Content -->
+<section class="section">
+<h3>Introduction</h3>
+<p>Incident response is a structured approach to handle cyber threats and breaches. A well-prepared plan reduces downtime, protects data, and limits financial and reputational damage.</p>
+
+<h3>Phases of Incident Response</h3>
+<ul>
+<li><strong>Preparation:</strong> Establish policies, procedures, and communication plans before an incident.</li>
+<li><strong>Identification:</strong> Detect anomalies or breaches using monitoring tools and alerts.</li>
+<li><strong>Containment:</strong> Short-term containment (stop spread) and long-term containment (prevent recurrence).</li>
+<li><strong>Eradication:</strong> Remove malware, fix vulnerabilities, and verify clean systems.</li>
+<li><strong>Recovery:</strong> Restore systems to normal operation, monitor for signs of weakness.</li>
+<li><strong>Lessons Learned:</strong> Conduct post-incident analysis and update policies.</li>
+</ul>
+
+<h3>Roles & Responsibilities</h3>
+<ul>
+<li>Incident Response Team (IRT) coordinates investigation and response.</li>
+<li>IT staff isolate and recover affected systems.</li>
+<li>Management communicates with stakeholders and regulators.</li>
+<li>Employees follow guidance to minimize impact.</li>
+</ul>
+
+<h3>Tools & Techniques</h3>
+<ul>
+<li>SIEM (Security Information & Event Management) systems</li>
+<li>Forensic tools for disk and memory analysis</li>
+<li>Log monitoring & alerting tools</li>
+<li>Backup and restore software</li>
+</ul>
+
+<h3>Reporting & Compliance</h3>
+<ul>
+<li>Follow legal/regulatory requirements for reporting breaches.</li>
+<li>Document every action for audit trails.</li>
+<li>Ensure communication with affected parties is clear and timely.</li>
+</ul>
+</section>
+
+<!-- Quiz -->
+<section class="section" id="quiz">
+<h3>Quiz — Test Your Knowledge</h3>
+
+<div class="quiz-question">
+<p>1. First phase of incident response is:</p>
+<label><input type="radio" name="q1">Preparation</label><br>
+<label><input type="radio" name="q1">Recovery</label><br>
+<label><input type="radio" name="q1">Eradication</label>
+</div>
+
+<div class="quiz-question">
+<p>2. Containment aims to:</p>
+<label><input type="radio" name="q2">Limit damage and prevent spread</label><br>
+<label><input type="radio" name="q2">Ignore the threat</label><br>
+<label><input type="radio" name="q2">Delete all backups</label>
+</div>
+
+<div class="quiz-question">
+<p>3. Recovery phase involves:</p>
+<label><input type="radio" name="q3">Restoring systems and monitoring</label><br>
+<label><input type="radio" name="q3">Starting malware</label><br>
+<label><input type="radio" name="q3">Alerting competitors</label>
+</div>
+
+<div class="quiz-question">
+<p>4. Lessons learned phase is for:</p>
+<label><input type="radio" name="q4">Post-incident analysis and policy updates</label><br>
+<label><input type="radio" name="q4">Hiding the incident</label><br>
+<label><input type="radio" name="q4">Deleting logs</label>
+</div>
+
+<div class="quiz-question">
+<p>5. Which team coordinates incident response?</p>
+<label><input type="radio" name="q5">Incident Response Team (IRT)</label><br>
+<label><input type="radio" name="q5">HR Team</label><br>
+<label><input type="radio" name="q5">Marketing Team</label>
+</div>
+
+<div class="quiz-question">
+<p>6. Forensic tools help with:</p>
+<label><input type="radio" name="q6">Disk/memory analysis</label><br>
+<label><input type="radio" name="q6">Designing websites</label><br>
+<label><input type="radio" name="q6">Cooking recipes</label>
+</div>
+
+<div class="quiz-question">
+<p>7. SIEM systems are used for:</p>
+<label><input type="radio" name="q7">Monitoring & alerting</label><br>
+<label><input type="radio" name="q7">Gaming</label><br>
+<label><input type="radio" name="q7">Social media</label>
+</div>
+
+<div class="quiz-question">
+<p>8. Legal reporting ensures:</p>
+<label><input type="radio" name="q8">Compliance with regulations</label><br>
+<label><input type="radio" name="q8">Delaying response</label><br>
+<label><input type="radio" name="q8">Deleting evidence</label>
+</div>
+
+<div class="quiz-question">
+<p>9. Employees should:</p>
+<label><input type="radio" name="q9">Follow incident response guidance</label><br>
+<label><input type="radio" name="q9">Ignore instructions</label><br>
+<label><input type="radio" name="q9">Share credentials publicly</label>
+</div>
+
+<div class="quiz-question">
+<p>10. Post-incident documentation is important for:</p>
+<label><input type="radio" name="q10">Audit trails and future prevention</label><br>
+<label><input type="radio" name="q10">Deleting evidence</label><br>
+<label><input type="radio" name="q10">Hiding mistakes</label>
+</div>
+
+<button class="btn" onclick="checkQuiz()">Submit Quiz</button>
+<div id="quizResult"></div>
+</section>
+
+<script>
+function checkQuiz(){
+  let score=0;
+  const answers=[
+    "Preparation",
+    "Limit damage and prevent spread",
+    "Restoring systems and monitoring",
+    "Post-incident analysis and policy updates",
+    "Incident Response Team (IRT)",
+    "Disk/memory analysis",
+    "Monitoring & alerting",
+    "Compliance with regulations",
+    "Follow incident response guidance",
+    "Audit trails and future prevention"
+  ];
+  for(let i=1;i<=10;i++){
+    const q=document.querySelector('input[name="q'+i+'"]:checked');
+    if(q && q.parentElement.textContent.trim()===answers[i-1]) score++;
+  }
+  document.getElementById('quizResult').textContent="Your Score: "+score+" / 10";
+  localStorage.setItem('incidentScore',score);
+}
+</script>
+
+</body>
+</html>

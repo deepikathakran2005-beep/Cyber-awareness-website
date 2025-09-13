@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cyber Awareness Training — Scams</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --accent: #38bdf8;
+      --muted: #9aa7b2;
+      --card: #0b1220;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: #ecf8ff; margin:0; }
+    .topbar { position:sticky; top:0; backdrop-filter:blur(6px); background:rgba(4,6,13,0.55); border-bottom:1px solid rgba(255,255,255,0.03); z-index:1000; }
+    .container { width:min(1100px,92%); margin:0 auto; padding:12px 0; display:flex; justify-content:space-between; align-items:center; }
+    .brand { display:flex; gap:12px; align-items:center; }
+    .logo { width:48px; height:48px; border-radius:10px; background: linear-gradient(135deg,#0ea5e9,#7c3aed); display:flex; justify-content:center; align-items:center; font-weight:700; box-shadow:0 6px 18px rgba(124,58,237,0.18); }
+    .navlinks { display:flex; gap:18px; }
+    .navlinks a { color: var(--muted); text-decoration:none; font-weight:600; }
+    .navlinks a:hover { color: var(--accent); }
+
+    .hero { width:min(1100px,92%); margin:28px auto; display:grid; grid-template-columns:1fr 380px; gap:28px; background: linear-gradient(135deg, rgba(8,22,40,0.85), rgba(10,16,26,0.9)); padding:34px; border-radius:14px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 10px 40px rgba(2,6,23,0.6); }
+    .hero h2 { color: var(--accent); font-size:28px; margin:0 0 12px; }
+    .hero p { margin:0 0 18px; line-height:1.5; color:#dbeefe; }
+    .hero .cta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .btn { padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer; border:0; background: linear-gradient(90deg,#0ea5e9,#7c3aed); color:#022033; box-shadow:0 8px 30px rgba(14,165,233,0.12); }
+    .btn.ghost { background:transparent; border:1px solid rgba(255,255,255,0.06); color: var(--muted); }
+
+    .hero-right { background: linear-gradient(180deg,#061426,#071b30); border-radius:10px; padding:18px; color:#d8f2ff; border:1px solid rgba(255,255,255,0.02); }
+    .progress-summary { display:flex; gap:10px; flex-direction:column; }
+    .metric { display:flex; justify-content:space-between; padding:8px 10px; border-radius:8px; background: rgba(255,255,255,0.02); }
+    .metric small { color: var(--muted); }
+    .metric strong { color:#e6fbff; }
+
+    .section { width:min(1100px,92%); margin:20px auto; background: var(--card); padding:28px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 10px 30px rgba(2,6,23,0.5); }
+
+    h2,h3 { color: var(--accent); margin-bottom:12px; }
+    p, li { line-height:1.5; color:#dbeefe; }
+    ul { margin-left:20px; }
+    li { margin-bottom:8px; }
+
+    .quiz-question { margin-bottom:16px; }
+    .quiz-question p { font-weight:600; margin-bottom:6px; }
+    input[type="radio"] { margin-right:8px; }
+    #quizResult { margin-top:12px; font-weight:700; }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">CT</div>
+        <div>
+          <h1 style="font-size:15px;margin:0;">Cyber Awareness</h1>
+          <div style="font-size:12px;color:#9aa7b2;">Training · Safety · Response</div>
+        </div>
+      </div>
+      <nav class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="phishing.html">Phishing</a>
+        <a href="passwords.html">Passwords</a>
+        <a href="scams.html">Scams</a>
+        <a href="malware.html">Malware</a>
+        <a href="safeinternet.html">Safe Internet</a>
+        <a href="mobile.html">Mobile Security</a>
+      <a href="dataprotection.html">Data Protection</a>
+      <a href="incident.html">Incident Response</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h2>Cyber Scams — Recognize, Avoid, and Report</h2>
+      <p>Scammers exploit trust, fear, and urgency to steal your money or information. Learn common scams, warning signs, prevention strategies, and how to recover if targeted.</p>
+      <div class="cta">
+        <a class="btn" href="#quiz">Take Quiz</a>
+      
+  </section>
+
+  <!-- Detailed Content -->
+  <section class="section">
+    <h3>Introduction to Scams</h3>
+    <p>Scams are fraudulent schemes aimed at tricking people into giving money, sensitive information, or access to devices. Attackers often manipulate emotions such as fear, greed, or sympathy. Understanding scams is key to online safety.</p>
+
+    <h3>Common Types of Scams</h3>
+    <ul>
+      <li><b>Lottery & Prize Scams:</b> You receive a message claiming you've won a prize and must pay fees to claim it.</li>
+      <li><b>Romance Scams:</b> Fake relationships on dating apps or social media, aiming to steal money or personal info.</li>
+      <li><b>Job & Employment Scams:</b> Offers that request personal info or advance payments for fake jobs.</li>
+      <li><b>Marketplace & E-commerce Scams:</b> Fake listings, overpayments, counterfeit products, or phishing links.</li>
+      <li><b>Tech Support Scams:</b> Scammers pretend to be support staff asking for remote access or payment to fix non-existent issues.</li>
+      <li><b>Phishing Emails & SMS:</b> Messages with links to fake websites to capture credentials.</li>
+      <li><b>Investment & Crypto Scams:</b> Promises of high returns, fake coins, or fraudulent trading platforms.</li>
+    </ul>
+
+    <h3>Psychological Tricks Used by Scammers</h3>
+    <ul>
+      <li><b>Urgency:</b> Pressuring victims to act quickly without thinking.</li>
+      <li><b>Authority:</b> Pretending to be officials, police, banks, or government agencies.</li>
+      <li><b>Reciprocity:</b> Offering fake gifts or benefits to encourage compliance.</li>
+      <li><b>Fear:</b> Threatening account suspension, legal action, or loss of assets.</li>
+      <li><b>Social Proof:</b> Claiming others are already participating or winning.</li>
+    </ul>
+
+    <h3>Red Flags to Identify Scams</h3>
+    <ul>
+      <li>Unsolicited messages with requests for money or personal information.</li>
+      <li>Poor grammar, spelling errors, or suspicious URLs.</li>
+      <li>Promises that seem “too good to be true”.</li>
+      <li>Pressure to act immediately or bypass standard procedures.</li>
+      <li>Requests for remote access to devices or sharing OTPs/passwords.</li>
+    </ul>
+
+    <h3>Reporting & Recovery</h3>
+    <ul>
+      <li>Report to your local cybercrime authority or national reporting portal.</li>
+      <li>Contact banks or payment providers if you sent money.</li>
+      <li>Change all affected passwords immediately.</li>
+      <li>Enable multi-factor authentication and monitor accounts for unusual activity.</li>
+      <li>Educate others and share warnings to prevent spread.</li>
+    </ul>
+
+    <h3>Prevention Tips</h3>
+    <ul>
+      <li>Verify identities, links, and contact details before responding.</li>
+      <li>Use official channels for communication with banks, companies, and government agencies.</li>
+      <li>Install antivirus and anti-malware software and keep it updated.</li>
+      <li>Stay updated about common scams and fraud trends.</li>
+      <li>Be skeptical of unsolicited messages promising rewards or opportunities.</li>
+    </ul>
+
+    <h3>Real-Life Statistics</h3>
+    <ul>
+      <li>According to reports, online scams cost victims billions globally every year.</li>
+      <li>Romance scams alone have caused losses exceeding $600 million annually worldwide.</li>
+      <li>Tech support scams are responsible for over 2 million complaints each year.</li>
+      <li>Most scam victims report ignoring warning signs due to urgency or emotional manipulation.</li>
+    </ul>
+  </section>
+
+  <!-- Quiz -->
+  <section class="section" id="quiz">
+    <h3>Quiz — Test Your Knowledge</h3>
+
+    <div class="quiz-question">
+      <p>1. A common sign of a scam email is:</p>
+      <label><input type="radio" name="q1">Too many emojis</label><br>
+      <label><input type="radio" name="q1">Urgent action required & threats</label><br>
+      <label><input type="radio" name="q1">Perfect grammar</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>2. Romance scams typically involve:</p>
+      <label><input type="radio" name="q2">Genuine dating</label><br>
+      <label><input type="radio" name="q2">Fake online relationships to steal money</label><br>
+      <label><input type="radio" name="q2">Job offers</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>3. Job scam red flags include:</p>
+      <label><input type="radio" name="q3">Asking for personal info or upfront fees</label><br>
+      <label><input type="radio" name="q3">Standard interview process</label><br>
+      <label><input type="radio" name="q3">Official HR email</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>4. How to identify marketplace scams?</p>
+      <label><input type="radio" name="q4">Unverified sellers & suspicious deals</label><br>
+      <label><input type="radio" name="q4">High ratings & reviews</label><br>
+      <label><input type="radio" name="q4">Official site listings</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>5. First step if you suspect a scam?</p>
+      <label><input type="radio" name="q5">Ignore & continue</label><br>
+      <label><input type="radio" name="q5">Report to authorities & secure accounts</label><br>
+      <label><input type="radio" name="q5">Send money to verify</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>6. Tech support scams ask for:</p>
+      <label><input type="radio" name="q6">Remote access or payments</label><br>
+      <label><input type="radio" name="q6">Software updates</label><br>
+      <label><input type="radio" name="q6">Nothing</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>7. Phishing scams aim to:</p>
+      <label><input type="radio" name="q7">Steal personal info</label><br>
+      <label><input type="radio" name="q7">Offer prizes</label><br>
+      <label><input type="radio" name="q7">Send advertisements</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>8. To prevent scam losses, you should:</p>
+      <label><input type="radio" name="q8">Verify sources & never send money blindly</label><br>
+      <label><input type="radio" name="q8">Click all links immediately</label><br>
+      <label><input type="radio" name="q8">Ignore updates</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>9. Which info should NEVER be shared?</p>
+      <label><input type="radio" name="q9">Bank details, passwords, OTPs</label><br>
+      <label><input type="radio" name="q9">Public email</label><br>
+      <label><input type="radio" name="q9">Name</label>
+    </div>
+
+    <div class="quiz-question">
+      <p>10. If money was sent to a scammer, you should:</p>
+      <label><input type="radio" name="q10">Contact your bank immediately</label><br>
+      <label><input type="radio" name="q10">Do nothing</label><br>
+      <label><input type="radio" name="q10">Wait for scammer reply</label>
+    </div>
+
+    <button class="btn" onclick="submitQuiz()">Submit Quiz</button>
+    <div id="quizResult"></div>
+  </section>
+
+  <script>
+    function submitQuiz(){
+      let score=0;
+      const answers = [
+        "Urgent action required & threats",
+        "Fake online relationships to steal money",
+        "Asking for personal info or upfront fees",
+        "Unverified sellers & suspicious deals",
+        "Report to authorities & secure accounts",
+        "Remote access or payments",
+        "Steal personal info",
+        "Verify sources & never send money blindly",
+        "Bank details, passwords, OTPs",
+        "Contact your bank immediately"
+      ];
+      for(let i=1;i<=10;i++){
+        const q=document.querySelector(`input[name=q${i}]:checked`);
+        if(q && q.nextSibling.textContent.trim()===answers[i-1]) score++;
+      }
+      document.getElementById('quizResult').textContent=`Your score: ${score}/10`;
+      localStorage.setItem('scamScore', score);
+      let completed = JSON.parse(localStorage.getItem('completedModules')||"[]");
+      if(!completed.includes('scams')) completed.push('scams');
+      localStorage.setItem('completedModules', JSON.stringify(completed));
+      document.getElementById('scamCompleted').textContent=completed.length;
+      document.getElementById('scamScore').textContent=score;
+    }
+    document.getElementById('scamScore').textContent = localStorage.getItem('scamScore') || 0;
+  </script>
+
+</body>
+</html>

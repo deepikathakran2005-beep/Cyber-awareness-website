@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Awareness — Safe Internet & Social Media</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root { --bg:#0f172a; --accent:#38bdf8; --muted:#9aa7b2; --card:#0b1220; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:#ecf8ff; margin:0; }
+.topbar{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(4,6,13,0.55);border-bottom:1px solid rgba(255,255,255,0.03);z-index:1000;}
+.container{width:min(1100px,92%);margin:0 auto;padding:12px 0;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;gap:12px;align-items:center;}
+.logo{width:48px;height:48px;border-radius:10px;background: linear-gradient(135deg,#0ea5e9,#7c3aed);display:flex;justify-content:center;align-items:center;font-weight:700;box-shadow:0 6px 18px rgba(124,58,237,0.18);}
+.navlinks{display:flex;gap:18px;}
+.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;}
+.navlinks a:hover{color:var(--accent);}
+
+.hero{width:min(1100px,92%);margin:28px auto;display:grid;grid-template-columns:1fr 380px;gap:28px;background: linear-gradient(135deg, rgba(8,22,40,0.85), rgba(10,16,26,0.9));padding:34px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 40px rgba(2,6,23,0.6);}
+.hero h2{color:var(--accent);font-size:28px;margin:0 0 12px;}
+.hero p{margin:0 0 18px;line-height:1.5;color:#dbeefe;}
+.hero .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.btn{padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;border:0;background: linear-gradient(90deg,#0ea5e9,#7c3aed);color:#022033;box-shadow:0 8px 30px rgba(14,165,233,0.12);}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color: var(--muted);}
+.hero-right{background: linear-gradient(180deg,#061426,#071b30); border-radius:10px; padding:18px; color:#d8f2ff; border:1px solid rgba(255,255,255,0.02);}
+.progress-summary{display:flex;gap:10px;flex-direction:column;}
+.metric{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background: rgba(255,255,255,0.02);}
+.metric small{color: var(--muted);}
+.metric strong{color:#e6fbff;}
+
+.section{width:min(1100px,92%);margin:20px auto;background: var(--card); padding:28px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 10px 30px rgba(2,6,23,0.5);}
+h2,h3{color:var(--accent);margin-bottom:12px;}
+p,li{line-height:1.5;color:#dbeefe;}
+ul{margin-left:20px;}
+li{margin-bottom:8px;}
+.quiz-question{margin-bottom:16px;}
+.quiz-question p{font-weight:600;margin-bottom:6px;}
+input[type="radio"]{margin-right:8px;}
+#quizResult{margin-top:12px;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+<div class="container">
+  <div class="brand">
+    <div class="logo">CT</div>
+    <div>
+      <h1 style="font-size:15px;margin:0;">Cyber Awareness</h1>
+      <div style="font-size:12px;color:#9aa7b2;">Training · Safety · Response</div>
+    </div>
+  </div>
+  <nav class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="phishing.html">Phishing</a>
+    <a href="passwords.html">Passwords</a>
+    <a href="scams.html">Scams</a>
+    <a href="malware.html">Malware</a>
+    <a href="safeinternet.html">Safe Internet</a>
+    <a href="mobile.html">Mobile Security</a>
+      <a href="dataprotection.html">Data Protection</a>
+      <a href="incident.html">Incident Response</a>
+  </nav>
+</div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+<div>
+<h2>Safe Internet & Social Media Practices</h2>
+<p>Protect your digital identity, avoid scams and malware, and interact responsibly on social media. Learn practical steps for online safety.</p>
+<div class="cta">
+<a class="btn" href="#quiz">Take Quiz</a>
+</section>
+
+<!-- Detailed Content -->
+<section class="section">
+<h3>Introduction</h3>
+<p>Safe internet usage is vital to protect your personal data, privacy, and reputation. Social media exposes sensitive information that can be misused by cybercriminals. Awareness, vigilance, and best practices are key to staying safe online.</p>
+
+<h3>Privacy & Account Security</h3>
+<ul>
+<li>Use unique, strong passwords for every account.</li>
+<li>Enable Multi-Factor Authentication (MFA) wherever possible.</li>
+<li>Regularly check account activity for suspicious logins.</li>
+<li>Keep devices and software updated to patch vulnerabilities.</li>
+<li>Limit personal information shared publicly.</li>
+</ul>
+
+<h3>Recognizing Threats</h3>
+<ul>
+<li>Phishing messages: links asking for login or personal information.</li>
+<li>Fake profiles, friend requests, and bots.</li>
+<li>Malware hidden in attachments or downloads.</li>
+<li>Scam messages promising money, prizes, or fake jobs.</li>
+<li>Misleading advertisements and clickbait links.</li>
+</ul>
+
+<h3>Safe Social Media Practices</h3>
+<ul>
+<li>Adjust privacy settings to control who sees your posts.</li>
+<li>Think before posting sensitive information or images.</li>
+<li>Verify friend requests and account authenticity.</li>
+<li>Report abusive content and cyberbullying.</li>
+<li>Regularly audit connected apps and remove unnecessary permissions.</li>
+</ul>
+
+<h3>Digital Footprint & Reputation</h3>
+<ul>
+<li>Everything you post online leaves a digital trail.</li>
+<li>Use pseudonyms for non-essential accounts if needed.</li>
+<li>Think about long-term consequences of sharing personal content.</li>
+<li>Use secure and reputable platforms.</li>
+</ul>
+</section>
+
+<!-- Quiz -->
+<section class="section" id="quiz">
+<h3>Quiz — Test Your Knowledge</h3>
+
+<div class="quiz-question">
+<p>1. Which is a safe social media practice?</p>
+<label><input type="radio" name="q1">Share passwords with friends</label><br>
+<label><input type="radio" name="q1">Limit who can view your posts</label><br>
+<label><input type="radio" name="q1">Click every link</label>
+</div>
+
+<div class="quiz-question">
+<p>2. How do you protect your online accounts?</p>
+<label><input type="radio" name="q2">Use weak passwords</label><br>
+<label><input type="radio" name="q2">Enable Multi-Factor Authentication</label><br>
+<label><input type="radio" name="q2">Share passwords with friends</label>
+</div>
+
+<div class="quiz-question">
+<p>3. Suspicious links should:</p>
+<label><input type="radio" name="q3">Be clicked immediately</label><br>
+<label><input type="radio" name="q3">Be ignored or verified first</label><br>
+<label><input type="radio" name="q3">Be shared widely</label>
+</div>
+
+<div class="quiz-question">
+<p>4. Which info should you avoid sharing publicly?</p>
+<label><input type="radio" name="q4">Favorite color</label><br>
+<label><input type="radio" name="q4">Home address, phone number, passwords</label><br>
+<label><input type="radio" name="q4">Pet name</label>
+</div>
+
+<div class="quiz-question">
+<p>5. Phishing attempts are recognized by:</p>
+<label><input type="radio" name="q5">Urgent messages asking for personal info</label><br>
+<label><input type="radio" name="q5">Official emails from verified sources</label><br>
+<label><input type="radio" name="q5">Messages from friends</label>
+</div>
+
+<div class="quiz-question">
+<p>6. Using public Wi-Fi safely involves:</p>
+<label><input type="radio" name="q6">Avoid logging into sensitive accounts</label><br>
+<label><input type="radio" name="q6">Share all passwords</label><br>
+<label><input type="radio" name="q6">Ignore warnings</label>
+</div>
+
+<div class="quiz-question">
+<p>7. Digital footprint refers to:</p>
+<label><input type="radio" name="q7">Information you leave online</label><br>
+<label><input type="radio" name="q7">Physical footprint</label><br>
+<label><input type="radio" name="q7">Nothing</label>
+</div>
+
+<div class="quiz-question">
+<p>8. Safe app permissions mean:</p>
+<label><input type="radio" name="q8">Allow everything</label><br>
+<label><input type="radio" name="q8">Grant only necessary permissions</label><br>
+<label><input type="radio" name="q8">Ignore settings</label>
+</div>
+
+<div class="quiz-question">
+<p>9. Fake profiles may:</p>
+<label><input type="radio" name="q9">Steal personal info</label><br>
+<label><input type="radio" name="q9">Provide legitimate news</label><br>
+<label><input type="radio" name="q9">Help protect your account</label>
+</div>
+
+<div class="quiz-question">
+<p>10. Reporting abusive content helps:</p>
+<label><input type="radio" name="q10">Protect yourself and others</label><br>
+<label><input type="radio" name="q10">Nothing</label><br>
+<label><input type="radio" name="q10">Harm the platform</label>
+</div>
+
+<button class="btn" onclick="checkQuiz()">Submit Quiz</button>
+<div id="quizResult"></div>
+</section>
+
+<script>
+function checkQuiz(){
+  let score=0;
+  const answers = ["Limit who can view your posts","Enable Multi-Factor Authentication","Be ignored or verified first","Home address, phone number, passwords","Urgent messages asking for personal info","Avoid logging into sensitive accounts","Information you leave online","Grant only necessary permissions","Steal personal info","Protect yourself and others"];
+  for(let i=1;i<=10;i++){
+    const q=document.querySelector('input[name="q'+i+'"]:checked');
+    if(q && q.parentElement.textContent.trim()===answers[i-1]) score++;
+  }
+  document.getElementById('quizResult').textContent="Your Score: "+score+" / 10";
+  localStorage.setItem('internetScore',score);
+}
+</script>
+
+</body>
+</html>

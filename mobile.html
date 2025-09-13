@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Awareness — Mobile & Device Security</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root { --bg:#0f172a; --accent:#38bdf8; --muted:#9aa7b2; --card:#0b1220; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:#ecf8ff; margin:0; }
+.topbar{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(4,6,13,0.55);border-bottom:1px solid rgba(255,255,255,0.03);z-index:1000;}
+.container{width:min(1100px,92%);margin:0 auto;padding:12px 0;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;gap:12px;align-items:center;}
+.logo{width:48px;height:48px;border-radius:10px;background: linear-gradient(135deg,#0ea5e9,#7c3aed);display:flex;justify-content:center;align-items:center;font-weight:700;box-shadow:0 6px 18px rgba(124,58,237,0.18);}
+.navlinks{display:flex;gap:18px;}
+.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;}
+.navlinks a:hover{color:var(--accent);}
+
+.hero{width:min(1100px,92%);margin:28px auto;display:grid;grid-template-columns:1fr 380px;gap:28px;background: linear-gradient(135deg, rgba(8,22,40,0.85), rgba(10,16,26,0.9));padding:34px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 40px rgba(2,6,23,0.6);}
+.hero h2{color:var(--accent);font-size:28px;margin:0 0 12px;}
+.hero p{margin:0 0 18px;line-height:1.5;color:#dbeefe;}
+.hero .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.btn{padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;border:0;background: linear-gradient(90deg,#0ea5e9,#7c3aed);color:#022033;box-shadow:0 8px 30px rgba(14,165,233,0.12);}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color: var(--muted);}
+.hero-right{background: linear-gradient(180deg,#061426,#071b30); border-radius:10px; padding:18px; color:#d8f2ff; border:1px solid rgba(255,255,255,0.02);}
+.progress-summary{display:flex;gap:10px;flex-direction:column;}
+.metric{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background: rgba(255,255,255,0.02);}
+.metric small{color: var(--muted);}
+.metric strong{color:#e6fbff;}
+
+.section{width:min(1100px,92%);margin:20px auto;background: var(--card); padding:28px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 10px 30px rgba(2,6,23,0.5);}
+h2,h3{color:var(--accent);margin-bottom:12px;}
+p,li{line-height:1.5;color:#dbeefe;}
+ul{margin-left:20px;}
+li{margin-bottom:8px;}
+.quiz-question{margin-bottom:16px;}
+.quiz-question p{font-weight:600;margin-bottom:6px;}
+input[type="radio"]{margin-right:8px;}
+#quizResult{margin-top:12px;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+<div class="container">
+  <div class="brand">
+    <div class="logo">CT</div>
+    <div>
+      <h1 style="font-size:15px;margin:0;">Cyber Awareness</h1>
+      <div style="font-size:12px;color:#9aa7b2;">Training · Safety · Response</div>
+    </div>
+  </div>
+  <nav class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="phishing.html">Phishing</a>
+    <a href="passwords.html">Passwords</a>
+    <a href="scams.html">Scams</a>
+    <a href="malware.html">Malware</a>
+    <a href="safeinternet.html">Safe Internet</a>
+    <a href="mobile.html">Mobile Security</a>
+    <a href="dataprotection.html">Data Protection</a>
+      <a href="incident.html">Incident Response</a>
+  </nav>
+</div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+<div>
+<h2>Mobile & Device Security</h2>
+<p>Learn how to secure your smartphone, tablet, and other devices from malware, theft, unauthorized access, and data leaks. Build practical skills for device safety.</p>
+<div class="cta">
+<a class="btn" href="#quiz">Take Quiz</a>
+</section>
+
+<!-- Detailed Content -->
+<section class="section">
+<h3>Introduction</h3>
+<p>Mobile and device security is critical because personal, financial, and business data are stored on these devices. Cybercriminals exploit unsecured devices to steal data or install malware.</p>
+
+<h3>Device Hardening</h3>
+<ul>
+<li>Set strong device passcodes or biometric locks.</li>
+<li>Enable device encryption to protect stored data.</li>
+<li>Keep OS and apps up to date for security patches.</li>
+<li>Install apps only from official stores (Google Play, Apple App Store).</li>
+<li>Disable unnecessary services like Bluetooth or location sharing when not in use.</li>
+</ul>
+
+<h3>App & Permission Management</h3>
+<ul>
+<li>Review app permissions before installation.</li>
+<li>Revoke unnecessary permissions from apps.</li>
+<li>Be cautious with apps requesting SMS, contacts, or device admin privileges.</li>
+<li>Regularly uninstall unused apps to reduce attack surface.</li>
+</ul>
+
+<h3>Device Theft & Loss Prevention</h3>
+<ul>
+<li>Enable “Find My Device” / “Find My iPhone” features.</li>
+<li>Use remote wipe options in case of theft or loss.</li>
+<li>Back up data frequently to cloud or secure storage.</li>
+<li>Do not leave devices unattended in public places.</li>
+</ul>
+
+<h3>Public Wi-Fi & Network Safety</h3>
+<ul>
+<li>Avoid accessing sensitive accounts on public Wi-Fi.</li>
+<li>Use a trusted VPN when connecting to public networks.</li>
+<li>Disable automatic connection to unknown networks.</li>
+<li>Keep firewall and anti-virus active if available.</li>
+</ul>
+
+<h3>Mobile Malware & Threats</h3>
+<ul>
+<li>Beware of malicious apps or downloads.</li>
+<li>Phishing via SMS (smishing) and emails is common.</li>
+<li>Ransomware or spyware can target mobile devices.</li>
+<li>Regularly scan your device with trusted security apps.</li>
+</ul>
+</section>
+
+<!-- Quiz -->
+<section class="section" id="quiz">
+<h3>Quiz — Test Your Knowledge</h3>
+
+<div class="quiz-question">
+<p>1. Which is a strong device security measure?</p>
+<label><input type="radio" name="q1">Use 1234 as PIN</label><br>
+<label><input type="radio" name="q1">Enable biometric lock & strong passcode</label><br>
+<label><input type="radio" name="q1">No lock</label>
+</div>
+
+<div class="quiz-question">
+<p>2. Where should apps be installed from?</p>
+<label><input type="radio" name="q2">Unknown websites</label><br>
+<label><input type="radio" name="q2">Official app stores only</label><br>
+<label><input type="radio" name="q2">Email links</label>
+</div>
+
+<div class="quiz-question">
+<p>3. Device encryption protects:</p>
+<label><input type="radio" name="q3">The screen brightness</label><br>
+<label><input type="radio" name="q3">Stored data if device is stolen</label><br>
+<label><input type="radio" name="q3">Wi-Fi password only</label>
+</div>
+
+<div class="quiz-question">
+<p>4. Public Wi-Fi safety tips include:</p>
+<label><input type="radio" name="q4">Use VPN</label><br>
+<label><input type="radio" name="q4">Access banking without protection</label><br>
+<label><input type="radio" name="q4">Ignore security warnings</label>
+</div>
+
+<div class="quiz-question">
+<p>5. Find My Device feature helps:</p>
+<label><input type="radio" name="q5">Locate and remotely wipe lost/stolen devices</label><br>
+<label><input type="radio" name="q5">Track friends</label><br>
+<label><input type="radio" name="q5">Increase battery</label>
+</div>
+
+<div class="quiz-question">
+<p>6. Unnecessary app permissions should be:</p>
+<label><input type="radio" name="q6">Left enabled</label><br>
+<label><input type="radio" name="q6">Revoked</label><br>
+<label><input type="radio" name="q6">Shared with friends</label>
+</div>
+
+<div class="quiz-question">
+<p>7. Which is a common mobile threat?</p>
+<label><input type="radio" name="q7">Smishing</label><br>
+<label><input type="radio" name="q7">Safe app update</label><br>
+<label><input type="radio" name="q7">Screen wallpaper</label>
+</div>
+
+<div class="quiz-question">
+<p>8. Backing up device data should be:</p>
+<label><input type="radio" name="q8">Regularly</label><br>
+<label><input type="radio" name="q8">Never</label><br>
+<label><input type="radio" name="q8">Once a decade</label>
+</div>
+
+<div class="quiz-question">
+<p>9. How to reduce malware risk?</p>
+<label><input type="radio" name="q9">Install apps from trusted stores</label><br>
+<label><input type="radio" name="q9">Click all unknown links</label><br>
+<label><input type="radio" name="q9">Disable updates</label>
+</div>
+
+<div class="quiz-question">
+<p>10. Remote wipe is used for:</p>
+<label><input type="radio" name="q10">Deleting data on lost/stolen device</label><br>
+<label><input type="radio" name="q10">Making calls</label><br>
+<label><input type="radio" name="q10">Changing wallpaper</label>
+</div>
+
+<button class="btn" onclick="checkQuiz()">Submit Quiz</button>
+<div id="quizResult"></div>
+</section>
+
+<script>
+function checkQuiz(){
+  let score=0;
+  const answers = ["Enable biometric lock & strong passcode","Official app stores only","Stored data if device is stolen","Use VPN","Locate and remotely wipe lost/stolen devices","Revoked","Smishing","Regularly","Install apps from trusted stores","Deleting data on lost/stolen device"];
+  for(let i=1;i<=10;i++){
+    const q=document.querySelector('input[name="q'+i+'"]:checked');
+    if(q && q.parentElement.textContent.trim()===answers[i-1]) score++;
+  }
+  document.getElementById('quizResult').textContent="Your Score: "+score+" / 10";
+  localStorage.setItem('mobileScore',score);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Awareness — Phishing</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root {
+  --bg: #0f172a;
+  --accent: #38bdf8;
+  --muted: #9aa7b2;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, Arial;
+  background: linear-gradient(180deg,#071028 0%,#0f172a 100%);
+  color: #ecf8ff;
+  margin:0;
+  line-height:1.7;
+}
+
+.topbar { position: sticky; top:0; z-index:1000; backdrop-filter: blur(6px); background: rgba(4,6,13,0.55); border-bottom:1px solid rgba(255,255,255,0.03); }
+.container { width: min(1100px, 92%); margin: 0 auto; padding: 12px 0; display:flex; justify-content:space-between; align-items:center; }
+.brand { display:flex; gap:12px; align-items:center; }
+.logo { width:46px; height:46px; border-radius:10px; background: linear-gradient(135deg,#0ea5e9,#7c3aed); display:flex; justify-content:center; align-items:center; font-weight:700; font-size:18px; }
+.brand h1 { margin:0; font-size:16px; color:#e6f7ff; }
+.navlinks { display:flex; gap:18px; }
+.navlinks a { color:var(--muted); text-decoration:none; font-weight:600; }
+.navlinks a:hover { color:var(--accent); }
+
+.hero { width: min(1100px,92%); margin: 28px auto; background: linear-gradient(135deg, rgba(8,22,40,0.85), rgba(10,16,26,0.9)); border-radius: 14px; padding:34px; border:1px solid rgba(255,255,255,0.05); text-align:center; }
+.hero h2 { color:var(--accent); font-size:28px; margin-bottom:12px; }
+.hero p { color:#dbeefe; font-size:16px; line-height:1.6; }
+.btn { padding:10px 16px; border-radius:8px; font-weight:600; cursor:pointer; border:0; background: linear-gradient(90deg,#0ea5e9,#7c3aed); color:#022033; margin-top:10px; display:inline-block; text-decoration:none; }
+.btn:hover { opacity:0.9; }
+
+.section { width: min(1100px,92%); margin: 28px auto; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:28px; border:1px solid rgba(255,255,255,0.03); }
+.section h3 { color:var(--accent); margin-bottom:12px; }
+.section h4 { color:#eafcff; margin:6px 0 8px; }
+.section p, .section li { color:var(--muted); margin-bottom:10px; }
+.section ul, .section ol { margin-left:20px; }
+
+.tips { background: rgba(14,165,233,0.1); padding:12px; border-left:4px solid #0ea5e9; margin:12px 0; border-radius:6px; color:#dbeefe; }
+
+.quiz-question { margin-bottom:20px; }
+.quiz-question label { display:block; margin:4px 0; cursor:pointer; }
+
+footer { text-align:center; padding:25px; font-size:14px; color:#9fb3c6; border-top:1px solid rgba(255,255,255,0.05); margin-top:50px; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="topbar">
+  <div class="container">
+    <div class="brand">
+      <div class="logo">CT</div>
+      <h1>Cyber Awareness</h1>
+    </div>
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="phishing.html">Phishing</a>
+      <a href="passwords.html">Passwords</a>
+      <a href="scams.html">Scams</a>
+      <a href="malware.html">Malware</a>
+      <a href="safeinternet.html">Safe Internet</a>
+      <a href="mobile.html">Mobile Security</a>
+      <a href="dataprotection.html">Data Protection</a>
+      <a href="incident.html">Incident Response</a>
+    </nav>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <h2>🎣 Phishing — Complete Cybersecurity Module</h2>
+  <p>Everything you need to know about phishing: attack types, examples, detection, prevention, incident response, and real-world case studies. Complete the mini quizzes to test your knowledge.</p>
+  <a class="btn" href="#quiz">Take Quiz</a>
+</section>
+
+<!-- Sections -->
+<section class="section">
+  <h3>1. What is Phishing?</h3>
+  <p>            Phishing is a social-engineering attack where an attacker pretends to be a trusted person or company to trick you into giving sensitive information (passwords, bank details, OTPs) or downloading malware. Phishing can arrive via email, SMS,
+ messaging apps, social media, or even phone calls (called vishing).
+</p>
+  <p class="tips">Tip: Always verify unexpected requests for credentials or payments.</p>
+</section>
+
+<section class="section">
+  <h3>2. History & Evolution</h3>
+  <h4>1990s: AOL Phishing</h4>
+  <p>Attackers sent fake AOL login pages to steal credentials from users. Early attacks were unsophisticated, relying on mass emails and basic deception.</p>
+  <h4>2000s: Targeted Banking Attacks</h4>
+  <p>Attackers started targeting bank users with personalized emails. Email spoofing became widespread.</p>
+  <h4>2010s: Spear Phishing and Whaling</h4>
+  <p>Highly targeted attacks focusing on executives (whaling) or specific individuals (spear phishing) became common.</p>
+  <h4>Today: Multi-Channel Attacks</h4>
+  <p>Modern phishing attacks use email, SMS (smishing), voice calls (vishing), social media, and fake websites to trick victims.</p>
+</section>
+
+<section class="section">
+  <h3>3. Types of Phishing</h3>
+  <ul>
+    <li><strong>Email Phishing:</strong> Mass emails pretending to be from banks, services, or trusted organizations.</li>
+    <li><strong>Spear Phishing:</strong> Highly personalized attacks using the target's name, role, or interests.</li>
+    <li><strong>Whaling:</strong> Targeting high-profile individuals like CEOs or managers.</li>
+    <li><strong>Smishing:</strong> Phishing via SMS messages.</li>
+    <li><strong>Vishing:</strong> Voice calls impersonating trusted authorities.</li>
+    <li><strong>Clone Phishing:</strong> Replicating legitimate emails with malicious attachments or links.</li>
+    <li><strong>Website Phishing:</strong> Fake websites mimicking legitimate sites to harvest credentials.</li>
+    <li><strong>Pharming:</strong> Redirecting users to fake websites even when they type the correct URL.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h3>4. Red Flags to Detect Phishing</h3>
+  <ul>
+    <li>Generic greetings like "Dear Customer".</li>
+    <li>Urgent or threatening language.</li>
+    <li>Unexpected attachments or links.</li>
+    <li>Slightly misspelled URLs.</li>
+    <li>Requests for sensitive info (passwords, OTPs, bank info).</li>
+    <li>Too-good-to-be-true offers or prize notifications.</li>
+    <li>Poor grammar and spelling mistakes in official-looking emails.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h3>5. Real-World Case Studies</h3>
+  <h4>PayPal Attack (2015)</h4>
+  <p>Users received emails about unauthorized transactions. Clicking the link led to credential theft.</p>
+  <h4>Microsoft 365 Corporate Phishing (2020)</h4>
+  <p>Attackers targeted employees with fake login pages to steal corporate credentials.</p>
+  <h4>COVID-19 Relief Scams (2020)</h4>
+  <p>Attackers exploited relief fund emails to commit identity theft and bank fraud.</p>
+</section>
+
+<section class="section">
+  <h3>6. Attack Techniques</h3>
+  <ul>
+    <li><strong>Link Manipulation:</strong> URLs appear correct but redirect elsewhere.</li>
+    <li><strong>Website Spoofing:</strong> Fake login pages mimicking official sites.</li>
+    <li><strong>Malware Attachments:</strong> Embedded malware in attachments (trojans, ransomware).</li>
+    <li><strong>Social Engineering:</strong> Creating urgency, fear, or curiosity to trick users.</li>
+    <li><strong>Credential Harvesting Forms:</strong> Fake forms that collect username and password.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h3>7. Prevention & Protection</h3>
+  <ul>
+    <li>Verify sender emails and URLs before clicking.</li>
+    <li>Hover over links to see actual URL.</li>
+    <li>Enable Multi-Factor Authentication (MFA).</li>
+    <li>Use strong, unique passwords and password managers.</li>
+    <li>Keep devices, apps, and browsers updated.</li>
+    <li>Educate yourself and colleagues about phishing techniques.</li>
+    <li>Use browser/email anti-phishing tools.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h3>8. Incident Response & Reporting</h3>
+  <ol>
+    <li>Do not click links or open attachments.</li>
+    <li>Inform your IT/security team immediately.</li>
+    <li>Forward phishing emails to authorities (CERT-In, local cybercrime units).</li>
+    <li>Change compromised passwords and enable MFA.</li>
+    <li>Scan your system for malware.</li>
+    <li>Document incident for lessons learned and awareness training.</li>
+  </ol>
+</section>
+
+<section class="section" id="quiz">
+  <h3>9. Quiz — Test Your Knowledge</h3>
+
+  <div class="quiz-question">
+    <p>1. You receive an email claiming to be from your bank asking to reset your password. What should you do?</p>
+    <label><input type="radio" name="q1"> Click the link immediately</label>
+    <label><input type="radio" name="q1"> Contact bank via official website or phone</label>
+    <label><input type="radio" name="q1"> Forward to friend</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>2. Phishing targeting executives is called?</p>
+    <label><input type="radio" name="q2"> Spear Phishing</label>
+    <label><input type="radio" name="q2"> Whaling</label>
+    <label><input type="radio" name="q2"> Smishing</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>3. Common red flag in phishing emails:</p>
+    <label><input type="radio" name="q3"> Urgent requests for sensitive info</label>
+    <label><input type="radio" name="q3"> Proper grammar and official logo</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>4. Pharming technique is:</p>
+    <label><input type="radio" name="q4"> Redirect to fake website even if URL is correct</label>
+    <label><input type="radio" name="q4"> Phone call scam</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>5. Smishing refers to phishing via:</p>
+    <label><input type="radio" name="q5"> Email</label>
+    <label><input type="radio" name="q5"> SMS messages</label>
+    <label><input type="radio" name="q5"> Phone calls</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>6. What is a clone phishing attack?</p>
+    <label><input type="radio" name="q6"> A fake website copying a real one</label>
+    <label><input type="radio" name="q6"> Replicating a legitimate email with malicious attachments or links</label>
+    <label><input type="radio" name="q6"> Sending mass generic emails</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>7. Which of the following is a preventive measure against phishing?</p>
+    <label><input type="radio" name="q7"> Enable Multi-Factor Authentication (MFA)</label>
+    <label><input type="radio" name="q7"> Use same password everywhere</label>
+    <label><input type="radio" name="q7"> Open all emails immediately</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>8. True or False: Hovering over a link helps detect phishing attempts.</p>
+    <label><input type="radio" name="q8"> True</label>
+    <label><input type="radio" name="q8"> False</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>9. Scenario: You receive an unexpected invoice from a vendor you don’t know. What is the correct action?</p>
+    <label><input type="radio" name="q9"> Pay immediately</label>
+    <label><input type="radio" name="q9"> Verify with the vendor using official contact info</label>
+    <label><input type="radio" name="q9"> Forward to colleagues for review</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>10. Which of the following best describes spear phishing?</p>
+    <label><input type="radio" name="q10"> Generic mass emails</label>
+    <label><input type="radio" name="q10"> Highly targeted emails crafted for specific individuals</label>
+    <label><input type="radio" name="q10"> Phishing via SMS</label>
+  </div>
+
+  <button class="btn" onclick="checkQuiz()">Submit Quiz</button>
+  <p id="quizResult" style="margin-top:12px;"></p>
+</section>
+
+<script>
+function checkQuiz() {
+  let score = 0;
+
+  if(document.querySelector('input[name="q1"]:checked')?.nextSibling.textContent.trim() === "Contact bank via official website or phone") score++;
+  if(document.querySelector('input[name="q2"]:checked')?.nextSibling.textContent.trim() === "Whaling") score++;
+  if(document.querySelector('input[name="q3"]:checked')?.nextSibling.textContent.trim() === "Urgent requests for sensitive info") score++;
+  if(document.querySelector('input[name="q4"]:checked')?.nextSibling.textContent.trim() === "Redirect to fake website even if URL is correct") score++;
+  if(document.querySelector('input[name="q5"]:checked')?.nextSibling.textContent.trim() === "SMS messages") score++;
+  if(document.querySelector('input[name="q6"]:checked')?.nextSibling.textContent.trim() === "Replicating a legitimate email with malicious attachments or links") score++;
+  if(document.querySelector('input[name="q7"]:checked')?.nextSibling.textContent.trim() === "Enable Multi-Factor Authentication (MFA)") score++;
+  if(document.querySelector('input[name="q8"]:checked')?.nextSibling.textContent.trim() === "True") score++;
+  if(document.querySelector('input[name="q9"]:checked')?.nextSibling.textContent.trim() === "Verify with the vendor using official contact info") score++;
+  if(document.querySelector('input[name="q10"]:checked')?.nextSibling.textContent.trim() === "Highly targeted emails crafted for specific individuals") score++;
+
+  document.getElementById('quizResult').textContent = `You scored ${score} out of 10.`;
+}
+</script>
+
+
+</body>
+</html>

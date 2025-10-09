@@ -3,100 +3,736 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cyber Awareness — Certificate</title>
-<link rel="stylesheet" href="style.css">
+<title>Cyber Awareness — Certificate of Completion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-:root { --bg: #0f172a; --accent: #38bdf8; --muted: #9aa7b2; --card: #0b1220; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: #ecf8ff; margin: 0; display:flex; flex-direction:column; align-items:center; }
-.topbar { position: sticky; top:0; backdrop-filter: blur(6px); background: rgba(4,6,13,0.55); border-bottom:1px solid rgba(255,255,255,0.03); width:100%; z-index: 1000; }
-.container { width:min(1100px,92%); margin:0 auto; padding:12px 0; display:flex; justify-content:space-between; align-items:center; }
-.brand { display:flex; gap:12px; align-items:center; }
-.logo { width:48px; height:48px; border-radius:10px; background: linear-gradient(135deg,#0ea5e9,#7c3aed); display:flex; justify-content:center; align-items:center; font-weight:700; box-shadow:0 6px 18px rgba(124,58,237,0.18); }
-.navlinks { display:flex; gap:18px; }
-.navlinks a { color: var(--muted); text-decoration:none; font-weight:600; }
-.navlinks a:hover { color: var(--accent); }
+:root {
+  --bg: #0d1526;
+  --card: #111827;
+  --primary: #38bdf8;
+  --secondary: #a78bfa;
+  --foreground: #ecfeff;
+  --muted: #94a3b8;
+  --border: #1e293b;
+}
 
-.certificate-container { width:min(900px,95%); margin:40px auto; background: var(--card); padding:40px; border-radius:20px; text-align:center; border:2px solid rgba(255,255,255,0.05); box-shadow:0 10px 30px rgba(2,6,23,0.5); }
-.certificate-container h2 { color:var(--accent); font-size:28px; margin-bottom:20px; }
-.certificate-container p { font-size:18px; color:#dbeefe; margin-bottom:12px; }
-.certificate-container .name { font-weight:800; font-size:24px; margin:15px 0; color:#eafcff; }
-.certificate-container .btn-download { margin-top:20px; padding:12px 20px; border-radius:12px; font-weight:700; cursor:pointer; border:0; background: linear-gradient(90deg,#0ea5e9,#7c3aed); color:#022033; box-shadow:0 8px 30px rgba(14,165,233,0.12); text-decoration:none; display:inline-block; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--foreground);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background glow */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.1), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  background: rgba(13, 21, 38, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0d1526;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+.brand-text h1 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.brand-text p {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.nav-links {
+  display: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* Main Content */
+main {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 1rem;
+}
+
+/* Form Container */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #111827, #0f172a);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.award-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.4);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.award-icon svg {
+  width: 40px;
+  height: 40px;
+  fill: #0d1526;
+}
+
+.form-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: var(--muted);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--foreground);
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  color: #0d1526;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Certificate Container */
+.certificate-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: slideUp 0.5s ease-out;
+}
+
+.certificate-card {
+  background: linear-gradient(180deg, #111827, #0f172a);
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+/* Decorative corners */
+.certificate-card::before,
+.certificate-card::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(56, 189, 248, 0.3);
+}
+
+.certificate-card::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 24px 0 0 0;
+}
+
+.certificate-card::after {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 0 24px 0 0;
+}
+
+.certificate-card .corner-bottom-left,
+.certificate-card .corner-bottom-right {
+  position: absolute;
+  bottom: 0;
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(56, 189, 248, 0.3);
+}
+
+.corner-bottom-left {
+  left: 0;
+  border-right: none;
+  border-top: none;
+  border-radius: 0 0 0 24px;
+}
+
+.corner-bottom-right {
+  right: 0;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 24px 0;
+}
+
+.certificate-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.shield-icon {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 1.5rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.4);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.shield-icon svg {
+  width: 48px;
+  height: 48px;
+  fill: #0d1526;
+}
+
+.certificate-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.certificate-text {
+  font-size: 1.125rem;
+  color: var(--muted);
+  margin: 1rem 0;
+}
+
+.certificate-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 1.5rem 0;
+}
+
+.certificate-program {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 1rem 0;
+}
+
+.certificate-date {
+  color: var(--muted);
+  margin-top: 2rem;
+}
+
+.certificate-date span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.btn-download {
+  margin-top: 2rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  color: #0d1526;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+  transition: opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-download:hover {
+  opacity: 0.9;
+}
+
+/* Badges Section */
+.badges-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.badges-header {
+  margin-bottom: 2rem;
+}
+
+.badges-header h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.badges-header p {
+  color: var(--muted);
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.badge-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.3s;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.badge-card:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+  transform: translateY(-2px);
+}
+
+.badge-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.75rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  transition: transform 0.3s;
+}
+
+.badge-card:hover .badge-icon {
+  transform: scale(1.1);
+}
+
+.badge-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: #0d1526;
+}
+
+.badge-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.badge-description {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: rgba(56, 189, 248, 0.1);
+}
+
+/* Footer */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-top: 4rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+  
+  .certificate-card {
+    padding: 4rem 3rem;
+  }
+  
+  .badges-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.hidden {
+  display: none !important;
+}
 </style>
 </head>
 <body>
 
-<!-- Topbar -->
-<div class="topbar">
+<!-- Header -->
+<header class="header">
   <div class="container">
-    <div class="brand">
-      <div class="logo">CT</div>
-      <div>
-        <h1 style="font-size:15px;margin:0;">Cyber Awareness</h1>
-        <div style="font-size:12px;color:#9aa7b2;">Training · Safety · Response</div>
+    <div class="nav-content">
+      <div class="brand">
+        <div class="logo">CT</div>
+        <div class="brand-text">
+          <h1>Cyber Awareness</h1>
+          <p>Training · Safety · Response</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Training</a>
+        <a href="#">Certificate</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main>
+  <!-- Form Container -->
+  <div id="formContainer" class="form-container">
+    <div class="form-header">
+      <div class="award-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+      </div>
+      <h2>Get Your Certificate</h2>
+      <p>Enter your name to generate your completion certificate</p>
+    </div>
+    
+    <form id="nameForm">
+      <div class="input-group">
+        <input type="text" id="nameInput" placeholder="Enter your full name" required>
+      </div>
+      <button type="submit" class="btn-primary">Generate Certificate</button>
+    </form>
+  </div>
+
+  <!-- Certificate Container -->
+  <div id="certificateContainer" class="certificate-wrapper hidden">
+    <div class="certificate-card">
+      <div class="corner-bottom-left"></div>
+      <div class="corner-bottom-right"></div>
+      
+      <div class="certificate-content">
+        <div class="shield-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2Z"/>
+          </svg>
+        </div>
+        
+        <h2 class="certificate-title">Certificate of Completion</h2>
+        
+        <p class="certificate-text">This is to certify that</p>
+        <p class="certificate-name" id="certificateName">[Your Name]</p>
+        <p class="certificate-text">has successfully completed the</p>
+        <p class="certificate-program">Cyber Awareness Training Program</p>
+        <p class="certificate-date">
+          Completion Date: <span id="completionDate"></span>
+        </p>
+        
+        <button class="btn-download" onclick="downloadPDF()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Certificate
+        </button>
       </div>
     </div>
-    <nav class="navlinks">
-      <a href="index.html">Home</a>
-      <a href="phishing.html">Phishing</a>
-      <a href="passwords.html">Passwords</a>
-      <a href="scams.html">Scams</a>
-      <a href="malware.html">Malware</a>
-      <a href="safeinternet.html">Safe Internet</a>
-      <a href="mobile.html">Mobile Security</a>
-      <a href="dataprotection.html">Data Protection</a>
-      <a href="incident.html">Incident Response</a>
-      <a href="certificate.html">Certificate</a>
-    </nav>
-  </div>
-</div>
 
-<!-- Certificate -->
-<div class="certificate-container" id="certificate">
-  <h2>Certificate of Completion</h2>
-  <p>This is to certify that</p>
-  <div class="name" id="userName">[Your Name]</div>
-  <p>has successfully completed the</p>
-  <p><strong>Cyber Awareness Training Program</strong></p>
-  <p>Date: <span id="completionDate"></span></p>
-  <button class="btn-download" onclick="downloadPDF()">Download Certificate as PDF</button>
-</div>
+    <!-- Badges Section -->
+    <div class="badges-section">
+      <div class="badges-header">
+        <h3>Training Modules Completed</h3>
+        <p>You've mastered these essential cybersecurity skills</p>
+      </div>
+      
+      <div class="badges-grid" id="badgesGrid"></div>
+      
+      <button class="btn-secondary" onclick="resetForm()">
+        Generate Another Certificate
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Cyber Awareness Training Program. All rights reserved.</p>
+</footer>
 
 <script>
-document.getElementById('completionDate').textContent = new Date().toLocaleDateString();
-let name = prompt("Enter your name for the certificate:");
-if(name) document.getElementById('userName').textContent = name;
+const badges = [
+  { icon: 'M21.5 12.5L18 9L18.5 3L12.5 5.5L6.5 3L7 9L3.5 12.5L7 16L6.5 22L12.5 19.5L18.5 22L18 16L21.5 12.5Z', title: 'Phishing Defense', desc: 'Email security expert' },
+  { icon: 'M17 11V7C17 4.8 15.2 3 13 3H11C8.8 3 7 4.8 7 7V11M5 11H19C20.1 11 21 11.9 21 13V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V13C3 11.9 3.9 11 5 11Z', title: 'Password Security', desc: 'Strong authentication' },
+  { icon: 'M12 2L2 7L12 12L22 7L12 2ZM2 17L12 22L22 17M2 12L12 17L22 12', title: 'Scam Detection', desc: 'Fraud prevention' },
+  { icon: 'M4 15S5.5 17 8 17S12 15 12 15S13.5 17 16 17S20 15 20 15V3S18.5 5 16 5S12 3 12 3S10.5 5 8 5S4 3 4 3V15ZM4 22V18', title: 'Malware Protection', desc: 'Threat awareness' },
+  { icon: 'M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2Z', title: 'Safe Internet', desc: 'Browsing security' },
+  { icon: 'M17 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V4C19 2.9 18.1 2 17 2ZM12 20C11.45 20 11 19.55 11 19C11 18.45 11.45 18 12 18C12.55 18 13 18.45 13 19C13 19.55 12.55 20 12 20Z', title: 'Mobile Security', desc: 'Device protection' },
+  { icon: 'M3 3H10V10H3V3ZM14 3H21V10H14V3ZM14 14H21V21H14V14ZM3 14H10V21H3V14Z', title: 'Data Protection', desc: 'Privacy champion' },
+  { icon: 'M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2ZM6 20V4H13V9H18V20H6Z', title: 'Incident Response', desc: 'Crisis management' }
+];
 
-function downloadPDF(){
+// Render badges
+const badgesGrid = document.getElementById('badgesGrid');
+badges.forEach((badge, index) => {
+  const badgeCard = document.createElement('div');
+  badgeCard.className = 'badge-card';
+  badgeCard.style.animationDelay = `${index * 0.1}s`;
+  badgeCard.innerHTML = `
+    <div class="badge-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="${badge.icon}"/>
+      </svg>
+    </div>
+    <div class="badge-title">${badge.title}</div>
+    <div class="badge-description">${badge.desc}</div>
+  `;
+  badgesGrid.appendChild(badgeCard);
+});
+
+// Set completion date
+document.getElementById('completionDate').textContent = new Date().toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Form submission
+document.getElementById('nameForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('nameInput').value.trim();
+  if (name) {
+    document.getElementById('certificateName').textContent = name;
+    document.getElementById('formContainer').classList.add('hidden');
+    document.getElementById('certificateContainer').classList.remove('hidden');
+  }
+});
+
+// Reset form
+function resetForm() {
+  document.getElementById('nameInput').value = '';
+  document.getElementById('formContainer').classList.remove('hidden');
+  document.getElementById('certificateContainer').classList.add('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Download PDF
+function downloadPDF() {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation:'landscape', unit:'pt', format:'a4' });
-  doc.setFillColor(15,23,42);
-  doc.rect(0,0,doc.internal.pageSize.width,doc.internal.pageSize.height,'F');
-
-  doc.setTextColor(56,189,248);
-  doc.setFontSize(40);
-  doc.text("Certificate of Completion", doc.internal.pageSize.width/2, 100, {align:'center'});
-
-  doc.setTextColor(255,255,255);
-  doc.setFontSize(20);
-  doc.text("This certifies that", doc.internal.pageSize.width/2, 160, {align:'center'});
-
-  doc.setFontSize(28);
-  doc.setFont(undefined,'bold');
-  doc.text(document.getElementById('userName').textContent, doc.internal.pageSize.width/2, 200, {align:'center'});
-
-  doc.setFontSize(20);
-  doc.setFont(undefined,'normal');
-  doc.text("has successfully completed the Cyber Awareness Training Program", doc.internal.pageSize.width/2, 240, {align:'center'});
-  doc.text("covering Phishing, Passwords, Scams, Malware, Safe Internet, Mobile Security, Data Protection, and Incident Response.", doc.internal.pageSize.width/2, 270, {align:'center'});
-
-  doc.text("Date: " + document.getElementById('completionDate').textContent, doc.internal.pageSize.width/2, 320, {align:'center'});
-
-  doc.setTextColor(56,189,248);
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+  
+  // Background
+  doc.setFillColor(13, 21, 38);
+  doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
+  
+  // Decorative border
+  doc.setDrawColor(56, 189, 248);
+  doc.setLineWidth(3);
+  doc.rect(40, 40, doc.internal.pageSize.width - 80, doc.internal.pageSize.height - 80);
+  
+  // Title
+  doc.setTextColor(56, 189, 248);
+  doc.setFontSize(44);
+  doc.setFont(undefined, 'bold');
+  doc.text('Certificate of Completion', doc.internal.pageSize.width / 2, 120, { align: 'center' });
+  
+  // Body text
+  doc.setTextColor(236, 254, 255);
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'normal');
+  doc.text('This is to certify that', doc.internal.pageSize.width / 2, 180, { align: 'center' });
+  
+  // Name
+  doc.setFontSize(32);
+  doc.setFont(undefined, 'bold');
+  doc.text(document.getElementById('certificateName').textContent, doc.internal.pageSize.width / 2, 220, { align: 'center' });
+  
+  // Completion text
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'normal');
+  doc.text('has successfully completed the', doc.internal.pageSize.width / 2, 260, { align: 'center' });
+  
+  doc.setFontSize(24);
+  doc.setFont(undefined, 'bold');
+  doc.text('Cyber Awareness Training Program', doc.internal.pageSize.width / 2, 295, { align: 'center' });
+  
+  // Modules
+  doc.setFontSize(14);
+  doc.setFont(undefined, 'normal');
+  doc.text('covering Phishing, Passwords, Scams, Malware, Safe Internet,', doc.internal.pageSize.width / 2, 330, { align: 'center' });
+  doc.text('Mobile Security, Data Protection, and Incident Response', doc.internal.pageSize.width / 2, 350, { align: 'center' });
+  
+  // Date
+  doc.setTextColor(56, 189, 248);
   doc.setFontSize(16);
-  doc.text("Cyber Awareness Training Program", doc.internal.pageSize.width/2, 360, {align:'center'});
-
-  doc.save("CyberAwareness_Certificate.pdf");
+  doc.text('Completion Date: ' + document.getElementById('completionDate').textContent, doc.internal.pageSize.width / 2, 390, { align: 'center' });
+  
+  // Footer
+  doc.setTextColor(148, 163, 184);
+  doc.setFontSize(12);
+  doc.text('Cyber Awareness Training Program', doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 60, { align: 'center' });
+  
+  doc.save('CyberAwareness_Certificate.pdf');
 }
 </script>
 

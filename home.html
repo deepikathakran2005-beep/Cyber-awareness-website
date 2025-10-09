@@ -4,293 +4,606 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Cyber Awareness Training — Home</title>
-
-<link rel="stylesheet" href="style.css" />
-
 <style>
 :root{
-  --bg-1: #0f172a;
-  --bg-2: #0b1220;
+  --bg-dark: #0a0f1e;
+  --bg-card: #0f172a;
   --accent: #38bdf8;
-  --muted: #9aa7b2;
-  --card: #0f172a;
-  --panel: #0b1220;
+  --accent-purple: #7c3aed;
+  --text-light: #ecf8ff;
+  --text-muted: #94a3b8;
+  --border: rgba(255,255,255,0.05);
 }
 
-html,body { height:100%; margin:0; }
+* { box-sizing: border-box; }
+html, body { height:100%; margin:0; padding:0; }
 body {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, Arial;
-  background: linear-gradient(180deg, #071028 0%, #0f172a 100%);
-  color: #ecf8ff;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(180deg, #050a18 0%, #0a0f1e 50%, #0f172a 100%);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Animated background */
+.bg-glow {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(124, 58, 237, 0.06) 0%, transparent 50%);
+  animation: drift 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10%, -10%); }
 }
 
 /* Top nav */
 .topbar {
-  position: sticky; top:0; z-index: 1000; backdrop-filter: blur(6px);
-  background: rgba(4,6,13,0.55); border-bottom: 1px solid rgba(255,255,255,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(10, 15, 30, 0.8);
+  border-bottom: 1px solid var(--border);
 }
+
 .container {
-  width: min(1100px, 92%); margin:0 auto; padding:12px 0;
-  display: flex; gap:16px; align-items:center; justify-content:space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
-.brand { display:flex; gap:12px; align-items:center; }
+
+.brand {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
 .logo {
-  width:48px; height:48px; border-radius:10px;
-  background: linear-gradient(135deg,#0ea5e9,#7c3aed);
-  display:flex; align-items:center; justify-content:center; font-weight:700;
-  box-shadow:0 6px 18px rgba(124,58,237,0.18);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
 }
-.brand h1 { font-size:18px; margin:0; color:#e6f7ff; letter-spacing:0.2px; }
-.navlinks { display:flex; gap:18px; align-items:center; }
-.navlinks a { color:var(--muted); text-decoration:none; font-weight:600; }
-.navlinks a:hover { color:var(--accent); }
 
-/* Hero */
+.brand-text h1 {
+  font-size: 1.125rem;
+  margin: 0;
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+.brand-text p {
+  font-size: 0.75rem;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.navlinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navlinks a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+.navlinks a:hover {
+  color: var(--accent);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text-light);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Hero Section */
 .hero {
-  width: min(1100px,92%); margin: 28px auto;
-  background: linear-gradient(135deg, rgba(8,22,40,0.85), rgba(10,16,26,0.9));
-  border-radius: 14px; padding: 34px;
-  display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: center;
-  box-shadow: 0 10px 40px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03);
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
-.hero h2 { color:var(--accent); font-size:28px; margin:0 0 10px; }
-.hero p { color:#dbeefe; margin:0 0 18px; line-height:1.5; }
-.hero .cta { display:flex; gap:12px; align-items:center; }
+
+.hero-content {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(11, 18, 32, 0.95));
+  border-radius: 20px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-purple), transparent);
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.hero h2 {
+  color: var(--text-light);
+  font-size: 2.5rem;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  color: var(--text-muted);
+  margin: 0 0 2rem;
+  line-height: 1.7;
+  font-size: 1.125rem;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .btn {
-  padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer; border:0;
-  background: linear-gradient(90deg,#0ea5e9,#7c3aed); color:#022033;
-  box-shadow:0 8px 30px rgba(14,165,233,0.12);
+  padding: 0.875rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+  color: white;
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9375rem;
 }
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+}
+
 .btn.ghost {
-  background:transparent; border:1px solid rgba(255,255,255,0.06); color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-light);
+  box-shadow: none;
 }
-.hero-right {
-  background: linear-gradient(180deg,#061426,#071b30);
-  border-radius:10px; padding:18px; color:#d8f2ff; border:1px solid rgba(255,255,255,0.02);
-}
-.progress-summary { display:flex; gap:10px; flex-direction:column; }
-.metric { display:flex; justify-content:space-between; align-items:center; padding:8px 10px; border-radius:8px; background: rgba(255,255,255,0.02); margin-bottom:6px; }
-.metric small { color:var(--muted); }
-.metric strong { color:#e6fbff; }
 
-/* Modules grid */
+.btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent);
+}
+
+/* Stats Grid */
+.stats {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(11, 18, 32, 0.9));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-light);
+}
+
+.stat-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* Modules Section */
 .modules {
-  width: min(1100px,92%); margin:20px auto;
-  display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px;
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.25rem;
+  margin: 0 0 1rem;
+  color: var(--text-light);
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
 .module-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:12px; padding:18px; border:1px solid rgba(255,255,255,0.03);
-  transition: transform .25s ease, box-shadow .25s ease; cursor:pointer;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(11, 18, 32, 0.9));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
-.module-card:hover { transform: translateY(-8px); box-shadow: 0 14px 40px rgba(2,6,23,0.6); }
-.module-card h3 { margin:0 0 8px; color:#e8f9ff; font-size:16px; }
-.module-card p { margin:0; color:var(--muted); font-size:14px; }
-.module-icon { width:44px;height:44px;border-radius:8px; background:#071633; display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--accent); margin-bottom:10px; }
 
-/* Roadmap / Curriculum */
-.roadmap { width: min(1100px,92%); margin:28px auto; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); border-radius:12px; padding:20px; border:1px solid rgba(255,255,255,0.03); }
-.roadmap h3 { color:var(--accent); margin:0 0 12px; }
-.steps { display:flex; gap:12px; flex-wrap:wrap; }
-.step {
-  background: rgba(255,255,255,0.02); padding:12px 14px; border-radius:10px; min-width:180px;
-  border:1px dashed rgba(255,255,255,0.02);
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.4);
 }
-.step h4 { margin:0 0 6px; color:#eafcff; font-size:15px; }
-.step p { margin:0; color:var(--muted); font-size:13px; }
 
+.module-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.module-card h3 {
+  font-size: 1.375rem;
+  margin: 0 0 0.75rem;
+  color: var(--text-light);
+}
+
+.module-card p {
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.module-badge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 50px;
+  font-size: 0.8125rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Footer */
 footer {
-  text-align:center; padding:26px 12px; color: #9fb3c6; border-top: 1px solid rgba(255,255,255,0.02);
-  background: linear-gradient(180deg, rgba(0,0,0,0.05), transparent);
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width:980px){
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { order:2; }
-  .hero .cta { flex-direction:column; align-items:stretch; }
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navlinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 15, 30, 0.98);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+
+  .navlinks.active {
+    display: flex;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-content {
+    padding: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-content {
+    grid-template-columns: 1.2fr 1fr;
+  }
 }
 </style>
 </head>
-<body data-module="home">
+<body>
+  <div class="bg-glow"></div>
 
-<!-- Top navigation -->
-<div class="topbar">
-  <div class="container">
-    <div class="brand">
-      <div class="logo">CT</div>
-      <div>
-        <h1 style="font-size:15px; margin:0;">Cyber Awareness</h1>
-        <div style="font-size:12px; color:var(--muted);">Training · Safety · Response</div>
+  <!-- Navigation -->
+  <nav class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">CT</div>
+        <div class="brand-text">
+          <h1>Cyber Awareness</h1>
+          <p>Training · Safety · Response</p>
+        </div>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="navlinks" id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#training">Training</a>
+        <a href="#certificate">Certificate</a>
+        <a href="#progress">Progress</a>
       </div>
     </div>
+  </nav>
 
-    <nav class="navlinks" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="phishing.html">Phishing</a>
-      <a href="passwords.html">Passwords</a>
-      <a href="scams.html">Scams</a>
-      <a href="malware.html">Malware</a>
-      <a href="safeinternet.html">Safe Internet</a>
-      <a href="mobile.html">Mobile Security</a>
-      <a href="dataprotection.html">Data Protection</a>
-      <a href="incident.html">Incident Response</a>
-      <a href="certificate.html">Certificate</a>
-    </nav>
-  </div>
-</div>
-
-<!-- Hero -->
-<section class="hero" role="region" aria-label="Intro">
-  <div>
-    <h2>Learn to stay safe online — practical, bite-sized modules for everyone</h2>
-    <p>Interactive lessons on phishing, passwords, malware, device security, data protection, incident response and more. Build real skills — no fluff.</p>
-
-    <div class="cta" style="margin-top:18px;">
-      <a class="btn" href="phishing.html">Start Learning</a>
-      <a class="btn ghost" href="#roadmap">See Curriculum</a>
-  
-</section>
-
-<!-- Modules Grid -->
-<section class="modules" aria-label="Modules">
-  <div class="module-card" onclick="location.href='phishing.html'">
-    <div class="module-icon">🎣</div>
-    <h3>Phishing</h3>
-    <p>Spot fake emails, analyze headers, and learn safe handling & reporting steps.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='passwords.html'">
-    <div class="module-icon">🔑</div>
-    <h3>Passwords</h3>
-    <p>Passphrases, password managers, 2FA and recovery best practices.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='scams.html'">
-    <div class="module-icon">💸</div>
-    <h3>Scams</h3>
-    <p>Lottery, romance, job and marketplace scams — how to identify and report.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='malware.html'">
-    <div class="module-icon">🛡️</div>
-    <h3>Malware & Viruses</h3>
-    <p>How malware spreads, common families, and cleanup steps.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='safeinternet.html'">
-    <div class="module-icon">🌐</div>
-    <h3>Safe Internet & Social Media</h3>
-    <p>Privacy settings, digital footprint, safe sharing, and spotting misinformation.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='mobile.html'">
-    <div class="module-icon">📱</div>
-    <h3>Mobile & Device Security</h3>
-    <p>Secure device configuration, app permissions, updates, and mobile threats.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='dataprotection.html'">
-    <div class="module-icon">🔒</div>
-    <h3>Data Protection & Backups</h3>
-    <p>Encryption basics, backup strategies, secure deletion, and privacy laws overview.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='incident.html'">
-    <div class="module-icon">🚨</div>
-    <h3>Incident Response</h3>
-    <p>What to do after a breach — contain, report, recover, and lessons learned.</p>
-  </div>
-
-  <div class="module-card" onclick="location.href='certificate.html'">
-    <div class="module-icon">📜</div>
-    <h3>Certificate</h3>
-    <p>Complete all modules and quizzes to download your Cyber Awareness certificate.</p>
-  </div>
-</section>
-
-<!-- Roadmap / Curriculum -->
-<section id="roadmap" class="roadmap" aria-label="Curriculum">
-  <h3>Course Roadmap — what you'll learn</h3>
-  <div class="steps">
-    <div class="step">
-      <h4>Module 1 — Phishing</h4>
-      <p>Detection, analysis, email headers, SPF/DKIM/DMARC, response workflow.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div>
+        <div class="welcome-badge">
+          👋 Welcome back, <span id="userName">User</span>!
+        </div>
+        <h2>Master Cybersecurity Fundamentals</h2>
+        <p>Enhance your security awareness with comprehensive training modules designed to protect you and your organization from cyber threats.</p>
+        <div class="cta">
+          <a href="#training" class="btn">Continue Training</a>
+          <a href="#certificate" class="btn ghost">View Certificate</a>
+        </div>
+      </div>
     </div>
-    <div class="step">
-      <h4>Module 2 — Passwords</h4>
-      <p>Passphrases, managers, 2FA, recovery & breach response.</p>
-    </div>
-    <div class="step">
-      <h4>Module 3 — Scams</h4>
-      <p>Scam taxonomy, red flags, reporting & financial recovery steps.</p>
-    </div>
-    <div class="step">
-      <h4>Module 4 — Malware</h4>
-      <p>Types, infection vectors, sandboxing, removal & prevention.</p>
-    </div>
-    <div class="step">
-      <h4>Module 5 — Safe Internet</h4>
-      <p>Privacy settings, fact-checking, secure browsing and public Wi-Fi safety.</p>
-    </div>
-    <div class="step">
-      <h4>Module 6 — Mobile Security</h4>
-      <p>App permissions, device hardening, OS updates, and lost/stolen device procedures.</p>
-    </div>
-    <div class="step">
-      <h4>Module 7 — Data Protection</h4>
-      <p>Backups (3-2-1), encryption, secure deletion, and data lifecycle.</p>
-    </div>
-    <div class="step">
-      <h4>Module 8 — Incident Response</h4>
-      <p>Containment, evidence preservation, reporting, and remediation checklist.</p>
-    </div>
-    <div class="step">
-      <h4>Capstone & Certificate</h4>
-      <p>Pass final assessments and get a printable certificate for submission.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div style="width:min(1100px,92%); margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center;">
-    <div>
-      <strong>Cyber Awareness Training</strong>
-      <div style="color:var(--muted);font-size:13px;margin-top:6px;">Created for educational use · 2025</div>
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stat-card">
+      <div class="stat-icon">📚</div>
+      <h3>8</h3>
+      <p>Training Modules</p>
     </div>
-    <div style="color:var(--muted); font-size:13px;">
-      <span>Made with ❤️ • &nbsp;</span>
-      <a href="index.html" style="color:var(--muted); text-decoration:none;">Terms</a> •
-      <a href="index.html" style="color:var(--muted); text-decoration:none;">Privacy</a>
+    <div class="stat-card">
+      <div class="stat-icon">⏱️</div>
+      <h3>2.5h</h3>
+      <p>Total Duration</p>
     </div>
-  </div>
-</footer>
+    <div class="stat-card">
+      <div class="stat-icon">🏆</div>
+      <h3>100%</h3>
+      <p>Completion Rate</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🎓</div>
+      <h3>Certified</h3>
+      <p>Achievement Status</p>
+    </div>
+  </section>
 
-<script src="script.js"></script>
-<script>
-const modules = ['phishing','passwords','scams','malware','safeinternet','mobile','dataprotection','incident'];
-let totalScore = 0;
-let completedCount = 0;
+  <!-- Training Modules -->
+  <section class="modules">
+    <div class="section-header">
+      <h2>Available Training Modules</h2>
+      <p>Complete all modules to earn your cybersecurity certification</p>
+    </div>
+    <div class="module-grid">
+      <div class="module-card">
+        <div class="module-icon">📧</div>
+        <h3>Phishing Defense</h3>
+        <p>Learn to identify and prevent phishing attacks that target sensitive information.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🔐</div>
+        <h3>Password Security</h3>
+        <p>Master strong authentication practices and secure password management.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">⚠️</div>
+        <h3>Scam Detection</h3>
+        <p>Recognize and avoid various types of online scams and fraud attempts.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🦠</div>
+        <h3>Malware Protection</h3>
+        <p>Understand malware threats and how to protect your systems effectively.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🛡️</div>
+        <h3>Safe Internet Browsing</h3>
+        <p>Practice secure browsing habits to minimize online security risks.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">📱</div>
+        <h3>Mobile Security</h3>
+        <p>Protect your mobile devices from emerging security threats.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">💾</div>
+        <h3>Data Protection</h3>
+        <p>Learn best practices for protecting sensitive data and maintaining privacy.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🚨</div>
+        <h3>Incident Response</h3>
+        <p>Develop skills to respond effectively to security incidents and breaches.</p>
+        <span class="module-badge">✓ Completed</span>
+      </div>
+    </div>
+  </section>
 
-const progressContainer = document.getElementById('moduleProgress');
-progressContainer.innerHTML = '';
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Cyber Awareness Training Program. All rights reserved.</p>
+  </footer>
 
-modules.forEach(module => {
-  const score = parseInt(localStorage.getItem(module + '_score') || 0);
-  const completed = score > 0;
-  if(completed) completedCount++;
-  totalScore += score;
+  <script>
+    // Get username from URL parameter or localStorage
+    function getUserName() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const nameFromUrl = urlParams.get('name');
+      
+      if (nameFromUrl) {
+        localStorage.setItem('userName', nameFromUrl);
+        return nameFromUrl;
+      }
+      
+      return localStorage.getItem('userName') || 'User';
+    }
 
-  const div = document.createElement('div');
-  div.className = 'metric';
-  div.innerHTML = `<small>${module.charAt(0).toUpperCase()+module.slice(1)}</small>
-                   <strong>Score: ${score}</strong>`;
-  progressContainer.appendChild(div);
-});
+    // Display username
+    document.addEventListener('DOMContentLoaded', function() {
+      const userName = getUserName();
+      document.getElementById('userName').textContent = userName;
+    });
 
-document.getElementById('modulesCompleted').textContent = completedCount;
-document.getElementById('totalScore').textContent = totalScore;
-</script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      menu.classList.toggle('active');
+    }
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById('navMenu').classList.remove('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

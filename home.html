@@ -144,7 +144,7 @@ footer {
 <!-- Hero -->
 <section class="hero" role="region" aria-label="Intro">
   <div>
-    <h2>Learn to stay safe online — practical, bite-sized modules for everyone</h2>
+    <h2 id="welcomeMessage">Learn to stay safe online — practical, bite-sized modules for everyone</h2>
     <p>Interactive lessons on phishing, passwords, malware, device security, data protection, incident response and more. Build real skills — no fluff.</p>
 
     <div class="cta" style="margin-top:18px;">
@@ -269,6 +269,16 @@ footer {
 
 <script src="script.js"></script>
 <script>
+// Display personalized greeting
+const userName = localStorage.getItem('userName') || 'Guest';
+const welcomeMsg = document.getElementById('welcomeMessage');
+if (userName && userName !== 'Guest') {
+  const displayName = userName.includes('@') ? userName.split('@')[0] : userName;
+  welcomeMsg.textContent = `Welcome back, ${displayName}! Continue your cybersecurity journey`;
+} else {
+  welcomeMsg.textContent = 'Learn to stay safe online — practical, bite-sized modules for everyone';
+}
+
 const modules = ['phishing','passwords','scams','malware','safeinternet','mobile','dataprotection','incident'];
 let totalScore = 0;
 let completedCount = 0;

@@ -49,7 +49,7 @@
       padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      justify-content: space-between;
     }
 
     .brand {
@@ -57,6 +57,7 @@
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .logo {
@@ -86,12 +87,48 @@
       line-height: 1;
     }
 
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-tab {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-tab:hover {
+      background: rgba(148, 163, 184, 0.1);
+      color: #ecf8ff;
+    }
+
+    .nav-tab.active {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+    }
+
     .content {
       position: relative;
       z-index: 10;
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.5rem 4rem;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .back-btn {
@@ -203,16 +240,251 @@
       padding: 2rem;
     }
 
-    .highlight-card h3 {
-      color: #38bdf8;
-      margin-bottom: 1rem;
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .highlight-card p {
-      color: #94a3b8;
-      font-size: 1.125rem;
-      line-height: 1.7;
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      color: white;
+      box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
     }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* Quiz Styles */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+    }
+
+    .question-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #ecf8ff;
+    }
+
+    .options {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option {
+      padding: 1.25rem;
+      background: rgba(30, 41, 59, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .option:hover:not(.disabled) {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateX(4px);
+    }
+
+    .option.correct {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .option.incorrect {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .option.disabled {
+      cursor: default;
+    }
+
+    .option-label {
+      width: 32px;
+      height: 32px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 1rem;
+      color: #ecf8ff;
+    }
+
+    .option-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .explanation {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      animation: slideIn 0.3s ease-out;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .explanation.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .explanation.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .explanation-content h4 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ecf8ff;
+    }
+
+    .explanation-content p {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .progress-bar-wrapper {
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    /* Results Styles */
+    .results {
+      text-align: center;
+    }
+
+    .results-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      box-shadow: 0 20px 40px rgba(14, 165, 233, 0.5);
+    }
+
+    .results h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ecf8ff;
+    }
+
+    .results-message {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .results-score {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: #ecf8ff;
+    }
+
+    .results-score span {
+      color: #94a3b8;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .star {
+      color: #94a3b8;
+    }
+
+    .star.filled {
+      color: #0ea5e9;
+    }
+
+    .button-group {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .score-strength.very-weak { color: #ef4444; }
+    .score-strength.weak { color: #f59e0b; }
+    .score-strength.fair { color: #eab308; }
+    .score-strength.strong { color: #10b981; }
+    .score-strength.very-strong { color: #0ea5e9; }
 
     footer {
       max-width: 1100px;
@@ -230,6 +502,10 @@
       .hero-content h2 {
         font-size: 2rem;
       }
+      .nav-tabs {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
     }
   </style>
 </head>
@@ -238,89 +514,433 @@
 
   <nav>
     <div class="nav-container">
-      <a href="home.html" class="brand">
-        <div class="logo">CT</div>
+      <div class="brand" onclick="showSection('info')">
+        <div class="logo">🚨</div>
         <div class="brand-text">
           <h1>Cyber Awareness</h1>
           <p>Training · Safety · Response</p>
         </div>
-      </a>
+      </div>
+      <div class="nav-tabs">
+        <button class="nav-tab active" id="nav-info" onclick="showSection('info')">Learn</button>
+        <button class="nav-tab" id="nav-quiz" onclick="showQuiz()">Quiz</button>
+      </div>
     </div>
   </nav>
 
   <div class="content">
-    <a href="home.html" class="back-btn">
-      ← Back to Modules
-    </a>
+    <!-- Info Section -->
+    <div id="info-section" class="section active">
+      <a href="home.html" class="back-btn">← Back to Home</a>
 
-    <div class="hero-card">
-      <div class="hero-icon">🚨</div>
-      <div class="hero-content">
-        <h2>Incident Response</h2>
-        <p>Develop skills to respond effectively to security incidents and breaches</p>
+      <div class="hero-card">
+        <div class="hero-icon">🚨</div>
+        <div class="hero-content">
+          <h2>Incident Response</h2>
+          <p>Develop skills to respond effectively to security incidents and breaches</p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>What is an Incident?</h3>
+        <p>A security incident is any event that compromises the confidentiality, integrity, or availability of information systems or data. This includes data breaches, malware infections, unauthorized access, and denial of service attacks.</p>
+        <p>Quick, effective response to security incidents is crucial for minimizing damage, protecting data, and maintaining business operations.</p>
+      </div>
+
+      <div class="section-card">
+        <h3>Incident Response Phases</h3>
+        
+        <div class="tip-card">
+          <h4>1. Preparation</h4>
+          <p>Establish incident response procedures, train team members, and deploy monitoring tools.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>2. Detection & Analysis</h4>
+          <p>Identify potential security incidents through monitoring, alerts, and user reports.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>3. Containment</h4>
+          <p>Isolate affected systems to prevent the incident from spreading.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>4. Eradication</h4>
+          <p>Remove the threat from your environment and eliminate the root cause.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>5. Recovery</h4>
+          <p>Restore systems and services to normal operations while monitoring for persistence.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>6. Lessons Learned</h4>
+          <p>Review the incident, document findings, and improve security measures.</p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>Immediate Actions During an Incident</h3>
+        <ul>
+          <li><span>🚨</span><span>Stay calm and don't panic</span></li>
+          <li><span>🚨</span><span>Immediately report to your IT security team</span></li>
+          <li><span>🚨</span><span>Don't try to handle it yourself unless trained</span></li>
+          <li><span>🚨</span><span>Disconnect affected devices from the network</span></li>
+          <li><span>🚨</span><span>Do NOT delete any files or logs</span></li>
+          <li><span>🚨</span><span>Document everything you observed</span></li>
+        </ul>
+      </div>
+
+      <div class="highlight-card">
+        <h3>Key Takeaways</h3>
+        <p>Time is critical - report incidents immediately. Follow established procedures, preserve evidence, and learn from incidents to strengthen security.</p>
+      </div>
+
+      <div class="cta">
+        <p>Ready to test your incident response knowledge?</p>
+        <button class="btn btn-primary" onclick="showQuiz()">
+          Take the Quiz →
+        </button>
       </div>
     </div>
 
-    <div class="section-card">
-      <h3>What is an Incident?</h3>
-      <p>A security incident is any event that compromises the confidentiality, integrity, or availability of information systems or data. This includes data breaches, malware infections, unauthorized access, and denial of service attacks.</p>
-      <p>Quick, effective response to security incidents is crucial for minimizing damage, protecting data, and maintaining business operations.</p>
+    <!-- Quiz Section -->
+    <div id="quiz-section" class="section">
+      <div class="hero-card">
+        <div class="hero-icon">🧠</div>
+        <div class="hero-content">
+          <h2>Incident Response Quiz</h2>
+          <p>Test your knowledge with 10 questions!</p>
+        </div>
+      </div>
+
+      <div class="quiz-header">
+        <div>
+          <span>🎯 Question <span id="current-question">1</span> of 10</span>
+        </div>
+        <div>
+          <span>🏆 Score: <span id="quiz-score">0</span></span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="question-text" id="question-text"></h3>
+        <div class="options" id="options-container"></div>
+        <div id="explanation-container"></div>
+        <button
+          class="btn btn-primary btn-block"
+          id="next-btn"
+          onclick="nextQuestion()"
+          style="display: none;"
+        >
+          Next Question →
+        </button>
+      </div>
     </div>
 
-    <div class="section-card">
-      <h3>Incident Response Phases</h3>
-      
-      <div class="tip-card">
-        <h4>1. Preparation</h4>
-        <p>Establish incident response procedures, train team members, and deploy monitoring tools.</p>
+    <!-- Results Section -->
+    <div id="results-section" class="section">
+      <div class="section-card results">
+        <div class="results-icon">🏆</div>
+        <h2>Quiz Complete!</h2>
+        <p class="results-message" id="results-message"></p>
+        <div class="results-score">
+          <span id="final-score">0</span>
+          <span> / 10</span>
+        </div>
+        <div class="stars" id="stars-container"></div>
+        <div class="button-group">
+          <button class="btn btn-primary btn-block" onclick="retryQuiz()">
+            Try Again
+          </button>
+          <button class="btn btn-primary btn-block" onclick="showSection('info')">
+            Back to Learning
+          </button>
+        </div>
       </div>
-
-      <div class="tip-card">
-        <h4>2. Detection & Analysis</h4>
-        <p>Identify potential security incidents through monitoring, alerts, and user reports.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>3. Containment</h4>
-        <p>Isolate affected systems to prevent the incident from spreading.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>4. Eradication</h4>
-        <p>Remove the threat from your environment and eliminate the root cause.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>5. Recovery</h4>
-        <p>Restore systems and services to normal operations while monitoring for persistence.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>6. Lessons Learned</h4>
-        <p>Review the incident, document findings, and improve security measures.</p>
-      </div>
-    </div>
-
-    <div class="section-card">
-      <h3>Immediate Actions During an Incident</h3>
-      <ul>
-        <li><span>🚨</span><span>Stay calm and don't panic</span></li>
-        <li><span>🚨</span><span>Immediately report to your IT security team</span></li>
-        <li><span>🚨</span><span>Don't try to handle it yourself unless trained</span></li>
-        <li><span>🚨</span><span>Disconnect affected devices from the network</span></li>
-        <li><span>🚨</span><span>Do NOT delete any files or logs</span></li>
-        <li><span>🚨</span><span>Document everything you observed</span></li>
-      </ul>
-    </div>
-
-    <div class="highlight-card">
-      <h3>Key Takeaways</h3>
-      <p>Time is critical - report incidents immediately. Follow established procedures, preserve evidence, and learn from incidents to strengthen security.</p>
     </div>
   </div>
 
   <footer>
     <p>&copy; 2025 Cyber Awareness Training Program. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Navigation
+    function showSection(sectionName) {
+      const sections = ['info', 'quiz', 'results'];
+      sections.forEach(s => {
+        const section = document.getElementById(`${s}-section`);
+        const navTab = document.getElementById(`nav-${s}`);
+
+        if (s === sectionName) {
+          section.classList.add('active');
+          if (navTab) navTab.classList.add('active');
+        } else {
+          section.classList.remove('active');
+          if (navTab) navTab.classList.remove('active');
+        }
+      });
+    }
+
+    // Quiz
+    const questions = [
+      {
+        question: "What is the first phase of incident response?",
+        options: [
+          "Recovery",
+          "Preparation",
+          "Containment",
+          "Analysis"
+        ],
+        correctAnswer: 1,
+        explanation: "Preparation is the first phase where you establish incident response procedures, train team members, and deploy monitoring tools before incidents occur."
+      },
+      {
+        question: "What should you do immediately if you discover a security incident?",
+        options: [
+          "Try to fix it yourself",
+          "Ignore it and hope it goes away",
+          "Report it immediately to your IT security team",
+          "Post about it on social media"
+        ],
+        correctAnswer: 2,
+        explanation: "The first step is to immediately report the incident to your IT security team. Time is critical, and trained professionals should handle the response."
+      },
+      {
+        question: "What is the purpose of the containment phase?",
+        options: [
+          "To delete all evidence",
+          "To isolate affected systems and prevent the incident from spreading",
+          "To restore normal operations",
+          "To identify the attacker"
+        ],
+        correctAnswer: 1,
+        explanation: "Containment isolates affected systems to prevent the incident from spreading to other parts of the network while preserving evidence."
+      },
+      {
+        question: "Should you delete files or logs during a security incident?",
+        options: [
+          "Yes, to hide the evidence",
+          "Yes, to clean up the system",
+          "No, preserve all evidence for investigation",
+          "Only delete infected files"
+        ],
+        correctAnswer: 2,
+        explanation: "Never delete files or logs during an incident. All evidence must be preserved for investigation and forensic analysis."
+      },
+      {
+        question: "What happens during the eradication phase?",
+        options: [
+          "Systems are returned to normal operation",
+          "The threat is removed and the root cause is eliminated",
+          "Incident is reported to authorities",
+          "Backups are created"
+        ],
+        correctAnswer: 1,
+        explanation: "During eradication, the threat is completely removed from the environment and the root cause is eliminated to prevent recurrence."
+      },
+      {
+        question: "Why is the 'Lessons Learned' phase important?",
+        options: [
+          "It's not important",
+          "To blame someone for the incident",
+          "To review the incident and improve security measures",
+          "To celebrate fixing the problem"
+        ],
+        correctAnswer: 2,
+        explanation: "The Lessons Learned phase helps organizations review what happened, document findings, and improve security measures to prevent similar incidents."
+      },
+      {
+        question: "What should you do if you suspect your device is compromised?",
+        options: [
+          "Continue using it normally",
+          "Disconnect it from the network and report it",
+          "Delete all your files",
+          "Share your concern on social media"
+        ],
+        correctAnswer: 1,
+        explanation: "Disconnect the compromised device from the network to prevent spread, and immediately report it to your IT security team."
+      },
+      {
+        question: "During incident response, who should handle the technical response?",
+        options: [
+          "Anyone available",
+          "The person who discovered it",
+          "Trained IT security professionals",
+          "External consultants only"
+        ],
+        correctAnswer: 2,
+        explanation: "Trained IT security professionals should handle technical incident response. They have the expertise to properly contain, investigate, and remediate incidents."
+      },
+      {
+        question: "What is a security incident?",
+        options: [
+          "Any computer problem",
+          "Only major data breaches",
+          "Any event that compromises confidentiality, integrity, or availability of systems/data",
+          "Only virus infections"
+        ],
+        correctAnswer: 2,
+        explanation: "A security incident is any event that compromises the confidentiality, integrity, or availability (CIA triad) of information systems or data."
+      },
+      {
+        question: "Why is documentation important during incident response?",
+        options: [
+          "It's not important",
+          "For legal purposes, learning, and improving future responses",
+          "Only for blaming people",
+          "To slow down the response process"
+        ],
+        correctAnswer: 1,
+        explanation: "Documentation is crucial for legal purposes, learning from incidents, improving future responses, and ensuring accountability throughout the response process."
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let quizScore = 0;
+    let selectedAnswer = null;
+
+    function showQuiz() {
+      currentQuestionIndex = 0;
+      quizScore = 0;
+      selectedAnswer = null;
+
+      showSection('quiz');
+      updateQuizUI();
+      loadQuestion();
+    }
+
+    function updateQuizUI() {
+      document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+      document.getElementById('quiz-score').textContent = quizScore;
+      document.getElementById('quiz-progress-fill').style.width =
+        ((currentQuestionIndex / questions.length) * 100) + '%';
+    }
+
+    function loadQuestion() {
+      const question = questions[currentQuestionIndex];
+      document.getElementById('question-text').textContent = question.question;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.innerHTML = `
+          <div class="option-label">${String.fromCharCode(65 + index)}</div>
+          <div class="option-text">${option}</div>
+        `;
+        optionDiv.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(optionDiv);
+      });
+
+      document.getElementById('explanation-container').innerHTML = '';
+      document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function selectAnswer(answerIndex) {
+      if (selectedAnswer !== null) return;
+
+      selectedAnswer = answerIndex;
+      const question = questions[currentQuestionIndex];
+      const isCorrect = answerIndex === question.correctAnswer;
+
+      if (isCorrect) {
+        quizScore++;
+        updateQuizUI();
+      }
+
+      const options = document.querySelectorAll('.option');
+      options.forEach((option, index) => {
+        option.classList.add('disabled');
+
+        if (index === question.correctAnswer) {
+          option.classList.add('correct');
+          option.innerHTML += '<div class="option-icon">✓</div>';
+        } else if (index === answerIndex && !isCorrect) {
+          option.classList.add('incorrect');
+          option.innerHTML += '<div class="option-icon">✗</div>';
+        }
+      });
+
+      const explanationContainer = document.getElementById('explanation-container');
+      explanationContainer.innerHTML = `
+        <div class="explanation ${isCorrect ? 'correct' : 'incorrect'}">
+          <div class="explanation-icon">${isCorrect ? '✓' : '✗'}</div>
+          <div class="explanation-content">
+            <h4>${isCorrect ? 'Correct!' : 'Not quite!'}</h4>
+            <p>${question.explanation}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function nextQuestion() {
+      selectedAnswer = null;
+
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuizUI();
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const percentage = (quizScore / questions.length) * 100;
+      let message, messageClass;
+
+      if (percentage === 100) {
+        message = '🏆 Perfect Score! You\'re an incident response expert!';
+        messageClass = 'very-strong';
+      } else if (percentage >= 80) {
+        message = '🎉 Excellent! You understand incident response!';
+        messageClass = 'strong';
+      } else if (percentage >= 60) {
+        message = '👍 Good job! Keep learning!';
+        messageClass = 'fair';
+      } else if (percentage >= 40) {
+        message = '📚 Not bad, but review the material!';
+        messageClass = 'weak';
+      } else {
+        message = '💪 Keep practicing! This is important!';
+        messageClass = 'very-weak';
+      }
+
+      document.getElementById('results-message').textContent = message;
+      document.getElementById('results-message').className = 'results-message score-strength ' + messageClass;
+      document.getElementById('final-score').textContent = quizScore;
+
+      const starsContainer = document.getElementById('stars-container');
+      starsContainer.innerHTML = '';
+      const starCount = Math.ceil((quizScore / questions.length) * 5);
+
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        star.className = i < starCount ? 'star filled' : 'star';
+        star.textContent = '⭐';
+        starsContainer.appendChild(star);
+      }
+
+      showSection('results');
+    }
+
+    function retryQuiz() {
+      showQuiz();
+    }
+  </script>
 </body>
 </html>

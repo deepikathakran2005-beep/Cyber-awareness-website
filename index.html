@@ -203,9 +203,12 @@ signupBtn.onclick = () => {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
   if(!email || !password){alert("Enter both email & password"); return;}
-  
+
   createUserWithEmailAndPassword(auth, email, password)
-    .then(() => window.location.href='index.html')
+    .then((userCredential) => {
+      localStorage.setItem('userName', userCredential.user.email);
+      window.location.href='home.html';
+    })
     .catch(e => alert(e.message));
 }
 
@@ -214,9 +217,12 @@ loginBtn.onclick = () => {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
   if(!email || !password){alert("Enter both email & password"); return;}
-  
+
   signInWithEmailAndPassword(auth, email, password)
-    .then(() => window.location.href='index.html')
+    .then((userCredential) => {
+      localStorage.setItem('userName', userCredential.user.email);
+      window.location.href='home.html';
+    })
     .catch(e => alert(e.message));
 }
 
@@ -228,16 +234,27 @@ document.querySelector('.card').appendChild(googleBtn);
 
 googleBtn.onclick = () => {
   signInWithPopup(auth, provider)
-    .then(() => window.location.href='index.html')
+    .then((userCredential) => {
+      const displayName = userCredential.user.displayName || userCredential.user.email;
+      localStorage.setItem('userName', displayName);
+      window.location.href='home.html';
+    })
     .catch(e => alert(e.message));
 }
 
 // Skip
-skipBtn.onclick = () => window.location.href='index.html';
+skipBtn.onclick = () => {
+  localStorage.setItem('userName', 'Guest');
+  window.location.href='home.html';
+};
 
-// Auto redirect if already logged in meowowwwwwwww
+// Auto redirect if already logged in
 onAuthStateChanged(auth, user => {
-  if(user) window.location.href='index.html';
+  if(user) {
+    const displayName = user.displayName || user.email;
+    localStorage.setItem('userName', displayName);
+    window.location.href='home.html';
+  }
 });
 
 

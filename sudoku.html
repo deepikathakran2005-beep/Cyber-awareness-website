@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Game — Cyber Training</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #050a18 0%, #0a0f1e 50%, #0f172a 100%);
+      color: #ecf8ff;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(124, 58, 237, 0.06) 0%, transparent 50%);
+      animation: drift 20s ease-in-out infinite;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-10%, -10%); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .game-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(11, 18, 32, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #38bdf8, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+      color: white;
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #ecf8ff;
+    }
+
+    .btn-outline:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+    }
+
+    .difficulty-selector {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .diff-btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.875rem;
+      background: transparent;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .diff-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .diff-btn:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.1);
+      border-radius: 12px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .sudoku-board {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 0;
+      margin-bottom: 1.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 2px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cell:hover:not(.fixed) {
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    .cell.fixed {
+      color: #38bdf8;
+      cursor: default;
+      font-weight: 700;
+    }
+
+    .cell.user {
+      color: #ecf8ff;
+    }
+
+    .cell.selected {
+      background: rgba(124, 58, 237, 0.3);
+      border-color: #7c3aed;
+    }
+
+    .cell.error {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+    }
+
+    .cell.correct {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #22c55e;
+    }
+
+    /* 3x3 box borders */
+    .cell:nth-child(3n) { border-right: 2px solid rgba(56, 189, 248, 0.3); }
+    .cell:nth-child(n+19):nth-child(-n+27),
+    .cell:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid rgba(56, 189, 248, 0.3); }
+
+    .number-pad {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .num-btn {
+      padding: 0.875rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 1rem;
+      background: rgba(15, 23, 42, 0.8);
+      color: #ecf8ff;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .num-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      transform: scale(1.05);
+    }
+
+    .message {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .message.success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+      display: block;
+    }
+
+    .message.error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .game-card { padding: 1.5rem; }
+      h1 { font-size: 2rem; }
+      .cell { font-size: 1rem; }
+      .controls { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="container">
+    <div class="game-card">
+      <h1>🧩 Sudoku</h1>
+      <p class="subtitle">Train Your Brain • Cyber Edition</p>
+
+      <div class="difficulty-selector">
+        <button class="diff-btn active" data-level="easy">Easy</button>
+        <button class="diff-btn" data-level="medium">Medium</button>
+        <button class="diff-btn" data-level="hard">Hard</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Time</div>
+          <div class="stat-value" id="timer">00:00</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Difficulty</div>
+          <div class="stat-value" id="difficulty">Easy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Mistakes</div>
+          <div class="stat-value" id="mistakes">0</div>
+        </div>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="sudoku-board" id="board"></div>
+
+      <div class="number-pad">
+        <button class="num-btn" data-num="1">1</button>
+        <button class="num-btn" data-num="2">2</button>
+        <button class="num-btn" data-num="3">3</button>
+        <button class="num-btn" data-num="4">4</button>
+        <button class="num-btn" data-num="5">5</button>
+        <button class="num-btn" data-num="6">6</button>
+        <button class="num-btn" data-num="7">7</button>
+        <button class="num-btn" data-num="8">8</button>
+        <button class="num-btn" data-num="9">9</button>
+        <button class="num-btn" data-num="0">Clear</button>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-primary" id="newGame">New Game</button>
+        <button class="btn btn-outline" id="checkBtn">Check Solution</button>
+        <button class="btn btn-outline" id="hintBtn">Hint</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let board = [];
+    let solution = [];
+    let selectedCell = null;
+    let difficulty = 'easy';
+    let mistakes = 0;
+    let timerInterval;
+    let seconds = 0;
+
+    const difficultySettings = {
+      easy: 40,
+      medium: 50,
+      hard: 60
+    };
+
+    // Initialize game
+    function init() {
+      generateSudoku();
+      renderBoard();
+      startTimer();
+      setupEventListeners();
+    }
+
+    // Generate a valid Sudoku puzzle
+    function generateSudoku() {
+      solution = generateFullBoard();
+      board = JSON.parse(JSON.stringify(solution));
+      removeNumbers(difficultySettings[difficulty]);
+    }
+
+    // Generate a complete valid Sudoku board
+    function generateFullBoard() {
+      const board = Array(9).fill().map(() => Array(9).fill(0));
+      fillBoard(board);
+      return board;
+    }
+
+    function fillBoard(board) {
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          if (board[row][col] === 0) {
+            shuffle(numbers);
+            for (let num of numbers) {
+              if (isValid(board, row, col, num)) {
+                board[row][col] = num;
+                if (fillBoard(board)) {
+                  return true;
+                }
+                board[row][col] = 0;
+              }
+            }
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function isValid(board, row, col, num) {
+      // Check row
+      for (let x = 0; x < 9; x++) {
+        if (board[row][x] === num) return false;
+      }
+      
+      // Check column
+      for (let x = 0; x < 9; x++) {
+        if (board[x][col] === num) return false;
+      }
+      
+      // Check 3x3 box
+      const startRow = row - row % 3;
+      const startCol = col - col % 3;
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          if (board[i + startRow][j + startCol] === num) return false;
+        }
+      }
+      
+      return true;
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function removeNumbers(count) {
+      let removed = 0;
+      while (removed < count) {
+        const row = Math.floor(Math.random() * 9);
+        const col = Math.floor(Math.random() * 9);
+        if (board[row][col] !== 0) {
+          board[row][col] = 0;
+          removed++;
+        }
+      }
+    }
+
+    function renderBoard() {
+      const boardEl = document.getElementById('board');
+      boardEl.innerHTML = '';
+      
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.dataset.row = row;
+          cell.dataset.col = col;
+          
+          const value = board[row][col];
+          if (value !== 0) {
+            cell.textContent = value;
+            if (solution[row][col] === value) {
+              cell.classList.add('fixed');
+            } else {
+              cell.classList.add('user');
+            }
+          }
+          
+          cell.addEventListener('click', () => selectCell(row, col));
+          boardEl.appendChild(cell);
+        }
+      }
+    }
+
+    function selectCell(row, col) {
+      const cells = document.querySelectorAll('.cell');
+      cells.forEach(c => c.classList.remove('selected'));
+      
+      selectedCell = { row, col };
+      const cellEl = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+      if (!cellEl.classList.contains('fixed')) {
+        cellEl.classList.add('selected');
+      }
+    }
+
+    function placeNumber(num) {
+      if (!selectedCell) return;
+      
+      const { row, col } = selectedCell;
+      const cellEl = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+      
+      if (cellEl.classList.contains('fixed')) return;
+      
+      if (num === 0) {
+        board[row][col] = 0;
+        cellEl.textContent = '';
+        cellEl.classList.remove('user', 'error', 'correct');
+      } else {
+        board[row][col] = num;
+        cellEl.textContent = num;
+        cellEl.classList.add('user');
+        cellEl.classList.remove('error', 'correct');
+        
+        if (num !== solution[row][col]) {
+          cellEl.classList.add('error');
+          mistakes++;
+          document.getElementById('mistakes').textContent = mistakes;
+        }
+      }
+      
+      checkWin();
+    }
+
+    function checkSolution() {
+      const messageEl = document.getElementById('message');
+      let hasErrors = false;
+      
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          const cellEl = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+          if (!cellEl.classList.contains('fixed')) {
+            if (board[row][col] === solution[row][col] && board[row][col] !== 0) {
+              cellEl.classList.add('correct');
+              cellEl.classList.remove('error');
+            } else if (board[row][col] !== 0) {
+              cellEl.classList.add('error');
+              cellEl.classList.remove('correct');
+              hasErrors = true;
+            }
+          }
+        }
+      }
+      
+      if (hasErrors) {
+        showMessage('Some cells are incorrect. Keep trying!', 'error');
+      } else if (isBoardComplete()) {
+        showMessage('Perfect! You solved it! 🎉', 'success');
+        stopTimer();
+      } else {
+        showMessage('Looking good so far! Keep going.', 'success');
+      }
+    }
+
+    function giveHint() {
+      const emptyCells = [];
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          if (board[row][col] === 0) {
+            emptyCells.push({ row, col });
+          }
+        }
+      }
+      
+      if (emptyCells.length > 0) {
+        const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        board[randomCell.row][randomCell.col] = solution[randomCell.row][randomCell.col];
+        renderBoard();
+        showMessage('Hint added! 💡', 'success');
+      }
+    }
+
+    function checkWin() {
+      if (isBoardComplete()) {
+        let hasErrors = false;
+        for (let row = 0; row < 9; row++) {
+          for (let col = 0; col < 9; col++) {
+            if (board[row][col] !== solution[row][col]) {
+              hasErrors = true;
+              break;
+            }
+          }
+          if (hasErrors) break;
+        }
+        
+        if (!hasErrors) {
+          showMessage('🎉 Congratulations! You solved the puzzle!', 'success');
+          stopTimer();
+        }
+      }
+    }
+
+    function isBoardComplete() {
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          if (board[row][col] === 0) return false;
+        }
+      }
+      return true;
+    }
+
+    function showMessage(text, type) {
+      const messageEl = document.getElementById('message');
+      messageEl.textContent = text;
+      messageEl.className = `message ${type}`;
+      setTimeout(() => {
+        messageEl.className = 'message';
+      }, 3000);
+    }
+
+    function startTimer() {
+      stopTimer();
+      seconds = 0;
+      updateTimer();
+      timerInterval = setInterval(() => {
+        seconds++;
+        updateTimer();
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+    }
+
+    function updateTimer() {
+      const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const secs = (seconds % 60).toString().padStart(2, '0');
+      document.getElementById('timer').textContent = `${mins}:${secs}`;
+    }
+
+    function setupEventListeners() {
+      // Number pad
+      document.querySelectorAll('.num-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const num = parseInt(btn.dataset.num);
+          placeNumber(num);
+        });
+      });
+
+      // Keyboard input
+      document.addEventListener('keydown', (e) => {
+        if (e.key >= '1' && e.key <= '9') {
+          placeNumber(parseInt(e.key));
+        } else if (e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') {
+          placeNumber(0);
+        }
+      });
+
+      // Difficulty buttons
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          difficulty = btn.dataset.level;
+          document.getElementById('difficulty').textContent = 
+            difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+        });
+      });
+
+      // Control buttons
+      document.getElementById('newGame').addEventListener('click', () => {
+        mistakes = 0;
+        document.getElementById('mistakes').textContent = '0';
+        init();
+      });
+
+      document.getElementById('checkBtn').addEventListener('click', checkSolution);
+      document.getElementById('hintBtn').addEventListener('click', giveHint);
+    }
+
+    // Start the game
+    init();
+  </script>
+</body>
+</html>

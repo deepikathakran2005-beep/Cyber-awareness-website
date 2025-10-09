@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scam Detection — Cyber Awareness Training</title>
+  <title>Scam Detection Quiz — Cyber Awareness Training</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,7 +49,7 @@
       padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      justify-content: space-between;
     }
 
     .brand {
@@ -57,6 +57,7 @@
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .logo {
@@ -86,12 +87,48 @@
       line-height: 1;
     }
 
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-tab {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-tab:hover {
+      background: rgba(148, 163, 184, 0.1);
+      color: #38bdf8;
+    }
+
+    .nav-tab.active {
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      color: white;
+    }
+
     .content {
       position: relative;
       z-index: 10;
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.5rem 4rem;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .back-btn {
@@ -203,16 +240,251 @@
       padding: 2rem;
     }
 
-    .highlight-card h3 {
-      color: #38bdf8;
-      margin-bottom: 1rem;
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .highlight-card p {
-      color: #94a3b8;
-      font-size: 1.125rem;
-      line-height: 1.7;
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      color: white;
+      box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
     }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* Quiz Styles */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+    }
+
+    .question-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #ecf8ff;
+    }
+
+    .options {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option {
+      padding: 1.25rem;
+      background: rgba(30, 41, 59, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .option:hover:not(.disabled) {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateX(4px);
+    }
+
+    .option.correct {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .option.incorrect {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .option.disabled {
+      cursor: default;
+    }
+
+    .option-label {
+      width: 32px;
+      height: 32px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 1rem;
+      color: #ecf8ff;
+    }
+
+    .option-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .explanation {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      animation: slideIn 0.3s ease-out;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .explanation.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .explanation.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .explanation-content h4 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ecf8ff;
+    }
+
+    .explanation-content p {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .progress-bar-wrapper {
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    /* Results Styles */
+    .results {
+      text-align: center;
+    }
+
+    .results-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      box-shadow: 0 20px 40px rgba(14, 165, 233, 0.5);
+    }
+
+    .results h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ecf8ff;
+    }
+
+    .results-message {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .results-score {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: #ecf8ff;
+    }
+
+    .results-score span {
+      color: #94a3b8;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .star {
+      color: #94a3b8;
+    }
+
+    .star.filled {
+      color: #0ea5e9;
+    }
+
+    .button-group {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .score-strength.very-weak { color: #ef4444; }
+    .score-strength.weak { color: #f59e0b; }
+    .score-strength.fair { color: #eab308; }
+    .score-strength.strong { color: #10b981; }
+    .score-strength.very-strong { color: #0ea5e9; }
 
     footer {
       max-width: 1100px;
@@ -230,6 +502,10 @@
       .hero-content h2 {
         font-size: 2rem;
       }
+      .nav-tabs {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
     }
   </style>
 </head>
@@ -238,79 +514,423 @@
 
   <nav>
     <div class="nav-container">
-      <a href="home.html" class="brand">
-        <div class="logo">CT</div>
+      <div class="brand" onclick="showSection('info')">
+        <div class="logo">⚠️</div>
         <div class="brand-text">
           <h1>Cyber Awareness</h1>
           <p>Training · Safety · Response</p>
         </div>
-      </a>
+      </div>
+      <div class="nav-tabs">
+        <button class="nav-tab active" id="nav-info" onclick="showSection('info')">Learn</button>
+        <button class="nav-tab" id="nav-quiz" onclick="showQuiz()">Quiz</button>
+      </div>
     </div>
   </nav>
 
   <div class="content">
-    <a href="home.html" class="back-btn">
-      ← Back to Modules
-    </a>
+    <!-- Info Section -->
+    <div id="info-section" class="section active">
+      <a href="home.html" class="back-btn">← Back to Home</a>
 
-    <div class="hero-card">
-      <div class="hero-icon">⚠️</div>
-      <div class="hero-content">
-        <h2>Scam Detection</h2>
-        <p>Recognize and avoid various types of online scams and fraud attempts</p>
+      <div class="hero-card">
+        <div class="hero-icon">⚠️</div>
+        <div class="hero-content">
+          <h2>Scam Detection</h2>
+          <p>Recognize and avoid various types of online scams and fraud attempts</p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>Understanding Online Scams</h3>
+        <p>Online scams are fraudulent schemes designed to steal money, personal information, or both. Scammers use sophisticated psychological tactics to exploit trust, fear, and urgency to manipulate victims into making poor decisions.</p>
+        <p>The key to protection is awareness. Understanding common scam types and red flags can help you spot and avoid these threats before becoming a victim.</p>
+      </div>
+
+      <div class="section-card">
+        <h3>Common Types of Scams</h3>
+        
+        <div class="tip-card">
+          <h4>Investment Scams</h4>
+          <p>Promises of guaranteed returns or get-rich-quick schemes that are too good to be true. No legitimate investment guarantees high returns with zero risk.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Romance Scams</h4>
+          <p>Fake online relationships designed to build trust before requesting money. Be wary of online connections who quickly profess love and ask for financial help.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Tech Support Scams</h4>
+          <p>Fake tech support claiming your computer has problems and requesting remote access. Legitimate companies don't cold-call about computer problems.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Prize & Lottery Scams</h4>
+          <p>Notifications of winning prizes or lotteries you never entered. Real prizes don't require upfront payments or personal information.</p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>Red Flags to Watch For</h3>
+        <ul>
+          <li><span>🚩</span><span>Requests for immediate action or payment</span></li>
+          <li><span>🚩</span><span>Unusual payment methods (gift cards, wire transfers, cryptocurrency)</span></li>
+          <li><span>🚩</span><span>Poor grammar and spelling in official communications</span></li>
+          <li><span>🚩</span><span>Unsolicited contact via email, phone, or social media</span></li>
+          <li><span>🚩</span><span>Pressure to keep transactions secret from family or friends</span></li>
+          <li><span>🚩</span><span>Requests for personal information or account credentials</span></li>
+        </ul>
+      </div>
+
+      <div class="highlight-card">
+        <h3>If You've Been Scammed</h3>
+        <p>Stop all communication immediately. Contact your bank, change passwords, report to authorities, document everything, and warn others who might be targeted.</p>
+      </div>
+
+      <div class="cta">
+        <p>Ready to test your scam detection knowledge?</p>
+        <button class="btn btn-primary" onclick="showQuiz()">
+          Take the Quiz →
+        </button>
       </div>
     </div>
 
-    <div class="section-card">
-      <h3>Understanding Online Scams</h3>
-      <p>Online scams are fraudulent schemes designed to steal money, personal information, or both. Scammers use sophisticated psychological tactics to exploit trust, fear, and urgency to manipulate victims into making poor decisions.</p>
-      <p>The key to protection is awareness. Understanding common scam types and red flags can help you spot and avoid these threats before becoming a victim.</p>
+    <!-- Quiz Section -->
+    <div id="quiz-section" class="section">
+      <div class="hero-card">
+        <div class="hero-icon">🧠</div>
+        <div class="hero-content">
+          <h2>Scam Detection Quiz</h2>
+          <p>Test your knowledge with 10 questions!</p>
+        </div>
+      </div>
+
+      <div class="quiz-header">
+        <div>
+          <span>🎯 Question <span id="current-question">1</span> of 10</span>
+        </div>
+        <div>
+          <span>🏆 Score: <span id="quiz-score">0</span></span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="question-text" id="question-text"></h3>
+        <div class="options" id="options-container"></div>
+        <div id="explanation-container"></div>
+        <button
+          class="btn btn-primary btn-block"
+          id="next-btn"
+          onclick="nextQuestion()"
+          style="display: none;"
+        >
+          Next Question →
+        </button>
+      </div>
     </div>
 
-    <div class="section-card">
-      <h3>Common Types of Scams</h3>
-      
-      <div class="tip-card">
-        <h4>Investment Scams</h4>
-        <p>Promises of guaranteed returns or get-rich-quick schemes that are too good to be true. No legitimate investment guarantees high returns with zero risk.</p>
+    <!-- Results Section -->
+    <div id="results-section" class="section">
+      <div class="section-card results">
+        <div class="results-icon">🏆</div>
+        <h2>Quiz Complete!</h2>
+        <p class="results-message" id="results-message"></p>
+        <div class="results-score">
+          <span id="final-score">0</span>
+          <span> / 10</span>
+        </div>
+        <div class="stars" id="stars-container"></div>
+        <div class="button-group">
+          <button class="btn btn-primary btn-block" onclick="retryQuiz()">
+            Try Again
+          </button>
+          <button class="btn btn-primary btn-block" onclick="showSection('info')">
+            Back to Learning
+          </button>
+        </div>
       </div>
-
-      <div class="tip-card">
-        <h4>Romance Scams</h4>
-        <p>Fake online relationships designed to build trust before requesting money. Be wary of online connections who quickly profess love and ask for financial help.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>Tech Support Scams</h4>
-        <p>Fake tech support claiming your computer has problems and requesting remote access. Legitimate companies don't cold-call about computer problems.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>Prize & Lottery Scams</h4>
-        <p>Notifications of winning prizes or lotteries you never entered. Real prizes don't require upfront payments or personal information.</p>
-      </div>
-    </div>
-
-    <div class="section-card">
-      <h3>Red Flags to Watch For</h3>
-      <ul>
-        <li><span>🚩</span><span>Requests for immediate action or payment</span></li>
-        <li><span>🚩</span><span>Unusual payment methods (gift cards, wire transfers, cryptocurrency)</span></li>
-        <li><span>🚩</span><span>Poor grammar and spelling in official communications</span></li>
-        <li><span>🚩</span><span>Unsolicited contact via email, phone, or social media</span></li>
-        <li><span>🚩</span><span>Pressure to keep transactions secret from family or friends</span></li>
-        <li><span>🚩</span><span>Requests for personal information or account credentials</span></li>
-      </ul>
-    </div>
-
-    <div class="highlight-card">
-      <h3>If You've Been Scammed</h3>
-      <p>Stop all communication immediately. Contact your bank, change passwords, report to authorities, document everything, and warn others who might be targeted.</p>
     </div>
   </div>
 
   <footer>
     <p>&copy; 2025 Cyber Awareness Training Program. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Navigation
+    function showSection(sectionName) {
+      const sections = ['info', 'quiz', 'results'];
+      sections.forEach(s => {
+        const section = document.getElementById(`${s}-section`);
+        const navTab = document.getElementById(`nav-${s}`);
+
+        if (s === sectionName) {
+          section.classList.add('active');
+          if (navTab) navTab.classList.add('active');
+        } else {
+          section.classList.remove('active');
+          if (navTab) navTab.classList.remove('active');
+        }
+      });
+    }
+
+    // Quiz
+    const questions = [
+      {
+        question: "What is the main goal of online scams?",
+        options: [
+          "To help people save money",
+          "To steal money or personal information",
+          "To provide free services",
+          "To educate people about cyber security"
+        ],
+        correctAnswer: 1,
+        explanation: "Online scams are fraudulent schemes specifically designed to steal money, personal information, or both from victims."
+      },
+      {
+        question: "Which payment method is a major red flag for scams?",
+        options: [
+          "Credit cards",
+          "Checks",
+          "Gift cards and wire transfers",
+          "Bank transfers"
+        ],
+        correctAnswer: 2,
+        explanation: "Scammers prefer untraceable payment methods like gift cards, wire transfers, and cryptocurrency because they can't be reversed."
+      },
+      {
+        question: "What is a romance scam?",
+        options: [
+          "A dating service",
+          "A fake relationship built to request money",
+          "A legitimate online dating platform",
+          "A social media app"
+        ],
+        correctAnswer: 1,
+        explanation: "Romance scams involve creating fake online relationships to build trust before requesting money or personal information."
+      },
+      {
+        question: "If you win a lottery you never entered, what should you do?",
+        options: [
+          "Claim the prize immediately",
+          "Pay the processing fee to get your winnings",
+          "Ignore it - it's a scam",
+          "Share your bank details"
+        ],
+        correctAnswer: 2,
+        explanation: "You cannot win a lottery or contest you didn't enter. These are scams designed to steal money or information."
+      },
+      {
+        question: "What should you do if contacted by 'tech support' about problems with your computer?",
+        options: [
+          "Give them remote access immediately",
+          "Pay for their services",
+          "Hang up - legitimate companies don't cold-call",
+          "Share your passwords"
+        ],
+        correctAnswer: 2,
+        explanation: "Legitimate tech companies don't cold-call about computer problems. This is a common scam to gain remote access to your device."
+      },
+      {
+        question: "Which is a common characteristic of investment scams?",
+        options: [
+          "Realistic returns over time",
+          "Guaranteed high returns with no risk",
+          "Registered investment advisors",
+          "Detailed financial documentation"
+        ],
+        correctAnswer: 1,
+        explanation: "Investment scams promise unrealistically high returns with no risk. No legitimate investment can guarantee returns."
+      },
+      {
+        question: "What is a major red flag in email communications?",
+        options: [
+          "Professional language",
+          "Poor grammar and spelling errors",
+          "Company logo",
+          "Detailed information"
+        ],
+        correctAnswer: 1,
+        explanation: "Poor grammar and spelling errors in supposedly official communications are strong indicators of scams."
+      },
+      {
+        question: "If a scammer pressures you to keep a transaction secret, you should:",
+        options: [
+          "Keep it secret as requested",
+          "Recognize this as a major red flag and refuse",
+          "Only tell one person",
+          "Wait until after payment to tell anyone"
+        ],
+        correctAnswer: 1,
+        explanation: "Pressure to keep transactions secret from family or friends is a major scam red flag. Legitimate businesses never require secrecy."
+      },
+      {
+        question: "What should you do if you've been scammed?",
+        options: [
+          "Be embarrassed and don't tell anyone",
+          "Try to scam the scammer back",
+          "Stop communication, contact your bank, and report to authorities",
+          "Pay more money to fix it"
+        ],
+        correctAnswer: 2,
+        explanation: "If scammed, immediately stop communication, contact your bank, change passwords, report to authorities, and document everything."
+      },
+      {
+        question: "Which creates urgency to pressure victims?",
+        options: [
+          "Take your time to decide",
+          "Consult with family first",
+          "Act now or lose this opportunity forever",
+          "Think it over for a week"
+        ],
+        correctAnswer: 2,
+        explanation: "Scammers create false urgency ('act now or lose this opportunity') to pressure victims into making quick decisions without thinking."
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let quizScore = 0;
+    let selectedAnswer = null;
+
+    function showQuiz() {
+      currentQuestionIndex = 0;
+      quizScore = 0;
+      selectedAnswer = null;
+
+      showSection('quiz');
+      updateQuizUI();
+      loadQuestion();
+    }
+
+    function updateQuizUI() {
+      document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+      document.getElementById('quiz-score').textContent = quizScore;
+      document.getElementById('quiz-progress-fill').style.width =
+        ((currentQuestionIndex / questions.length) * 100) + '%';
+    }
+
+    function loadQuestion() {
+      const question = questions[currentQuestionIndex];
+      document.getElementById('question-text').textContent = question.question;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.innerHTML = `
+          <div class="option-label">${String.fromCharCode(65 + index)}</div>
+          <div class="option-text">${option}</div>
+        `;
+        optionDiv.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(optionDiv);
+      });
+
+      document.getElementById('explanation-container').innerHTML = '';
+      document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function selectAnswer(answerIndex) {
+      if (selectedAnswer !== null) return;
+
+      selectedAnswer = answerIndex;
+      const question = questions[currentQuestionIndex];
+      const isCorrect = answerIndex === question.correctAnswer;
+
+      if (isCorrect) {
+        quizScore++;
+        updateQuizUI();
+      }
+
+      const options = document.querySelectorAll('.option');
+      options.forEach((option, index) => {
+        option.classList.add('disabled');
+
+        if (index === question.correctAnswer) {
+          option.classList.add('correct');
+          option.innerHTML += '<div class="option-icon">✓</div>';
+        } else if (index === answerIndex && !isCorrect) {
+          option.classList.add('incorrect');
+          option.innerHTML += '<div class="option-icon">✗</div>';
+        }
+      });
+
+      const explanationContainer = document.getElementById('explanation-container');
+      explanationContainer.innerHTML = `
+        <div class="explanation ${isCorrect ? 'correct' : 'incorrect'}">
+          <div class="explanation-icon">${isCorrect ? '✓' : '✗'}</div>
+          <div class="explanation-content">
+            <h4>${isCorrect ? 'Correct!' : 'Not quite!'}</h4>
+            <p>${question.explanation}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function nextQuestion() {
+      selectedAnswer = null;
+
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuizUI();
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const percentage = (quizScore / questions.length) * 100;
+      let message, messageClass;
+
+      if (percentage === 100) {
+        message = '🏆 Perfect Score! You\'re a scam detection expert!';
+        messageClass = 'very-strong';
+      } else if (percentage >= 80) {
+        message = '🎉 Excellent! You can spot scams easily!';
+        messageClass = 'strong';
+      } else if (percentage >= 60) {
+        message = '👍 Good job! Keep learning!';
+        messageClass = 'fair';
+      } else if (percentage >= 40) {
+        message = '📚 Not bad, but review the material!';
+        messageClass = 'weak';
+      } else {
+        message = '💪 Keep practicing! This is important!';
+        messageClass = 'very-weak';
+      }
+
+      document.getElementById('results-message').textContent = message;
+      document.getElementById('results-message').className = 'results-message score-strength ' + messageClass;
+      document.getElementById('final-score').textContent = quizScore;
+
+      const starsContainer = document.getElementById('stars-container');
+      starsContainer.innerHTML = '';
+      const starCount = Math.ceil((quizScore / questions.length) * 5);
+
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        star.className = i < starCount ? 'star filled' : 'star';
+        star.textContent = '⭐';
+        starsContainer.appendChild(star);
+      }
+
+      showSection('results');
+    }
+
+    function retryQuiz() {
+      showQuiz();
+    }
+  </script>
 </body>
 </html>

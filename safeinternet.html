@@ -49,7 +49,7 @@
       padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      justify-content: space-between;
     }
 
     .brand {
@@ -57,6 +57,7 @@
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .logo {
@@ -86,12 +87,48 @@
       line-height: 1;
     }
 
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-tab {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-tab:hover {
+      background: rgba(148, 163, 184, 0.1);
+      color: #38bdf8;
+    }
+
+    .nav-tab.active {
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      color: white;
+    }
+
     .content {
       position: relative;
       z-index: 10;
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.5rem 4rem;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .back-btn {
@@ -203,16 +240,251 @@
       padding: 2rem;
     }
 
-    .highlight-card h3 {
-      color: #38bdf8;
-      margin-bottom: 1rem;
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .highlight-card p {
-      color: #94a3b8;
-      font-size: 1.125rem;
-      line-height: 1.7;
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      color: white;
+      box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
     }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* Quiz Styles */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+    }
+
+    .question-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #ecf8ff;
+    }
+
+    .options {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option {
+      padding: 1.25rem;
+      background: rgba(30, 41, 59, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .option:hover:not(.disabled) {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateX(4px);
+    }
+
+    .option.correct {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .option.incorrect {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .option.disabled {
+      cursor: default;
+    }
+
+    .option-label {
+      width: 32px;
+      height: 32px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 1rem;
+      color: #ecf8ff;
+    }
+
+    .option-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .explanation {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      animation: slideIn 0.3s ease-out;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .explanation.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .explanation.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .explanation-content h4 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ecf8ff;
+    }
+
+    .explanation-content p {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .progress-bar-wrapper {
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    /* Results Styles */
+    .results {
+      text-align: center;
+    }
+
+    .results-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      box-shadow: 0 20px 40px rgba(14, 165, 233, 0.5);
+    }
+
+    .results h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ecf8ff;
+    }
+
+    .results-message {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .results-score {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: #ecf8ff;
+    }
+
+    .results-score span {
+      color: #94a3b8;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .star {
+      color: #94a3b8;
+    }
+
+    .star.filled {
+      color: #0ea5e9;
+    }
+
+    .button-group {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .score-strength.very-weak { color: #ef4444; }
+    .score-strength.weak { color: #f59e0b; }
+    .score-strength.fair { color: #eab308; }
+    .score-strength.strong { color: #10b981; }
+    .score-strength.very-strong { color: #0ea5e9; }
 
     footer {
       max-width: 1100px;
@@ -230,6 +502,10 @@
       .hero-content h2 {
         font-size: 2rem;
       }
+      .nav-tabs {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
     }
   </style>
 </head>
@@ -238,79 +514,423 @@
 
   <nav>
     <div class="nav-container">
-      <a href="home.html" class="brand">
-        <div class="logo">CT</div>
+      <div class="brand" onclick="showSection('info')">
+        <div class="logo">🛡️</div>
         <div class="brand-text">
           <h1>Cyber Awareness</h1>
           <p>Training · Safety · Response</p>
         </div>
-      </a>
+      </div>
+      <div class="nav-tabs">
+        <button class="nav-tab active" id="nav-info" onclick="showSection('info')">Learn</button>
+        <button class="nav-tab" id="nav-quiz" onclick="showQuiz()">Quiz</button>
+      </div>
     </div>
   </nav>
 
   <div class="content">
-    <a href="home.html" class="back-btn">
-      ← Back to Modules
-    </a>
+    <!-- Info Section -->
+    <div id="info-section" class="section active">
+      <a href="home.html" class="back-btn">← Back to Home</a>
 
-    <div class="hero-card">
-      <div class="hero-icon">🛡️</div>
-      <div class="hero-content">
-        <h2>Safe Internet Browsing</h2>
-        <p>Practice secure browsing habits to minimize online security risks</p>
+      <div class="hero-card">
+        <div class="hero-icon">🛡️</div>
+        <div class="hero-content">
+          <h2>Safe Internet Browsing</h2>
+          <p>Practice secure browsing habits to minimize online security risks</p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>Why Safe Browsing Matters</h3>
+        <p>Every time you browse the internet, you're potentially exposing yourself to security risks. Malicious websites, tracking cookies, and insecure connections can compromise your privacy and security.</p>
+        <p>Developing safe browsing habits is essential for protecting your personal information, financial data, and digital identity from cyber threats.</p>
+      </div>
+
+      <div class="section-card">
+        <h3>Essential Browsing Security</h3>
+        
+        <div class="tip-card">
+          <h4>Use HTTPS Connections</h4>
+          <p>Always look for the padlock icon in your browser's address bar. HTTPS encrypts data between your browser and the website. Avoid entering sensitive information on HTTP sites.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Keep Browsers Updated</h4>
+          <p>Browser updates include critical security patches that protect against newly discovered vulnerabilities. Enable automatic updates for your web browser.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Use Strong Privacy Settings</h4>
+          <p>Configure your browser to block third-party cookies and enable Do Not Track features. Review privacy settings regularly.</p>
+        </div>
+
+        <div class="tip-card">
+          <h4>Install Security Extensions</h4>
+          <p>Use reputable ad blockers and anti-tracking extensions to enhance your browsing security. Only install trusted extensions.</p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>Social Media Safety & Public Wi-Fi</h3>
+        <ul>
+          <li><span>👥</span><span>Review and restrict privacy settings on all social media accounts</span></li>
+          <li><span>👥</span><span>Think before you post - information is permanent once shared</span></li>
+          <li><span>👥</span><span>Be cautious about accepting friend requests from strangers</span></li>
+          <li><span>📡</span><span>Use VPN on public Wi-Fi networks</span></li>
+          <li><span>📡</span><span>Never access banking or financial accounts on public Wi-Fi</span></li>
+          <li><span>📡</span><span>Turn off automatic Wi-Fi connections</span></li>
+        </ul>
+      </div>
+
+      <div class="highlight-card">
+        <h3>Remember</h3>
+        <p>Your online safety is in your hands. Stay alert, think before you click, and when something feels suspicious, trust your instincts.</p>
+      </div>
+
+      <div class="cta">
+        <p>Ready to test your browsing knowledge?</p>
+        <button class="btn btn-primary" onclick="showQuiz()">
+          Take the Quiz →
+        </button>
       </div>
     </div>
 
-    <div class="section-card">
-      <h3>Why Safe Browsing Matters</h3>
-      <p>Every time you browse the internet, you're potentially exposing yourself to security risks. Malicious websites, tracking cookies, and insecure connections can compromise your privacy and security.</p>
-      <p>Developing safe browsing habits is essential for protecting your personal information, financial data, and digital identity from cyber threats.</p>
+    <!-- Quiz Section -->
+    <div id="quiz-section" class="section">
+      <div class="hero-card">
+        <div class="hero-icon">🧠</div>
+        <div class="hero-content">
+          <h2>Safe Browsing Quiz</h2>
+          <p>Test your knowledge with 10 questions!</p>
+        </div>
+      </div>
+
+      <div class="quiz-header">
+        <div>
+          <span>🎯 Question <span id="current-question">1</span> of 10</span>
+        </div>
+        <div>
+          <span>🏆 Score: <span id="quiz-score">0</span></span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="question-text" id="question-text"></h3>
+        <div class="options" id="options-container"></div>
+        <div id="explanation-container"></div>
+        <button
+          class="btn btn-primary btn-block"
+          id="next-btn"
+          onclick="nextQuestion()"
+          style="display: none;"
+        >
+          Next Question →
+        </button>
+      </div>
     </div>
 
-    <div class="section-card">
-      <h3>Essential Browsing Security</h3>
-      
-      <div class="tip-card">
-        <h4>Use HTTPS Connections</h4>
-        <p>Always look for the padlock icon in your browser's address bar. HTTPS encrypts data between your browser and the website. Avoid entering sensitive information on HTTP sites.</p>
+    <!-- Results Section -->
+    <div id="results-section" class="section">
+      <div class="section-card results">
+        <div class="results-icon">🏆</div>
+        <h2>Quiz Complete!</h2>
+        <p class="results-message" id="results-message"></p>
+        <div class="results-score">
+          <span id="final-score">0</span>
+          <span> / 10</span>
+        </div>
+        <div class="stars" id="stars-container"></div>
+        <div class="button-group">
+          <button class="btn btn-primary btn-block" onclick="retryQuiz()">
+            Try Again
+          </button>
+          <button class="btn btn-primary btn-block" onclick="showSection('info')">
+            Back to Learning
+          </button>
+        </div>
       </div>
-
-      <div class="tip-card">
-        <h4>Keep Browsers Updated</h4>
-        <p>Browser updates include critical security patches that protect against newly discovered vulnerabilities. Enable automatic updates for your web browser.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>Use Strong Privacy Settings</h4>
-        <p>Configure your browser to block third-party cookies and enable Do Not Track features. Review privacy settings regularly.</p>
-      </div>
-
-      <div class="tip-card">
-        <h4>Install Security Extensions</h4>
-        <p>Use reputable ad blockers and anti-tracking extensions to enhance your browsing security. Only install trusted extensions.</p>
-      </div>
-    </div>
-
-    <div class="section-card">
-      <h3>Social Media Safety & Public Wi-Fi</h3>
-      <ul>
-        <li><span>👥</span><span>Review and restrict privacy settings on all social media accounts</span></li>
-        <li><span>👥</span><span>Think before you post - information is permanent once shared</span></li>
-        <li><span>👥</span><span>Be cautious about accepting friend requests from strangers</span></li>
-        <li><span>📡</span><span>Use VPN on public Wi-Fi networks</span></li>
-        <li><span>📡</span><span>Never access banking or financial accounts on public Wi-Fi</span></li>
-        <li><span>📡</span><span>Turn off automatic Wi-Fi connections</span></li>
-      </ul>
-    </div>
-
-    <div class="highlight-card">
-      <h3>Remember</h3>
-      <p>Your online safety is in your hands. Stay alert, think before you click, and when something feels suspicious, trust your instincts.</p>
     </div>
   </div>
 
   <footer>
     <p>&copy; 2025 Cyber Awareness Training Program. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Navigation
+    function showSection(sectionName) {
+      const sections = ['info', 'quiz', 'results'];
+      sections.forEach(s => {
+        const section = document.getElementById(`${s}-section`);
+        const navTab = document.getElementById(`nav-${s}`);
+
+        if (s === sectionName) {
+          section.classList.add('active');
+          if (navTab) navTab.classList.add('active');
+        } else {
+          section.classList.remove('active');
+          if (navTab) navTab.classList.remove('active');
+        }
+      });
+    }
+
+    // Quiz
+    const questions = [
+      {
+        question: "What does HTTPS stand for and why is it important?",
+        options: [
+          "Hypertext Transfer Protocol Secure - it encrypts data",
+          "Hypertext Transfer Protocol Speed - it makes sites faster",
+          "Hyper Transfer Protocol System - it's just a naming convention",
+          "It doesn't matter if a website uses HTTP or HTTPS"
+        ],
+        correctAnswer: 0,
+        explanation: "HTTPS (Hypertext Transfer Protocol Secure) encrypts data between your browser and the website, protecting sensitive information from interception."
+      },
+      {
+        question: "What should you look for in the browser address bar to verify a secure connection?",
+        options: [
+          "A flashing icon",
+          "A padlock icon and HTTPS://",
+          "A green background color",
+          "The website name in bold"
+        ],
+        correctAnswer: 1,
+        explanation: "A padlock icon and HTTPS:// in the address bar indicate that the website is using a secure, encrypted connection."
+      },
+      {
+        question: "Is it safe to use public Wi-Fi for online banking?",
+        options: [
+          "Yes, always safe",
+          "Yes, if the connection is password-protected",
+          "No, avoid accessing sensitive accounts on public Wi-Fi",
+          "Yes, but only during daytime"
+        ],
+        correctAnswer: 2,
+        explanation: "Public Wi-Fi networks are not secure and can be easily intercepted. Never access banking or other sensitive accounts on public Wi-Fi without a VPN."
+      },
+      {
+        question: "What is a VPN and when should you use it?",
+        options: [
+          "Very Private Network - use it for gaming only",
+          "Virtual Private Network - use it on public Wi-Fi and for privacy",
+          "Verified Password Network - use it to store passwords",
+          "VPN is not necessary for internet browsing"
+        ],
+        correctAnswer: 1,
+        explanation: "A VPN (Virtual Private Network) encrypts your internet connection, making it essential for secure browsing on public Wi-Fi and enhancing online privacy."
+      },
+      {
+        question: "What should you do before installing a browser extension?",
+        options: [
+          "Install any extension that looks useful",
+          "Check reviews, ratings, and permissions requested",
+          "Install extensions only from unknown developers",
+          "Never use browser extensions"
+        ],
+        correctAnswer: 1,
+        explanation: "Always check reviews, ratings, number of users, and what permissions an extension requests before installing. Only install trusted extensions from reputable sources."
+      },
+      {
+        question: "How often should you update your web browser?",
+        options: [
+          "Never - updates cause problems",
+          "Once a year",
+          "Regularly - enable automatic updates",
+          "Only when it stops working"
+        ],
+        correctAnswer: 2,
+        explanation: "Browser updates contain critical security patches. Enable automatic updates to ensure you're always protected against newly discovered vulnerabilities."
+      },
+      {
+        question: "What are cookies and how do they affect privacy?",
+        options: [
+          "Delicious snacks",
+          "Small data files that track your browsing activity",
+          "Viruses that damage your computer",
+          "Browser speed boosters"
+        ],
+        correctAnswer: 1,
+        explanation: "Cookies are small files that websites store on your device to track your activity. Third-party cookies can track you across different websites, compromising privacy."
+      },
+      {
+        question: "What information should you AVOID sharing on social media?",
+        options: [
+          "Your favorite movies",
+          "Your full address, phone number, and vacation plans",
+          "Your general interests and hobbies",
+          "Photos with friends (with their permission)"
+        ],
+        correctAnswer: 1,
+        explanation: "Never share sensitive personal information like your full address, phone number, or vacation plans on social media. This information can be used for identity theft or physical threats."
+      },
+      {
+        question: "What is private/incognito browsing mode?",
+        options: [
+          "Makes you completely anonymous online",
+          "Prevents sites, ISPs, and employers from seeing activity",
+          "Doesn't save browsing history locally but doesn't hide activity from sites/ISPs",
+          "Protects you from all malware"
+        ],
+        correctAnswer: 2,
+        explanation: "Private browsing mode prevents your browser from saving history, cookies, and form data locally, but it doesn't hide your activity from websites, your ISP, or your employer."
+      },
+      {
+        question: "What is phishing in the context of web browsing?",
+        options: [
+          "A sport",
+          "Fake websites designed to steal your login credentials",
+          "A type of secure browsing",
+          "A browser extension"
+        ],
+        correctAnswer: 1,
+        explanation: "Phishing involves fake websites that mimic legitimate ones to trick you into entering your credentials. Always verify the URL and look for HTTPS before entering sensitive information."
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let quizScore = 0;
+    let selectedAnswer = null;
+
+    function showQuiz() {
+      currentQuestionIndex = 0;
+      quizScore = 0;
+      selectedAnswer = null;
+
+      showSection('quiz');
+      updateQuizUI();
+      loadQuestion();
+    }
+
+    function updateQuizUI() {
+      document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+      document.getElementById('quiz-score').textContent = quizScore;
+      document.getElementById('quiz-progress-fill').style.width =
+        ((currentQuestionIndex / questions.length) * 100) + '%';
+    }
+
+    function loadQuestion() {
+      const question = questions[currentQuestionIndex];
+      document.getElementById('question-text').textContent = question.question;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.innerHTML = `
+          <div class="option-label">${String.fromCharCode(65 + index)}</div>
+          <div class="option-text">${option}</div>
+        `;
+        optionDiv.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(optionDiv);
+      });
+
+      document.getElementById('explanation-container').innerHTML = '';
+      document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function selectAnswer(answerIndex) {
+      if (selectedAnswer !== null) return;
+
+      selectedAnswer = answerIndex;
+      const question = questions[currentQuestionIndex];
+      const isCorrect = answerIndex === question.correctAnswer;
+
+      if (isCorrect) {
+        quizScore++;
+        updateQuizUI();
+      }
+
+      const options = document.querySelectorAll('.option');
+      options.forEach((option, index) => {
+        option.classList.add('disabled');
+
+        if (index === question.correctAnswer) {
+          option.classList.add('correct');
+          option.innerHTML += '<div class="option-icon">✓</div>';
+        } else if (index === answerIndex && !isCorrect) {
+          option.classList.add('incorrect');
+          option.innerHTML += '<div class="option-icon">✗</div>';
+        }
+      });
+
+      const explanationContainer = document.getElementById('explanation-container');
+      explanationContainer.innerHTML = `
+        <div class="explanation ${isCorrect ? 'correct' : 'incorrect'}">
+          <div class="explanation-icon">${isCorrect ? '✓' : '✗'}</div>
+          <div class="explanation-content">
+            <h4>${isCorrect ? 'Correct!' : 'Not quite!'}</h4>
+            <p>${question.explanation}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function nextQuestion() {
+      selectedAnswer = null;
+
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuizUI();
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const percentage = (quizScore / questions.length) * 100;
+      let message, messageClass;
+
+      if (percentage === 100) {
+        message = '🏆 Perfect Score! You\'re a safe browsing expert!';
+        messageClass = 'very-strong';
+      } else if (percentage >= 80) {
+        message = '🎉 Excellent! You know your browsing security!';
+        messageClass = 'strong';
+      } else if (percentage >= 60) {
+        message = '👍 Good job! Keep learning!';
+        messageClass = 'fair';
+      } else if (percentage >= 40) {
+        message = '📚 Not bad, but review the material!';
+        messageClass = 'weak';
+      } else {
+        message = '💪 Keep practicing! This is important!';
+        messageClass = 'very-weak';
+      }
+
+      document.getElementById('results-message').textContent = message;
+      document.getElementById('results-message').className = 'results-message score-strength ' + messageClass;
+      document.getElementById('final-score').textContent = quizScore;
+
+      const starsContainer = document.getElementById('stars-container');
+      starsContainer.innerHTML = '';
+      const starCount = Math.ceil((quizScore / questions.length) * 5);
+
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        star.className = i < starCount ? 'star filled' : 'star';
+        star.textContent = '⭐';
+        starsContainer.appendChild(star);
+      }
+
+      showSection('results');
+    }
+
+    function retryQuiz() {
+      showQuiz();
+    }
+  </script>
 </body>
 </html>

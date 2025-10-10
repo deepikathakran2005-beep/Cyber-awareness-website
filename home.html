@@ -119,6 +119,20 @@
       color: #dc2626;
     }
 
+    .login-btn {
+      color: #06b6d4;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      transition: color 0.3s;
+      background: none;
+      border: none;
+    }
+
+    .login-btn:hover {
+      color: #0891b2;
+    }
+
     /* Logout Modal */
     .modal-overlay {
       display: none;
@@ -500,7 +514,7 @@
         <a href="#training">Training</a>
         <a href="certificate.html">Certificate</a>
         <a href="sudoku.html">Sudoku</a>
-        <button class="logout-btn" onclick="openLogoutModal()">Logout</button>
+        <button id="authBtn" class="logout-btn" onclick="handleAuthAction()">Logout</button>
       </div>
     </div>
   </nav>
@@ -690,6 +704,37 @@
     const userName = localStorage.getItem('userName') || 'User';
     document.getElementById('userName').textContent = userName;
 
+    // Update auth button based on user status
+    function updateAuthButton() {
+      const authBtn = document.getElementById('authBtn');
+      const currentUserName = localStorage.getItem('userName') || 'User';
+      
+      if (currentUserName === 'Guest' || !localStorage.getItem('isLoggedIn')) {
+        // Show Login button for guests
+        authBtn.textContent = 'Login';
+        authBtn.className = 'login-btn';
+      } else {
+        // Show Logout button for authenticated users
+        authBtn.textContent = 'Logout';
+        authBtn.className = 'logout-btn';
+      }
+    }
+
+    // Handle auth button click
+    window.handleAuthAction = function() {
+      const currentUserName = localStorage.getItem('userName') || 'User';
+      
+      if (currentUserName === 'Guest' || !localStorage.getItem('isLoggedIn')) {
+        // Redirect to login page
+        localStorage.removeItem('userName');
+        localStorage.removeItem('isLoggedIn');
+        window.location.href = 'index.html';
+      } else {
+        // Open logout modal
+        openLogoutModal();
+      }
+    }
+
     // Logout Modal Functions
     window.openLogoutModal = function() {
       document.getElementById('logoutModal').classList.add('active');
@@ -729,6 +774,16 @@
       // const progress = JSON.parse(localStorage.getItem('moduleProgress')) || {};
       // Then update each module's progress bar accordingly
     }
+
+    // Initialize the auth button
+    updateAuthButton();
+    
+    // Listen for localStorage changes (in case user logs in/out in another tab)
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'userName' || e.key === 'isLoggedIn') {
+        updateAuthButton();
+      }
+    });
 
     loadModuleProgress();
   </script>

@@ -664,27 +664,55 @@
     </footer>
   </div>
 
-  <script>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBYqcWHfUeosNt49rGpmyivi677GeZCX5Q",
+      authDomain: "cyberawarenessproject-9dea3.firebaseapp.com",
+      projectId: "cyberawarenessproject-9dea3",
+      storageBucket: "cyberawarenessproject-9dea3.firebasestorage.app",
+      messagingSenderId: "254817643411",
+      appId: "1:254817643411:web:f273ce86fb22aeeae65666"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Check if user is logged in on page load
+    if (!localStorage.getItem('isLoggedIn')) {
+      window.location.href = 'index.html';
+    }
+
     // Display username
     const userName = localStorage.getItem('userName') || 'User';
     document.getElementById('userName').textContent = userName;
 
     // Logout Modal Functions
-    function openLogoutModal() {
+    window.openLogoutModal = function() {
       document.getElementById('logoutModal').classList.add('active');
     }
 
-    function closeLogoutModal() {
+    window.closeLogoutModal = function() {
       document.getElementById('logoutModal').classList.remove('active');
     }
 
-    function confirmLogout() {
-      // Clear user data
-      localStorage.removeItem('userName');
-      localStorage.clear();
-      
-      // Redirect to login page (adjust URL as needed)
-      window.location.href = 'index.html';
+    window.confirmLogout = function() {
+      // Sign out from Firebase
+      signOut(auth).then(() => {
+        // Clear all user data
+        localStorage.removeItem('userName');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.clear();
+        
+        // Redirect to login page
+        window.location.href = 'index.html';
+      }).catch((error) => {
+        console.error('Logout error:', error);
+        alert('Error logging out. Please try again.');
+      });
     }
 
     // Close modal when clicking outside
@@ -695,7 +723,6 @@
     });
 
     // Example: Load module progress from localStorage
-    // This is a sample implementation - adjust based on your actual progress tracking
     function loadModuleProgress() {
       // You can store and retrieve actual progress data here
       // For example:

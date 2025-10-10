@@ -105,6 +105,87 @@
       color: #38bdf8;
     }
 
+    .logout-btn {
+      color: #ef4444;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      transition: color 0.3s;
+      background: none;
+      border: none;
+    }
+
+    .logout-btn:hover {
+      color: #dc2626;
+    }
+
+    /* Logout Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 2.5rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-icon {
+      font-size: 4rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #ecf8ff;
+    }
+
+    .modal p {
+      color: #94a3b8;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
     .content {
       position: relative;
       z-index: 10;
@@ -203,6 +284,16 @@
     .btn-outline:hover {
       background: rgba(56, 189, 248, 0.1);
       border-color: rgba(56, 189, 248, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
       transform: translateY(-2px);
     }
 
@@ -337,6 +428,30 @@
       font-weight: 600;
     }
 
+    .module-progress {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
     /* Footer */
     footer {
       max-width: 1280px;
@@ -358,6 +473,19 @@
 <body>
   <div class="bg-glow"></div>
 
+  <!-- Logout Confirmation Modal -->
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal">
+      <div class="modal-icon">⚠️</div>
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to logout? You will lose any unsaved progress in your current session.</p>
+      <div class="modal-buttons">
+        <button class="btn btn-outline" onclick="closeLogoutModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
   <nav>
     <div class="nav-container">
       <a href="home.html" class="brand">
@@ -372,6 +500,7 @@
         <a href="#training">Training</a>
         <a href="certificate.html">Certificate</a>
         <a href="sudoku.html">Sudoku</a>
+        <button class="logout-btn" onclick="openLogoutModal()">Logout</button>
       </div>
     </div>
   </nav>
@@ -433,6 +562,10 @@
             <h3>Phishing Defense</h3>
             <p>Learn to identify and prevent phishing attacks that target sensitive information.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
 
           <a href="passwords.html" class="module-card">
@@ -440,6 +573,10 @@
             <h3>Password Security</h3>
             <p>Master strong authentication practices and secure password management.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
 
           <a href="scams.html" class="module-card">
@@ -447,6 +584,10 @@
             <h3>Scam Detection</h3>
             <p>Recognize and avoid various types of online scams and fraud attempts.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
 
           <a href="malware.html" class="module-card">
@@ -454,13 +595,21 @@
             <h3>Malware Protection</h3>
             <p>Understand malware threats and how to protect your systems effectively.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
 
           <a href="safeinternet.html" class="module-card">
             <div class="module-icon">🛡️</div>
             <h3>Safe Internet Browsing</h3>
             <p>Practice secure browsing habits to minimize online security risks.</p>
-            <span class="module-badge">✓ Completed</span>
+            <span class="module-badge">In Progress</span>
+            <span class="module-progress">70% Completed (Quiz remaining)</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 70%;"></div>
+            </div>
           </a>
 
           <a href="mobile.html" class="module-card">
@@ -468,6 +617,10 @@
             <h3>Mobile Security</h3>
             <p>Protect your mobile devices from emerging security threats.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
 
           <a href="dataprotection.html" class="module-card">
@@ -475,6 +628,10 @@
             <h3>Data Protection</h3>
             <p>Learn best practices for protecting sensitive data and maintaining privacy.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
 
           <a href="incident.html" class="module-card">
@@ -482,13 +639,22 @@
             <h3>Incident Response</h3>
             <p>Develop skills to respond effectively to security incidents and breaches.</p>
             <span class="module-badge">✓ Completed</span>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
           </a>
+
           <a href="sudoku.html" class="module-card">
             <div class="module-icon">🧩</div>
             <h3>Sudoku Challenge</h3>
             <p>Enhance your problem-solving skills with this engaging Sudoku puzzle.</p>
             <span class="module-badge">✓ Completed</span>
-            <a></a>
+            <span class="module-progress">100% Completed</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -502,6 +668,42 @@
     // Display username
     const userName = localStorage.getItem('userName') || 'User';
     document.getElementById('userName').textContent = userName;
+
+    // Logout Modal Functions
+    function openLogoutModal() {
+      document.getElementById('logoutModal').classList.add('active');
+    }
+
+    function closeLogoutModal() {
+      document.getElementById('logoutModal').classList.remove('active');
+    }
+
+    function confirmLogout() {
+      // Clear user data
+      localStorage.removeItem('userName');
+      localStorage.clear();
+      
+      // Redirect to login page (adjust URL as needed)
+      window.location.href = 'index.html';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('logoutModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLogoutModal();
+      }
+    });
+
+    // Example: Load module progress from localStorage
+    // This is a sample implementation - adjust based on your actual progress tracking
+    function loadModuleProgress() {
+      // You can store and retrieve actual progress data here
+      // For example:
+      // const progress = JSON.parse(localStorage.getItem('moduleProgress')) || {};
+      // Then update each module's progress bar accordingly
+    }
+
+    loadModuleProgress();
   </script>
 </body>
 </html>

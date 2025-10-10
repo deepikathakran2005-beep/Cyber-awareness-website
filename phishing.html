@@ -658,6 +658,47 @@
       </div>
     </div>
   </div>
+<script>
+  // Scroll Progress Tracking
+  (function() {
+    const MODULE_ID = 'phishing'; // Change this for each page: 'phishing', 'passwords', 'scams', 'mobile', 'dataprotection', 'incident', 'safeinternet'
+    
+    function getUserProgressKey() {
+      const userName = localStorage.getItem('userName') || 'Guest';
+      return `moduleProgress_${userName}`;
+    }
+    
+    function updateScrollProgress() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      const scrollableDistance = documentHeight - windowHeight;
+      const scrollPercentage = scrollableDistance > 0 ? Math.round((scrollTop / scrollableDistance) * 100) : 100;
+      
+      const progressKey = getUserProgressKey();
+      const progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+      
+      // Only update if new progress is higher
+      if ((progress[MODULE_ID] || 0) < scrollPercentage) {
+        progress[MODULE_ID] = Math.min(100, scrollPercentage);
+        localStorage.setItem(progressKey, JSON.stringify(progress));
+      }
+    }
+    
+    // Throttle scroll events
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(updateScrollProgress, 200);
+    });
+    
+    // Initial check
+    updateScrollProgress();
+  })();
+</script>
 
   <footer>
     <p>&copy; 2025 Cyber Awareness Training Program. All rights reserved.</p>
@@ -931,6 +972,7 @@
     function retryQuiz() {
       showQuiz();
     }
+    
   </script>
 </body>
 </html>

@@ -442,6 +442,24 @@
       font-weight: 600;
     }
 
+    .module-badge.completed {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+    }
+
+    .module-badge.in-progress {
+      background: rgba(251, 191, 36, 0.1);
+      border-color: rgba(251, 191, 36, 0.3);
+      color: #fbbf24;
+    }
+
+    .module-badge.not-started {
+      background: rgba(148, 163, 184, 0.1);
+      border-color: rgba(148, 163, 184, 0.3);
+      color: #94a3b8;
+    }
+
     .module-progress {
       display: block;
       margin-top: 0.75rem;
@@ -492,7 +510,7 @@
     <div class="modal">
       <div class="modal-icon">⚠️</div>
       <h3>Confirm Logout</h3>
-      <p>Are you sure you want to logout? You will lose any unsaved progress in your current session.</p>
+      <p>Are you sure you want to logout? Your progress has been saved.</p>
       <div class="modal-buttons">
         <button class="btn btn-outline" onclick="closeLogoutModal()">Cancel</button>
         <button class="btn btn-danger" onclick="confirmLogout()">Logout</button>
@@ -541,7 +559,7 @@
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon">📚</div>
-            <h3>8</h3>
+            <h3 id="totalModules">8</h3>
             <p>Training Modules</p>
           </div>
           <div class="stat-card">
@@ -551,12 +569,12 @@
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏆</div>
-            <h3>100%</h3>
+            <h3 id="completionRate">0%</h3>
             <p>Completion Rate</p>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🎓</div>
-            <h3>Certified</h3>
+            <h3 id="achievementStatus">Not Started</h3>
             <p>Achievement Status</p>
           </div>
         </div>
@@ -570,105 +588,8 @@
           <p>Complete all modules to earn your cybersecurity certification</p>
         </div>
         
-        <div class="modules-grid">
-          <a href="phishing.html" class="module-card">
-            <div class="module-icon">📧</div>
-            <h3>Phishing Defense</h3>
-            <p>Learn to identify and prevent phishing attacks that target sensitive information.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="passwords.html" class="module-card">
-            <div class="module-icon">🔐</div>
-            <h3>Password Security</h3>
-            <p>Master strong authentication practices and secure password management.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="scams.html" class="module-card">
-            <div class="module-icon">⚠️</div>
-            <h3>Scam Detection</h3>
-            <p>Recognize and avoid various types of online scams and fraud attempts.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="malware.html" class="module-card">
-            <div class="module-icon">🦠</div>
-            <h3>Malware Protection</h3>
-            <p>Understand malware threats and how to protect your systems effectively.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="safeinternet.html" class="module-card">
-            <div class="module-icon">🛡️</div>
-            <h3>Safe Internet Browsing</h3>
-            <p>Practice secure browsing habits to minimize online security risks.</p>
-            <span class="module-badge">In Progress</span>
-            <span class="module-progress">70% Completed (Quiz remaining)</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 70%;"></div>
-            </div>
-          </a>
-
-          <a href="mobile.html" class="module-card">
-            <div class="module-icon">📱</div>
-            <h3>Mobile Security</h3>
-            <p>Protect your mobile devices from emerging security threats.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="dataprotection.html" class="module-card">
-            <div class="module-icon">💾</div>
-            <h3>Data Protection</h3>
-            <p>Learn best practices for protecting sensitive data and maintaining privacy.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="incident.html" class="module-card">
-            <div class="module-icon">🚨</div>
-            <h3>Incident Response</h3>
-            <p>Develop skills to respond effectively to security incidents and breaches.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
-
-          <a href="sudoku.html" class="module-card">
-            <div class="module-icon">🧩</div>
-            <h3>Sudoku Challenge</h3>
-            <p>Enhance your problem-solving skills with this engaging Sudoku puzzle.</p>
-            <span class="module-badge">✓ Completed</span>
-            <span class="module-progress">100% Completed</span>
-            <div class="progress-bar-container">
-              <div class="progress-bar" style="width: 100%;"></div>
-            </div>
-          </a>
+        <div class="modules-grid" id="modulesContainer">
+          <!-- Modules will be dynamically loaded here -->
         </div>
       </div>
     </section>
@@ -704,17 +625,135 @@
     const userName = localStorage.getItem('userName') || 'User';
     document.getElementById('userName').textContent = userName;
 
+    // Module definitions
+    const modules = [
+      { id: 'phishing', icon: '📧', title: 'Phishing Defense', description: 'Learn to identify and prevent phishing attacks that target sensitive information.', url: 'phishing.html' },
+      { id: 'passwords', icon: '🔐', title: 'Password Security', description: 'Master strong authentication practices and secure password management.', url: 'passwords.html' },
+      { id: 'scams', icon: '⚠️', title: 'Scam Detection', description: 'Recognize and avoid various types of online scams and fraud attempts.', url: 'scams.html' },
+      { id: 'malware', icon: '🦠', title: 'Malware Protection', description: 'Understand malware threats and how to protect your systems effectively.', url: 'malware.html' },
+      { id: 'safeinternet', icon: '🛡️', title: 'Safe Internet Browsing', description: 'Practice secure browsing habits to minimize online security risks.', url: 'safeinternet.html' },
+      { id: 'mobile', icon: '📱', title: 'Mobile Security', description: 'Protect your mobile devices from emerging security threats.', url: 'mobile.html' },
+      { id: 'dataprotection', icon: '💾', title: 'Data Protection', description: 'Learn best practices for protecting sensitive data and maintaining privacy.', url: 'dataprotection.html' },
+      { id: 'incident', icon: '🚨', title: 'Incident Response', description: 'Develop skills to respond effectively to security incidents and breaches.', url: 'incident.html' },
+      { id: 'sudoku', icon: '🧩', title: 'Sudoku Challenge', description: 'Enhance your problem-solving skills with this engaging Sudoku puzzle.', url: 'sudoku.html' }
+    ];
+
+    // Get user-specific progress key
+    function getUserProgressKey() {
+      const userName = localStorage.getItem('userName') || 'Guest';
+      return `moduleProgress_${userName}`;
+    }
+
+    // Load module progress from localStorage
+    function getModuleProgress() {
+      const progressKey = getUserProgressKey();
+      const saved = localStorage.getItem(progressKey);
+      return saved ? JSON.parse(saved) : {};
+    }
+
+    // Save module progress to localStorage
+    function saveModuleProgress(progress) {
+      const progressKey = getUserProgressKey();
+      localStorage.setItem(progressKey, JSON.stringify(progress));
+    }
+
+    // Get progress for a specific module
+    function getModuleStatus(moduleId) {
+      const progress = getModuleProgress();
+      return progress[moduleId] || 0; // Returns 0-100
+    }
+
+    // Update module progress (call this from individual module pages)
+    window.updateModuleProgress = function(moduleId, percentage) {
+      const progress = getModuleProgress();
+      progress[moduleId] = Math.min(100, Math.max(0, percentage));
+      saveModuleProgress(progress);
+      loadModuleProgress(); // Refresh display
+    }
+
+    // Calculate overall completion rate
+    function calculateCompletionRate() {
+      const progress = getModuleProgress();
+      const totalModules = modules.length;
+      let totalProgress = 0;
+
+      modules.forEach(module => {
+        totalProgress += (progress[module.id] || 0);
+      });
+
+      return Math.round(totalProgress / totalModules);
+    }
+
+    // Render modules
+    function renderModules() {
+      const container = document.getElementById('modulesContainer');
+      const progress = getModuleProgress();
+      
+      container.innerHTML = modules.map(module => {
+        const moduleProgress = progress[module.id] || 0;
+        let badgeClass = 'not-started';
+        let badgeText = 'Not Started';
+        let progressText = '0% Completed';
+
+        if (moduleProgress === 100) {
+          badgeClass = 'completed';
+          badgeText = '✓ Completed';
+          progressText = '100% Completed';
+        } else if (moduleProgress > 0) {
+          badgeClass = 'in-progress';
+          badgeText = 'In Progress';
+          progressText = `${moduleProgress}% Completed`;
+        }
+
+        return `
+          <a href="${module.url}" class="module-card">
+            <div class="module-icon">${module.icon}</div>
+            <h3>${module.title}</h3>
+            <p>${module.description}</p>
+            <span class="module-badge ${badgeClass}">${badgeText}</span>
+            <span class="module-progress">${progressText}</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: ${moduleProgress}%;"></div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // Update stats display
+    function updateStats() {
+      const completionRate = calculateCompletionRate();
+      const progress = getModuleProgress();
+      const completedModules = Object.values(progress).filter(p => p === 100).length;
+
+      document.getElementById('completionRate').textContent = completionRate + '%';
+      document.getElementById('totalModules').textContent = modules.length;
+
+      const statusElement = document.getElementById('achievementStatus');
+      if (completionRate === 100) {
+        statusElement.textContent = 'Certified';
+      } else if (completionRate > 0) {
+        statusElement.textContent = 'In Progress';
+      } else {
+        statusElement.textContent = 'Not Started';
+      }
+    }
+
+    // Load and display module progress
+    function loadModuleProgress() {
+      renderModules();
+      updateStats();
+    }
+
     // Update auth button based on user status
     function updateAuthButton() {
       const authBtn = document.getElementById('authBtn');
       const currentUserName = localStorage.getItem('userName') || 'User';
       
       if (currentUserName === 'Guest' || !localStorage.getItem('isLoggedIn')) {
-        // Show Login button for guests
         authBtn.textContent = 'Login';
         authBtn.className = 'login-btn';
       } else {
-        // Show Logout button for authenticated users
         authBtn.textContent = 'Logout';
         authBtn.className = 'logout-btn';
       }
@@ -725,12 +764,10 @@
       const currentUserName = localStorage.getItem('userName') || 'User';
       
       if (currentUserName === 'Guest' || !localStorage.getItem('isLoggedIn')) {
-        // Redirect to login page
         localStorage.removeItem('userName');
         localStorage.removeItem('isLoggedIn');
         window.location.href = 'index.html';
       } else {
-        // Open logout modal
         openLogoutModal();
       }
     }
@@ -745,14 +782,10 @@
     }
 
     window.confirmLogout = function() {
-      // Sign out from Firebase
       signOut(auth).then(() => {
-        // Clear all user data
         localStorage.removeItem('userName');
         localStorage.removeItem('isLoggedIn');
-        localStorage.clear();
-        
-        // Redirect to login page
+        // Note: We keep module progress even after logout
         window.location.href = 'index.html';
       }).catch((error) => {
         console.error('Logout error:', error);
@@ -767,25 +800,26 @@
       }
     });
 
-    // Example: Load module progress from localStorage
-    function loadModuleProgress() {
-      // You can store and retrieve actual progress data here
-      // For example:
-      // const progress = JSON.parse(localStorage.getItem('moduleProgress')) || {};
-      // Then update each module's progress bar accordingly
-    }
-
-    // Initialize the auth button
+    // Initialize
     updateAuthButton();
+    loadModuleProgress();
     
-    // Listen for localStorage changes (in case user logs in/out in another tab)
+    // Listen for storage changes
     window.addEventListener('storage', function(e) {
-      if (e.key === 'userName' || e.key === 'isLoggedIn') {
+      if (e.key === 'userName' || e.key === 'isLoggedIn' || e.key && e.key.startsWith('moduleProgress_')) {
         updateAuthButton();
+        loadModuleProgress();
       }
     });
 
-    loadModuleProgress();
+    // Expose function to update progress from module pages
+    window.markModuleComplete = function(moduleId) {
+      updateModuleProgress(moduleId, 100);
+    }
+
+    window.setModuleProgress = function(moduleId, percentage) {
+      updateModuleProgress(moduleId, percentage);
+    }
   </script>
 </body>
 </html>

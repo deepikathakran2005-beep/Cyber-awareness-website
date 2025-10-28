@@ -275,6 +275,260 @@
       margin-top: 2rem;
     }
 
+    /* Playbook Styles */
+    .dropdown-container {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(11, 18, 32, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .dropdown-label {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .dropdown-select {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      background: rgba(30, 41, 59, 0.8);
+      border: 2px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      color: #ecf8ff;
+      cursor: pointer;
+      transition: all 0.3s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 20px;
+      padding-right: 3rem;
+    }
+
+    .dropdown-select:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      background-color: rgba(30, 41, 59, 1);
+    }
+
+    .dropdown-select:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+    }
+
+    .dropdown-select option {
+      background: #1e293b;
+      color: #ecf8ff;
+      padding: 1rem;
+    }
+
+    .playbook-content {
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .playbook-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .incident-header {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(124, 58, 237, 0.1));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .incident-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .incident-info h3 {
+      font-size: 2rem;
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+
+    .incident-info p {
+      color: #94a3b8;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .severity-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .severity-critical {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .severity-high {
+      background: rgba(251, 146, 60, 0.2);
+      color: #fb923c;
+      border: 1px solid rgba(251, 146, 60, 0.3);
+    }
+
+    .severity-medium {
+      background: rgba(234, 179, 8, 0.2);
+      color: #eab308;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+
+    .phase-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(11, 18, 32, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .phase-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border-left: 3px solid rgba(56, 189, 248, 0.5);
+    }
+
+    .step-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      color: #ecf8ff;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .step-content p {
+      color: #94a3b8;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .step-content ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.75rem;
+    }
+
+    .step-content ul li {
+      color: #94a3b8;
+      padding: 0.25rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .step-content ul li:before {
+      content: "•";
+      position: absolute;
+      left: 0.5rem;
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .warning-box {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .warning-box h4 {
+      color: #ef4444;
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .warning-box p {
+      color: #fca5a5;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .info-box {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .info-box h4 {
+      color: #38bdf8;
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-box p {
+      color: #94a3b8;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
     /* Quiz Styles */
     .quiz-header {
       display: flex;
@@ -506,6 +760,13 @@
         flex-direction: column;
         gap: 0.25rem;
       }
+      .incident-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .incident-info h3 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -523,6 +784,7 @@
       </div>
       <div class="nav-tabs">
         <button class="nav-tab active" id="nav-info" onclick="showSection('info')">Learn</button>
+        <button class="nav-tab" id="nav-playbook" onclick="showSection('playbook')">Playbook</button>
         <button class="nav-tab" id="nav-quiz" onclick="showQuiz()">Quiz</button>
       </div>
     </div>
@@ -599,6 +861,829 @@
       </div>
 
       <div class="cta">
+        <p>Ready to explore detailed incident response procedures?</p>
+        <button class="btn btn-primary" onclick="showSection('playbook')">
+          Open Interactive Playbook →
+        </button>
+      </div>
+    </div>
+
+    <!-- Playbook Section -->
+    <div id="playbook-section" class="section">
+      <a href="#" class="back-btn" onclick="showSection('info'); return false;">← Back to Learn</a>
+
+      <div class="hero-card">
+        <div class="hero-icon">🛡️</div>
+        <div class="hero-content">
+          <h2>Incident Playbook</h2>
+          <p>Select an incident type to view detailed response procedures and step-by-step guidance</p>
+        </div>
+      </div>
+
+      <div class="dropdown-container">
+        <label class="dropdown-label">Choose Incident Type</label>
+        <select class="dropdown-select" id="incidentType" onchange="showPlaybook()">
+          <option value="">Select an incident type...</option>
+          <option value="malware">🦠 Malware Attack</option>
+          <option value="ransomware">🔒 Ransomware Attack</option>
+          <option value="phishing">🎣 Phishing Attack</option>
+          <option value="databreach">💾 Data Breach</option>
+          <option value="ddos">⚡ DDoS Attack</option>
+          <option value="insider">👤 Insider Threat</option>
+          <option value="unauthorized">🚪 Unauthorized Access</option>
+          <option value="social">🗣️ Social Engineering</option>
+        </select>
+      </div>
+
+      <!-- Malware Attack Playbook -->
+      <div id="malware" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">🦠</div>
+          <div class="incident-info">
+            <h3>Malware Attack Response</h3>
+            <p>Malicious software designed to disrupt, damage, or gain unauthorized access to computer systems.</p>
+            <span class="severity-badge severity-critical">CRITICAL SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Immediate Containment</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔌</div>
+            <div class="step-content">
+              <h4>Isolate Infected Systems</h4>
+              <p>Immediately disconnect affected devices from the network to prevent malware spread.</p>
+              <ul>
+                <li>Disable Wi-Fi and unplug network cables</li>
+                <li>Do NOT shut down the system (preserves volatile memory)</li>
+                <li>Document all visible symptoms and error messages</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">📞</div>
+            <div class="step-content">
+              <h4>Notify Security Team</h4>
+              <p>Contact your IT security team or incident response team immediately.</p>
+              <ul>
+                <li>Provide incident details and affected systems</li>
+                <li>Note the time of detection</li>
+                <li>Preserve all evidence</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Investigation & Analysis</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <div class="step-content">
+              <h4>Identify Malware Type</h4>
+              <p>Security team will analyze the malware to determine its type and capabilities.</p>
+              <ul>
+                <li>Run antivirus/anti-malware scans</li>
+                <li>Check system logs for suspicious activity</li>
+                <li>Identify infection vector (email, download, USB, etc.)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">📊</div>
+            <div class="step-content">
+              <h4>Assess Scope of Impact</h4>
+              <p>Determine how many systems are affected and what data may be compromised.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Eradication</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🧹</div>
+            <div class="step-content">
+              <h4>Remove Malware</h4>
+              <p>Use specialized tools to completely remove the malware from all affected systems.</p>
+              <ul>
+                <li>Run deep system scans</li>
+                <li>Remove malicious files and registry entries</li>
+                <li>Patch vulnerabilities that allowed infection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">4</div>
+            <h3 class="phase-title">Recovery</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">💾</div>
+            <div class="step-content">
+              <h4>Restore Systems</h4>
+              <p>Carefully restore systems to normal operations.</p>
+              <ul>
+                <li>Restore from clean backups if necessary</li>
+                <li>Verify system integrity before reconnecting to network</li>
+                <li>Monitor for signs of reinfection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Critical Warning</h4>
+          <p>Do not attempt to remove malware yourself unless you are trained. Improper removal can cause data loss or allow the malware to spread further.</p>
+        </div>
+
+        <div class="info-box">
+          <h4>💡 Prevention Tips</h4>
+          <p>Keep antivirus software updated, avoid suspicious downloads, don't click unknown links, and regularly backup important data.</p>
+        </div>
+      </div>
+
+      <!-- Ransomware Attack Playbook -->
+      <div id="ransomware" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">🔒</div>
+          <div class="incident-info">
+            <h3>Ransomware Attack Response</h3>
+            <p>Malware that encrypts files and demands payment for decryption keys.</p>
+            <span class="severity-badge severity-critical">CRITICAL SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Immediate Response</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔌</div>
+            <div class="step-content">
+              <h4>Isolate Immediately</h4>
+              <p>Disconnect all affected systems from the network instantly.</p>
+              <ul>
+                <li>Unplug network cables and disable Wi-Fi</li>
+                <li>Disconnect shared drives and external storage</li>
+                <li>Leave systems powered on to preserve evidence</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">📸</div>
+            <div class="step-content">
+              <h4>Document Everything</h4>
+              <p>Take photos of ransom notes and error messages.</p>
+              <ul>
+                <li>Screenshot or photograph the ransom message</li>
+                <li>Note payment addresses and amounts</li>
+                <li>Record time of detection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Assessment</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <div class="step-content">
+              <h4>Identify Ransomware Strain</h4>
+              <p>Determine the specific type of ransomware to understand decryption options.</p>
+              <ul>
+                <li>Search ransom note text online</li>
+                <li>Check file extensions of encrypted files</li>
+                <li>Consult with cybersecurity experts</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🗄️</div>
+            <div class="step-content">
+              <h4>Evaluate Backup Status</h4>
+              <p>Check if clean backups are available for restoration.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Decision & Action</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">👮</div>
+            <div class="step-content">
+              <h4>Contact Authorities</h4>
+              <p>Report the incident to law enforcement and relevant agencies.</p>
+              <ul>
+                <li>Contact FBI or local cybercrime unit</li>
+                <li>File a report with IC3 (Internet Crime Complaint Center)</li>
+                <li>Consult legal team about regulatory reporting requirements</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">💰</div>
+            <div class="step-content">
+              <h4>Do NOT Pay Ransom (Recommended)</h4>
+              <p>Paying ransom does not guarantee data recovery and funds criminal activity.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">4</div>
+            <h3 class="phase-title">Recovery</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔧</div>
+            <div class="step-content">
+              <h4>Restore from Backups</h4>
+              <p>If available, restore systems from clean, uninfected backups.</p>
+              <ul>
+                <li>Verify backup integrity before restoration</li>
+                <li>Ensure ransomware is completely removed first</li>
+                <li>Test restored systems thoroughly</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Critical Warning</h4>
+          <p>Paying the ransom does not guarantee file recovery and encourages future attacks. Always consult with legal counsel and cybersecurity experts before making any payment decisions.</p>
+        </div>
+
+        <div class="info-box">
+          <h4>💡 Prevention is Key</h4>
+          <p>Regularly backup data offline, keep systems patched, use email filtering, train employees on phishing awareness, and implement multi-factor authentication.</p>
+        </div>
+      </div>
+
+      <!-- Phishing Attack Playbook -->
+      <div id="phishing" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">🎣</div>
+          <div class="incident-info">
+            <h3>Phishing Attack Response</h3>
+            <p>Fraudulent attempts to obtain sensitive information by disguising as trustworthy entities.</p>
+            <span class="severity-badge severity-high">HIGH SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Immediate Actions</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🛑</div>
+            <div class="step-content">
+              <h4>Stop Interaction</h4>
+              <p>If you suspect phishing, stop all interaction immediately.</p>
+              <ul>
+                <li>Do not click any links in suspicious emails</li>
+                <li>Do not download attachments</li>
+                <li>Do not provide any information</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">📧</div>
+            <div class="step-content">
+              <h4>Report the Email</h4>
+              <p>Forward suspicious emails to your IT security team.</p>
+              <ul>
+                <li>Use "Report Phishing" button if available</li>
+                <li>Forward to security@yourcompany.com</li>
+                <li>Do not delete the original email yet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">If You Clicked or Provided Information</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔐</div>
+            <div class="step-content">
+              <h4>Change Passwords Immediately</h4>
+              <p>If you entered credentials, change all passwords immediately.</p>
+              <ul>
+                <li>Change password for the affected account first</li>
+                <li>Change passwords for accounts with the same password</li>
+                <li>Enable multi-factor authentication</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚨</div>
+            <div class="step-content">
+              <h4>Alert Security Team</h4>
+              <p>Immediately notify IT security about potential compromise.</p>
+              <ul>
+                <li>Provide details about what information was shared</li>
+                <li>Report any clicked links or downloaded files</li>
+                <li>Follow security team's additional instructions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Security Team Actions</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <div class="step-content">
+              <h4>Investigate and Block</h4>
+              <p>Security team will investigate the phishing attempt.</p>
+              <ul>
+                <li>Analyze email headers and sender</li>
+                <li>Block malicious domains and email addresses</li>
+                <li>Scan systems for malware if attachments were opened</li>
+                <li>Check if other employees received similar emails</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">4</div>
+            <h3 class="phase-title">Monitor & Learn</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">👁️</div>
+            <div class="step-content">
+              <h4>Monitor Accounts</h4>
+              <p>Watch for suspicious activity on compromised accounts.</p>
+              <ul>
+                <li>Check for unauthorized transactions</li>
+                <li>Review account access logs</li>
+                <li>Monitor for identity theft signs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h4>💡 Recognize Phishing Signs</h4>
+          <p>Look for urgency, spelling errors, suspicious sender addresses, requests for sensitive information, unexpected attachments, and links that don't match displayed text.</p>
+        </div>
+      </div>
+
+      <!-- Data Breach Playbook -->
+      <div id="databreach" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">💾</div>
+          <div class="incident-info">
+            <h3>Data Breach Response</h3>
+            <p>Unauthorized access to sensitive, protected, or confidential data.</p>
+            <span class="severity-badge severity-critical">CRITICAL SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Immediate Response</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚨</div>
+            <div class="step-content">
+              <h4>Activate Incident Response Team</h4>
+              <p>Immediately assemble your incident response team.</p>
+              <ul>
+                <li>Notify IT security, legal, PR, and executive leadership</li>
+                <li>Establish command center for coordination</li>
+                <li>Begin documentation of all activities</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔒</div>
+            <div class="step-content">
+              <h4>Contain the Breach</h4>
+              <p>Take immediate steps to limit further data exposure.</p>
+              <ul>
+                <li>Isolate affected systems</li>
+                <li>Revoke compromised credentials</li>
+                <li>Block unauthorized access points</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Assessment</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <div class="step-content">
+              <h4>Determine Scope</h4>
+              <p>Identify what data was accessed or exfiltrated.</p>
+              <ul>
+                <li>Review system logs and access records</li>
+                <li>Identify types of data compromised (PII, PHI, financial, etc.)</li>
+                <li>Determine number of affected individuals</li>
+                <li>Establish timeline of breach activity</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Notification & Compliance</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">⚖️</div>
+            <div class="step-content">
+              <h4>Legal & Regulatory Obligations</h4>
+              <p>Ensure compliance with breach notification laws.</p>
+              <ul>
+                <li>Consult legal counsel on notification requirements</li>
+                <li>Notify regulatory authorities (GDPR, CCPA, HIPAA, etc.)</li>
+                <li>Adhere to notification timelines (typically 72 hours)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">📢</div>
+            <div class="step-content">
+              <h4>Notify Affected Parties</h4>
+              <p>Inform individuals whose data was compromised.</p>
+              <ul>
+                <li>Prepare clear, transparent communication</li>
+                <li>Provide details about what happened and what data was affected</li>
+                <li>Offer credit monitoring or identity theft protection if applicable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">4</div>
+            <h3 class="phase-title">Remediation</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🛡️</div>
+            <div class="step-content">
+              <h4>Fix Vulnerabilities</h4>
+              <p>Address security weaknesses that led to the breach.</p>
+              <ul>
+                <li>Patch systems and update security controls</li>
+                <li>Implement additional security measures</li>
+                <li>Enhance monitoring and detection capabilities</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Legal Requirements</h4>
+          <p>Data breach notification laws vary by jurisdiction. Failure to comply with notification requirements can result in significant fines. Always consult legal counsel immediately.</p>
+        </div>
+      </div>
+
+      <!-- DDoS Attack Playbook -->
+      <div id="ddos" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">⚡</div>
+          <div class="incident-info">
+            <h3>DDoS Attack Response</h3>
+            <p>Distributed Denial of Service attacks that overwhelm systems with traffic.</p>
+            <span class="severity-badge severity-high">HIGH SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Detection & Verification</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">📊</div>
+            <div class="step-content">
+              <h4>Confirm DDoS Attack</h4>
+              <p>Verify that service disruption is due to DDoS and not other issues.</p>
+              <ul>
+                <li>Check traffic patterns and volume</li>
+                <li>Analyze source IP addresses</li>
+                <li>Review server logs for anomalies</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Mitigation</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🛡️</div>
+            <div class="step-content">
+              <h4>Activate DDoS Protection</h4>
+              <p>Enable DDoS mitigation services and traffic filtering.</p>
+              <ul>
+                <li>Contact ISP or DDoS mitigation service provider</li>
+                <li>Enable rate limiting and traffic filtering</li>
+                <li>Route traffic through scrubbing centers</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🌐</div>
+            <div class="step-content">
+              <h4>Scale Resources</h4>
+              <p>Increase capacity to handle malicious traffic if possible.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Communication</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">📢</div>
+            <div class="step-content">
+              <h4>Notify Stakeholders</h4>
+              <p>Keep users and stakeholders informed about service disruption.</p>
+              <ul>
+                <li>Post status updates on social media</li>
+                <li>Update website status page</li>
+                <li>Communicate with major customers directly</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h4>💡 DDoS Prevention</h4>
+          <p>Implement DDoS protection services, use CDN with DDoS mitigation, maintain excess capacity, and have an incident response plan ready.</p>
+        </div>
+      </div>
+
+      <!-- Insider Threat Playbook -->
+      <div id="insider" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">👤</div>
+          <div class="incident-info">
+            <h3>Insider Threat Response</h3>
+            <p>Security risks from employees, contractors, or business partners with inside access.</p>
+            <span class="severity-badge severity-critical">CRITICAL SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Detection & Reporting</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <div class="step-content">
+              <h4>Identify Suspicious Behavior</h4>
+              <p>Report concerns through appropriate channels.</p>
+              <ul>
+                <li>Unusual access patterns or data downloads</li>
+                <li>Attempts to access unauthorized systems</li>
+                <li>Policy violations or suspicious activities</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Investigation</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🕵️</div>
+            <div class="step-content">
+              <h4>Discreet Investigation</h4>
+              <p>Coordinate with HR, legal, and security teams.</p>
+              <ul>
+                <li>Review access logs and activity history</li>
+                <li>Monitor current activities without alerting subject</li>
+                <li>Preserve evidence for potential legal action</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Containment</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔒</div>
+            <div class="step-content">
+              <h4>Revoke Access</h4>
+              <p>If threat is confirmed, immediately revoke access.</p>
+              <ul>
+                <li>Disable user accounts and credentials</li>
+                <li>Revoke physical access badges</li>
+                <li>Retrieve company devices</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Handle with Care</h4>
+          <p>Insider threat investigations require careful handling to avoid legal issues. Always involve HR and legal counsel, and follow company policies.</p>
+        </div>
+      </div>
+
+      <!-- Unauthorized Access Playbook -->
+      <div id="unauthorized" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">🚪</div>
+          <div class="incident-info">
+            <h3>Unauthorized Access Response</h3>
+            <p>Detection of unauthorized access attempts or successful breaches into systems.</p>
+            <span class="severity-badge severity-critical">CRITICAL SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Immediate Actions</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚨</div>
+            <div class="step-content">
+              <h4>Alert Security Team</h4>
+              <p>Immediately notify IT security of unauthorized access.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔐</div>
+            <div class="step-content">
+              <h4>Secure Accounts</h4>
+              <p>Change passwords and revoke suspicious sessions.</p>
+              <ul>
+                <li>Force password reset for compromised accounts</li>
+                <li>Terminate active sessions</li>
+                <li>Enable multi-factor authentication</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Investigation</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <div class="step-content">
+              <h4>Trace Activity</h4>
+              <p>Review logs to understand scope of unauthorized access.</p>
+              <ul>
+                <li>Check login attempts and successful access</li>
+                <li>Review accessed files and data</li>
+                <li>Identify attack vector and vulnerabilities</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">Remediation</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔧</div>
+            <div class="step-content">
+              <h4>Close Security Gaps</h4>
+              <p>Fix vulnerabilities that allowed unauthorized access.</p>
+              <ul>
+                <li>Patch security vulnerabilities</li>
+                <li>Update access controls</li>
+                <li>Implement additional security measures</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h4>💡 Prevention Measures</h4>
+          <p>Use strong unique passwords, enable MFA, regularly review access permissions, monitor login attempts, and keep systems updated.</p>
+        </div>
+      </div>
+
+      <!-- Social Engineering Playbook -->
+      <div id="social" class="playbook-content">
+        <div class="incident-header">
+          <div class="incident-icon">🗣️</div>
+          <div class="incident-info">
+            <h3>Social Engineering Response</h3>
+            <p>Manipulation techniques to trick people into divulging confidential information.</p>
+            <span class="severity-badge severity-high">HIGH SEVERITY</span>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <h3 class="phase-title">Recognition</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚩</div>
+            <div class="step-content">
+              <h4>Identify Social Engineering Attempt</h4>
+              <p>Recognize common social engineering tactics.</p>
+              <ul>
+                <li>Urgency or pressure to act quickly</li>
+                <li>Requests for sensitive information</li>
+                <li>Impersonation of authority figures</li>
+                <li>Unusual requests from known contacts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <h3 class="phase-title">Response</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🛑</div>
+            <div class="step-content">
+              <h4>Stop and Verify</h4>
+              <p>Do not provide information without verification.</p>
+              <ul>
+                <li>Pause the conversation</li>
+                <li>Verify identity through independent channels</li>
+                <li>Report suspicious contact to security team</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <h3 class="phase-title">If Information Was Shared</h3>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚨</div>
+            <div class="step-content">
+              <h4>Immediately Report</h4>
+              <p>Alert security team about potential compromise.</p>
+              <ul>
+                <li>Detail what information was shared</li>
+                <li>Change affected passwords</li>
+                <li>Monitor for misuse of information</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h4>💡 Stay Vigilant</h4>
+          <p>Be skeptical of unsolicited contacts, verify identities independently, never share credentials, and report suspicious interactions immediately.</p>
+        </div>
+      </div>
+
+      <div class="cta">
         <p>Ready to test your incident response knowledge?</p>
         <button class="btn btn-primary" onclick="showQuiz()">
           Take the Quiz →
@@ -661,54 +1746,53 @@
           <button class="btn btn-primary btn-block" onclick="retryQuiz()">
             Try Again
           </button>
-          <button class="btn btn-primary btn-block" onclick="showSection('info')">
-            Back to Learning
+          <button class="btn btn-primary btn-block" onclick="showSection('playbook')">
+            Back to Playbook
           </button>
         </div>
       </div>
     </div>
   </div>
-<script>
-  // Scroll Progress Tracking
-  (function() {
-    const MODULE_ID = 'incident'; // Change this for each page: 'phishing', 'passwords', 'scams', 'mobile', 'dataprotection', 'incident', 'safeinternet'
-    
-    function getUserProgressKey() {
-      const userName = localStorage.getItem('userName') || 'Guest';
-      return `moduleProgress_${userName}`;
-    }
-    
-    function updateScrollProgress() {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  <script>
+    // Scroll Progress Tracking
+    (function() {
+      const MODULE_ID = 'incident';
       
-      const scrollableDistance = documentHeight - windowHeight;
-      const scrollPercentage = scrollableDistance > 0 ? Math.round((scrollTop / scrollableDistance) * 100) : 100;
-      
-      const progressKey = getUserProgressKey();
-      const progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
-      
-      // Only update if new progress is higher
-      if ((progress[MODULE_ID] || 0) < scrollPercentage) {
-        progress[MODULE_ID] = Math.min(100, scrollPercentage);
-        localStorage.setItem(progressKey, JSON.stringify(progress));
+      function getUserProgressKey() {
+        const userName = localStorage.getItem('userName') || 'Guest';
+        return `moduleProgress_${userName}`;
       }
-    }
-    
-    // Throttle scroll events
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+      
+      function updateScrollProgress() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        const scrollableDistance = documentHeight - windowHeight;
+        const scrollPercentage = scrollableDistance > 0 ? Math.round((scrollTop / scrollableDistance) * 100) : 100;
+        
+        const progressKey = getUserProgressKey();
+        const progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+        
+        if ((progress[MODULE_ID] || 0) < scrollPercentage) {
+          progress[MODULE_ID] = Math.min(100, scrollPercentage);
+          localStorage.setItem(progressKey, JSON.stringify(progress));
+        }
       }
-      scrollTimeout = setTimeout(updateScrollProgress, 200);
-    });
-    
-    // Initial check
-    updateScrollProgress();
-  })();
-</script>
+      
+      let scrollTimeout;
+      window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(updateScrollProgress, 200);
+      });
+      
+      updateScrollProgress();
+    })();
+  </script>
+
   <footer>
     <p>&copy; 2025 Cyber Awareness Training Program. All rights reserved.</p>
   </footer>
@@ -716,7 +1800,7 @@
   <script>
     // Navigation
     function showSection(sectionName) {
-      const sections = ['info', 'quiz', 'results'];
+      const sections = ['info', 'playbook', 'quiz', 'results'];
       sections.forEach(s => {
         const section = document.getElementById(`${s}-section`);
         const navTab = document.getElementById(`nav-${s}`);
@@ -729,6 +1813,25 @@
           if (navTab) navTab.classList.remove('active');
         }
       });
+    }
+
+    // Playbook dropdown
+    function showPlaybook() {
+      const select = document.getElementById('incidentType');
+      const selectedValue = select.value;
+      
+      const allPlaybooks = document.querySelectorAll('.playbook-content');
+      allPlaybooks.forEach(playbook => {
+        playbook.classList.remove('active');
+      });
+      
+      if (selectedValue) {
+        const selectedPlaybook = document.getElementById(selectedValue);
+        if (selectedPlaybook) {
+          selectedPlaybook.classList.add('active');
+          selectedPlaybook.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
 
     // Quiz

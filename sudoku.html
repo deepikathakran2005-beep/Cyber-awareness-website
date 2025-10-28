@@ -297,6 +297,13 @@
       <h1>🧩 Sudoku</h1>
       <p class="subtitle">Train Your Brain • Cyber Edition</p>
 
+      <div class="difficulty-selector">
+        <button class="diff-btn active" data-level="easy">Easy</button>
+        <button class="diff-btn" data-level="medium">Medium</button>
+        <button class="diff-btn" data-level="hard">Hard</button>
+        <button class="diff-btn" data-level="expert">Expert</button>
+      </div>
+
       <div class="stats">
         <div class="stat">
           <div class="stat-label">Time</div>
@@ -340,16 +347,18 @@
   <script>
     let board = [];
     let solution = [];
+    let initialBoard = [];
     let selectedCell = null;
     let difficulty = 'easy';
     let mistakes = 0;
-    let timerInterval;
+    let timerInterval = null;
     let seconds = 0;
 
     const difficultySettings = {
-      easy: 40,
-      medium: 50,
-      hard: 60
+      easy: 35,
+      medium: 45,
+      hard: 55,
+      expert: 64
     };
 
     // Initialize game
@@ -357,7 +366,6 @@
       generateSudoku();
       renderBoard();
       startTimer();
-      setupEventListeners();
     }
 
     // Generate a valid Sudoku puzzle
@@ -365,6 +373,7 @@
       solution = generateFullBoard();
       board = JSON.parse(JSON.stringify(solution));
       removeNumbers(difficultySettings[difficulty]);
+      initialBoard = JSON.parse(JSON.stringify(board));
     }
 
     // Generate a complete valid Sudoku board
@@ -453,7 +462,7 @@
           const value = board[row][col];
           if (value !== 0) {
             cell.textContent = value;
-            if (solution[row][col] === value) {
+            if (initialBoard[row][col] !== 0) {
               cell.classList.add('fixed');
             } else {
               cell.classList.add('user');
@@ -508,15 +517,18 @@
     function checkSolution() {
       const messageEl = document.getElementById('message');
       let hasErrors = false;
+      let emptyCount = 0;
       
       for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
           const cellEl = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
           if (!cellEl.classList.contains('fixed')) {
-            if (board[row][col] === solution[row][col] && board[row][col] !== 0) {
+            if (board[row][col] === 0) {
+              emptyCount++;
+            } else if (board[row][col] === solution[row][col]) {
               cellEl.classList.add('correct');
               cellEl.classList.remove('error');
-            } else if (board[row][col] !== 0) {
+            } else {
               cellEl.classList.add('error');
               cellEl.classList.remove('correct');
               hasErrors = true;
@@ -525,13 +537,13 @@
         }
       }
       
-      if (hasErrors) {
-        showMessage('Some cells are incorrect. Keep trying!', 'error');
-      } else if (isBoardComplete()) {
-        showMessage('Perfect! You solved it! 🎉', 'success');
-        stopTimer();
+      if (emptyCount > 0 && !hasErrors) {
+        showMessage(`Keep going! ${emptyCount} cells remaining.`, 'success');
+      } else if (hasErrors) {
+        showMessage('Some cells are incorrect! Check the highlighted ones.', 'error');
       } else {
-        showMessage('Looking good so far! Keep going.', 'success');
+        showMessage('Perfect! All cells are correct! 🎉', 'success');
+        stopTimer();
       }
     }
 
@@ -550,6 +562,8 @@
         board[randomCell.row][randomCell.col] = solution[randomCell.row][randomCell.col];
         renderBoard();
         showMessage('Hint added! 💡', 'success');
+      } else {
+        showMessage('No empty cells to hint!', 'error');
       }
     }
 
@@ -604,6 +618,7 @@
     function stopTimer() {
       if (timerInterval) {
         clearInterval(timerInterval);
+        timerInterval = null;
       }
     }
 
@@ -611,6 +626,14 @@
       const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
       const secs = (seconds % 60).toString().padStart(2, '0');
       document.getElementById('timer').textContent = `${mins}:${secs}`;
+    }
+
+    function resetGame() {
+      mistakes = 0;
+      document.getElementById('mistakes').textContent = '0';
+      selectedCell = null;
+      stopTimer();
+      init();
     }
 
     function setupEventListeners() {
@@ -631,7 +654,7 @@
         }
       });
 
-      // Difficulty buttons
+      // Difficulty buttons - Now generates new game when clicked
       document.querySelectorAll('.diff-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
@@ -639,21 +662,18 @@
           difficulty = btn.dataset.level;
           document.getElementById('difficulty').textContent = 
             difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+          resetGame();
         });
       });
 
       // Control buttons
-      document.getElementById('newGame').addEventListener('click', () => {
-        mistakes = 0;
-        document.getElementById('mistakes').textContent = '0';
-        init();
-      });
-
+      document.getElementById('newGame').addEventListener('click', resetGame);
       document.getElementById('checkBtn').addEventListener('click', checkSolution);
       document.getElementById('hintBtn').addEventListener('click', giveHint);
     }
 
-    // Start the game
+    // Setup and start
+    setupEventListeners();
     init();
   </script>
 </body>
